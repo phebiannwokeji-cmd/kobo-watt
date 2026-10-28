@@ -1,0 +1,269 @@
+/**
+ * Kobo Watt Design System — Typography Tokens and Utilities
+ * Generated automatically from evidence/06-tokens-complete.json.
+ * Do not edit manually. Regenerate using: python tools/convert-tokens.py
+ */
+
+:root {
+  /* =======================================================================
+   * Typography Tokens (15 Styles)
+   * ======================================================================= */
+  /* Display Large */
+  --kw-typography-display-large-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-display-large-font-size: 64px;
+  --kw-typography-display-large-font-weight: 600;
+  --kw-typography-display-large-line-height: 96px;
+  --kw-typography-display-large-letter-spacing: -2.24px;
+
+  /* Display Medium */
+  --kw-typography-display-medium-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-display-medium-font-size: 50px;
+  --kw-typography-display-medium-font-weight: 600;
+  --kw-typography-display-medium-line-height: 75px;
+  --kw-typography-display-medium-letter-spacing: -1.5px;
+
+  /* Display Small */
+  --kw-typography-display-small-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-display-small-font-size: 40px;
+  --kw-typography-display-small-font-weight: 600;
+  --kw-typography-display-small-line-height: 60px;
+  --kw-typography-display-small-letter-spacing: -0.8px;
+
+  /* Headline Large */
+  --kw-typography-headline-large-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-headline-large-font-size: 40px;
+  --kw-typography-headline-large-font-weight: 600;
+  --kw-typography-headline-large-line-height: 60px;
+  --kw-typography-headline-large-letter-spacing: -0.6px;
+
+  /* Headline Medium */
+  --kw-typography-headline-medium-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-headline-medium-font-size: 32px;
+  --kw-typography-headline-medium-font-weight: 600;
+  --kw-typography-headline-medium-line-height: 48px;
+  --kw-typography-headline-medium-letter-spacing: -0.576px;
+
+  /* Headline Small */
+  --kw-typography-headline-small-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-headline-small-font-size: 24px;
+  --kw-typography-headline-small-font-weight: 600;
+  --kw-typography-headline-small-line-height: 36px;
+  --kw-typography-headline-small-letter-spacing: -0.336px;
+
+  /* Title Large */
+  --kw-typography-title-large-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-title-large-font-size: 24px;
+  --kw-typography-title-large-font-weight: 600;
+  --kw-typography-title-large-line-height: 36px;
+  --kw-typography-title-large-letter-spacing: -0.24px;
+
+  /* Title Medium */
+  --kw-typography-title-medium-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-title-medium-font-size: 16px;
+  --kw-typography-title-medium-font-weight: 600;
+  --kw-typography-title-medium-line-height: 24px;
+  --kw-typography-title-medium-letter-spacing: -0.16px;
+
+  /* Title Small */
+  --kw-typography-title-small-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-title-small-font-size: 14px;
+  --kw-typography-title-small-font-weight: 600;
+  --kw-typography-title-small-line-height: 21px;
+  --kw-typography-title-small-letter-spacing: -0.126px;
+
+  /* Body Large */
+  --kw-typography-body-large-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-body-large-font-size: 16px;
+  --kw-typography-body-large-font-weight: 600;
+  --kw-typography-body-large-line-height: 24px;
+  --kw-typography-body-large-letter-spacing: -0.144px;
+
+  /* Body Medium */
+  --kw-typography-body-medium-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-body-medium-font-size: 14px;
+  --kw-typography-body-medium-font-weight: 600;
+  --kw-typography-body-medium-line-height: 21px;
+  --kw-typography-body-medium-letter-spacing: -0.098px;
+
+  /* Body Small */
+  --kw-typography-body-small-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-body-small-font-size: 12px;
+  --kw-typography-body-small-font-weight: 600;
+  --kw-typography-body-small-line-height: 18px;
+  --kw-typography-body-small-letter-spacing: -0.048px;
+
+  /* Label Large */
+  --kw-typography-label-large-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-label-large-font-size: 14px;
+  --kw-typography-label-large-font-weight: 600;
+  --kw-typography-label-large-line-height: 21px;
+  --kw-typography-label-large-letter-spacing: -0.126px;
+
+  /* Label Medium */
+  --kw-typography-label-medium-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-label-medium-font-size: 12px;
+  --kw-typography-label-medium-font-weight: 600;
+  --kw-typography-label-medium-line-height: 18px;
+  --kw-typography-label-medium-letter-spacing: -0.108px;
+
+  /* Label Small */
+  --kw-typography-label-small-font-family: 'Source Sans Pro', sans-serif;
+  --kw-typography-label-small-font-size: 11px;
+  --kw-typography-label-small-font-weight: 600;
+  --kw-typography-label-small-line-height: 16.5px;
+  --kw-typography-label-small-letter-spacing: -0.077px;
+}
+
+/* =========================================================================
+ * Reusable Typography Utility Classes (15 Styles)
+ * ========================================================================= */
+
+/* Display Large */
+.kw-typography-display-large,
+.display-large {
+  font-family: var(--kw-typography-display-large-font-family);
+  font-size: var(--kw-typography-display-large-font-size);
+  font-weight: var(--kw-typography-display-large-font-weight);
+  line-height: var(--kw-typography-display-large-line-height);
+  letter-spacing: var(--kw-typography-display-large-letter-spacing);
+}
+
+/* Display Medium */
+.kw-typography-display-medium,
+.display-medium {
+  font-family: var(--kw-typography-display-medium-font-family);
+  font-size: var(--kw-typography-display-medium-font-size);
+  font-weight: var(--kw-typography-display-medium-font-weight);
+  line-height: var(--kw-typography-display-medium-line-height);
+  letter-spacing: var(--kw-typography-display-medium-letter-spacing);
+}
+
+/* Display Small */
+.kw-typography-display-small,
+.display-small {
+  font-family: var(--kw-typography-display-small-font-family);
+  font-size: var(--kw-typography-display-small-font-size);
+  font-weight: var(--kw-typography-display-small-font-weight);
+  line-height: var(--kw-typography-display-small-line-height);
+  letter-spacing: var(--kw-typography-display-small-letter-spacing);
+}
+
+/* Headline Large */
+.kw-typography-headline-large,
+.headline-large {
+  font-family: var(--kw-typography-headline-large-font-family);
+  font-size: var(--kw-typography-headline-large-font-size);
+  font-weight: var(--kw-typography-headline-large-font-weight);
+  line-height: var(--kw-typography-headline-large-line-height);
+  letter-spacing: var(--kw-typography-headline-large-letter-spacing);
+}
+
+/* Headline Medium */
+.kw-typography-headline-medium,
+.headline-medium {
+  font-family: var(--kw-typography-headline-medium-font-family);
+  font-size: var(--kw-typography-headline-medium-font-size);
+  font-weight: var(--kw-typography-headline-medium-font-weight);
+  line-height: var(--kw-typography-headline-medium-line-height);
+  letter-spacing: var(--kw-typography-headline-medium-letter-spacing);
+}
+
+/* Headline Small */
+.kw-typography-headline-small,
+.headline-small {
+  font-family: var(--kw-typography-headline-small-font-family);
+  font-size: var(--kw-typography-headline-small-font-size);
+  font-weight: var(--kw-typography-headline-small-font-weight);
+  line-height: var(--kw-typography-headline-small-line-height);
+  letter-spacing: var(--kw-typography-headline-small-letter-spacing);
+}
+
+/* Title Large */
+.kw-typography-title-large,
+.title-large {
+  font-family: var(--kw-typography-title-large-font-family);
+  font-size: var(--kw-typography-title-large-font-size);
+  font-weight: var(--kw-typography-title-large-font-weight);
+  line-height: var(--kw-typography-title-large-line-height);
+  letter-spacing: var(--kw-typography-title-large-letter-spacing);
+}
+
+/* Title Medium */
+.kw-typography-title-medium,
+.title-medium {
+  font-family: var(--kw-typography-title-medium-font-family);
+  font-size: var(--kw-typography-title-medium-font-size);
+  font-weight: var(--kw-typography-title-medium-font-weight);
+  line-height: var(--kw-typography-title-medium-line-height);
+  letter-spacing: var(--kw-typography-title-medium-letter-spacing);
+}
+
+/* Title Small */
+.kw-typography-title-small,
+.title-small {
+  font-family: var(--kw-typography-title-small-font-family);
+  font-size: var(--kw-typography-title-small-font-size);
+  font-weight: var(--kw-typography-title-small-font-weight);
+  line-height: var(--kw-typography-title-small-line-height);
+  letter-spacing: var(--kw-typography-title-small-letter-spacing);
+}
+
+/* Body Large */
+.kw-typography-body-large,
+.body-large {
+  font-family: var(--kw-typography-body-large-font-family);
+  font-size: var(--kw-typography-body-large-font-size);
+  font-weight: var(--kw-typography-body-large-font-weight);
+  line-height: var(--kw-typography-body-large-line-height);
+  letter-spacing: var(--kw-typography-body-large-letter-spacing);
+}
+
+/* Body Medium */
+.kw-typography-body-medium,
+.body-medium {
+  font-family: var(--kw-typography-body-medium-font-family);
+  font-size: var(--kw-typography-body-medium-font-size);
+  font-weight: var(--kw-typography-body-medium-font-weight);
+  line-height: var(--kw-typography-body-medium-line-height);
+  letter-spacing: var(--kw-typography-body-medium-letter-spacing);
+}
+
+/* Body Small */
+.kw-typography-body-small,
+.body-small {
+  font-family: var(--kw-typography-body-small-font-family);
+  font-size: var(--kw-typography-body-small-font-size);
+  font-weight: var(--kw-typography-body-small-font-weight);
+  line-height: var(--kw-typography-body-small-line-height);
+  letter-spacing: var(--kw-typography-body-small-letter-spacing);
+}
+
+/* Label Large */
+.kw-typography-label-large,
+.label-large {
+  font-family: var(--kw-typography-label-large-font-family);
+  font-size: var(--kw-typography-label-large-font-size);
+  font-weight: var(--kw-typography-label-large-font-weight);
+  line-height: var(--kw-typography-label-large-line-height);
+  letter-spacing: var(--kw-typography-label-large-letter-spacing);
+}
+
+/* Label Medium */
+.kw-typography-label-medium,
+.label-medium {
+  font-family: var(--kw-typography-label-medium-font-family);
+  font-size: var(--kw-typography-label-medium-font-size);
+  font-weight: var(--kw-typography-label-medium-font-weight);
+  line-height: var(--kw-typography-label-medium-line-height);
+  letter-spacing: var(--kw-typography-label-medium-letter-spacing);
+}
+
+/* Label Small */
+.kw-typography-label-small,
+.label-small {
+  font-family: var(--kw-typography-label-small-font-family);
+  font-size: var(--kw-typography-label-small-font-size);
+  font-weight: var(--kw-typography-label-small-font-weight);
+  line-height: var(--kw-typography-label-small-line-height);
+  letter-spacing: var(--kw-typography-label-small-letter-spacing);
+}

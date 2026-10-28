@@ -1,0 +1,1768 @@
+================================================================================
+KOBO WATT — TASK 1: RAW-COLOUR SEARCH EVIDENCE
+================================================================================
+
+Recorded: 28 October 2026
+Project root: C:\Users\LENOVO PC\OneDrive\Desktop\Task-01-design-system
+Tool: Python 3.14.7 running tools/search-raw-colours.py
+(no ripgrep binary is installed on PATH, so the search is scripted in Python,
+the language already used by this project's tools)
+
+SEARCH SCOPE
+  - Entire project tree, recursive.
+  - Hidden files and folders included.
+  - Every UTF-8 text file: .md, .json, .html, .css, .js, .mjs, .py and the
+    extensionless text file evidence/primary-palette-calculation.
+
+EXCLUSIONS
+  - .git/ (Git internals).
+  - node_modules/, .venv/, venv/, __pycache__/ (dependencies and caches).
+  - Binary extensions: png jpg jpeg gif webp ico bmp tif tiff pdf mp4 mov avi
+    webm mp3 wav woff woff2 ttf otf eot zip gz tar rar 7z exe dll so dylib
+    class jar.
+  - Files that do not decode as UTF-8 text (none occurred; the tool lists any).
+  - evidence/07-raw-value-search.txt (this evidence file itself), so reruns do
+    not match their own output. It is listed as skipped in each output.
+
+PATTERNS
+  HEX
+    (?<![A-Za-z0-9_])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3,4})(?![A-Za-z0-9_-])
+  CSS COLOUR FUNCTIONS (case-insensitive)
+    rgba?  hsla?  hwb  lab  lch  oklab  oklch  color  color-mix  light-dark
+    device-cmyk  color-contrast  followed by "("
+  NAMED CSS COLOURS (case-insensitive, whole tokens)
+    The 148 CSS named colours plus transparent and currentcolor. The full list
+    is in tools/search-raw-colours.py (NAMED_COLOURS).
+  PRIMITIVE PALETTE VARIABLES
+    --kw-palette-
+  MATERIAL-THEME VALUES
+    material-theme (case-insensitive)
+
+COMMANDS (run from the project root, in this order)
+  1. Whole-project raw-colour search:
+     python tools/search-raw-colours.py --patterns colours --out evidence/07-raw-value-search.txt --append
+  2. Primitive/material-theme search in all HTML, CSS, JS and MJS:
+     python tools/search-raw-colours.py --patterns symbols --ext html css js mjs --out evidence/07-raw-value-search.txt --append
+  3. Primitive/material-theme search in the hand-written active interface:
+     python tools/search-raw-colours.py --patterns symbols --paths prototype/index.html prototype/help.html prototype/help-no-power.html prototype/screen.css prototype/demo.js styles/fonts.css --out evidence/07-raw-value-search.txt --append
+
+The complete, unedited search output of commands 1–3 follows in that order.
+Each match is printed as path:line:line-content. Matching lines are not
+truncated, filtered or reordered.
+
+--- SKIPPED: binary extension ---
+evidence/01-palette-before-pin.png
+evidence/02-palette-after-pin.png
+evidence/03-spacing-default.png
+evidence/04-spacing-chosen.png
+evidence/09-screen-without-system.png
+evidence/10-screen-with-system.png
+evidence/Body-Large.png
+evidence/Body-Medium.png
+evidence/Body-Small.png
+evidence/button-background link.png
+evidence/button-Dark-text-role.png
+evidence/button-light-text-role.png
+evidence/buttons-light-and-dark.png
+evidence/colour-role-links-dark-bottom.png
+evidence/colour-role-links-dark-Top.png
+evidence/colour-role-links-light-bottom.png
+evidence/colour-role-links-light-middle.png
+evidence/colour-role-links-light-top.png
+evidence/Display Large.png
+evidence/Display Medium.png
+evidence/Display Small.png
+evidence/Headline-Large.png
+evidence/Headline-Medium.png
+evidence/Headline-Small.png
+evidence/Label-Large.png
+evidence/Label-Medium.png
+evidence/Label-Small.png
+evidence/Title-Large.png
+evidence/Title-Medium.png
+evidence/Title-Small.png
+fonts/SourceSansPro-SemiBold-latin-ext.woff2
+fonts/SourceSansPro-SemiBold-latin.woff2
+(32 files)
+--- SKIPPED: not valid UTF-8 text ---
+(0 files)
+--- SKIPPED: evidence output file ---
+evidence/07-raw-value-search.txt
+(1 files)
+--- FILES SCANNED: 27 ---
+=== RAW COLOUR VALUES: HEX ===
+docs/colour-roles.md:7:Original workflow: ChatGPT supplied the palettes after I requested Material Design 3 guidance and explicitly required primary40 = #006B5E. I entered the values into Figma by hand. This was manual entry, not manual calculation.
+docs/colour-roles.md:15:**Colour:** deep teal, #006B5E.
+docs/colour-roles.md:17:**Source:** I chose #006B5E from colour suggestions supplied by ChatGPT for Kobo Watt. I compared deep teal with a restrained blue, but did not record the alternative blue HEX. ChatGPT suggested options; I made the final choice.
+docs/colour-roles.md:31:1. **Change primary40 only:** generate `TonalPalette.fromInt(source)`, then set tone 40 to #006B5E. All 14 values remain unchanged. This is the earlier no-change result.
+docs/colour-roles.md:38:| 10 | #00201B | #00201B |
+docs/colour-roles.md:39:| 20 | #003730 | #003730 |
+docs/colour-roles.md:40:| 30 | #005046 | #005046 |
+docs/colour-roles.md:41:| 40 | #006B5E | #006B5E |
+docs/colour-roles.md:42:| 50 | #008676 | #2D8476 |
+docs/colour-roles.md:43:| 60 | #00A390 | #4B9E90 |
+docs/colour-roles.md:44:| 70 | #30BFAA | #67BAAA |
+docs/colour-roles.md:45:| 80 | #56DBC5 | #83D5C5 |
+docs/colour-roles.md:46:| 90 | #76F8E1 | #9FF2E1 |
+docs/colour-roles.md:48:Tone 40 is #006B5E in both methods. In the calculated comparison, tones 50–90 change, while the other nine sampled tones stay the same. For example, tone 80 changes from #56DBC5 to #83D5C5, and tone 90 from #76F8E1 to #9FF2E1. I describe the second set as softer and better suited to my intended calm appearance; that is a design judgement. Both methods return the same tone-40 HEX despite different requested chroma. This result alone does not prove the strongest possible chroma at that hue and tone.
+docs/colour-roles.md:57:**My surface choices:** dark surface is neutral 10 (#191C1B) and dark surface-container is neutral 20 (#2E312F). Light surface-container is neutral 95 (#EFF1EE). These are Kobo Watt choices that keep me inside 14 tones. They are not the full Material surface mapping.
+docs/colour-roles.md:77:| surface | neutral98 | #F8FAF7 | neutral10 | #191C1B |
+docs/colour-roles.md:78:| on-surface | neutral10 | #191C1B | neutral90 | #E1E3E0 |
+docs/colour-roles.md:79:| surface-container | neutral95 | #EFF1EE | neutral20 | #2E312F |
+docs/colour-roles.md:80:| on-surface-variant | neutralVariant30 | #3F4947 | neutralVariant80 | #BEC9C6 |
+docs/colour-roles.md:81:| outline | neutralVariant50 | #6F7977 | neutralVariant60 | #889390 |
+docs/colour-roles.md:82:| outline-variant | neutralVariant80 | #BEC9C6 | neutralVariant30 | #3F4947 |
+docs/colour-roles.md:83:| primary | primary40 | #006B5E | primary80 | #83D5C5 |
+docs/colour-roles.md:84:| on-primary | primary100 | #FFFFFF | primary20 | #003730 |
+docs/colour-roles.md:85:| primary-container | primary90 | #9FF2E1 | primary30 | #005046 |
+docs/colour-roles.md:86:| on-primary-container | primary10 | #00201B | primary90 | #9FF2E1 |
+docs/colour-roles.md:87:| secondary | secondary40 | #4A635F | secondary80 | #B1CCC7 |
+docs/colour-roles.md:88:| on-secondary | secondary100 | #FFFFFF | secondary20 | #1C3531 |
+docs/colour-roles.md:89:| secondary-container | secondary90 | #CDE8E3 | secondary30 | #334B48 |
+docs/colour-roles.md:90:| on-secondary-container | secondary10 | #061F1D | secondary90 | #CDE8E3 |
+docs/colour-roles.md:91:| tertiary | tertiary40 | #3F6375 | tertiary80 | #A7CCE1 |
+docs/colour-roles.md:92:| on-tertiary | tertiary100 | #FFFFFF | tertiary20 | #0A3445 |
+docs/colour-roles.md:93:| tertiary-container | tertiary90 | #C2E8FD | tertiary30 | #264B5C |
+docs/colour-roles.md:94:| on-tertiary-container | tertiary10 | #001E2B | tertiary90 | #C2E8FD |
+docs/colour-roles.md:95:| error | error40 | #BA1A1A | error80 | #FFB4AB |
+docs/colour-roles.md:96:| on-error | error100 | #FFFFFF | error20 | #690004 |
+docs/colour-roles.md:97:| error-container | error90 | #FFDAD5 | error30 | #930009 |
+docs/colour-roles.md:98:| on-error-container | error10 | #410002 | error90 | #FFDAD5 |
+docs/colour-roles.md:99:| warning | warning40 | #924C00 | warning80 | #FFB780 |
+docs/colour-roles.md:100:| on-warning | warning100 | #FFFFFF | warning20 | #4E2600 |
+docs/colour-roles.md:101:| warning-container | warning90 | #FFDCC4 | warning30 | #6F3800 |
+docs/colour-roles.md:102:| on-warning-container | warning10 | #2F1400 | warning90 | #FFDCC4 |
+docs/colour-roles.md:103:| success | success40 | #006D3B | success80 | #80D99C |
+docs/colour-roles.md:104:| on-success | success100 | #FFFFFF | success20 | #00391C |
+docs/colour-roles.md:105:| success-container | success90 | #9BF6B6 | success30 | #00522B |
+docs/colour-roles.md:106:| on-success-container | success10 | #00210E | success90 | #9BF6B6 |
+docs/colour-roles.md:116:| light | on-surface (neutral10 #191C1B) | surface (neutral98 #F8FAF7) | text | 16.36:1 | 4.5:1 | Pass |
+docs/colour-roles.md:117:| light | on-surface (neutral10 #191C1B) | surface-container (neutral95 #EFF1EE) | text | 15.11:1 | 4.5:1 | Pass |
+docs/colour-roles.md:118:| light | on-surface-variant (neutralVariant30 #3F4947) | surface (neutral98 #F8FAF7) | text | 8.87:1 | 4.5:1 | Pass |
+docs/colour-roles.md:119:| light | on-surface-variant (neutralVariant30 #3F4947) | surface-container (neutral95 #EFF1EE) | text | 8.20:1 | 4.5:1 | Pass |
+docs/colour-roles.md:120:| light | outline (neutralVariant50 #6F7977) | surface (neutral98 #F8FAF7) | boundary | 4.28:1 | 3.0:1 | Pass |
+docs/colour-roles.md:121:| light | outline (neutralVariant50 #6F7977) | surface-container (neutral95 #EFF1EE) | boundary | 3.95:1 | 3.0:1 | Pass |
+docs/colour-roles.md:122:| light | on-primary (primary100 #FFFFFF) | primary (primary40 #006B5E) | text | 6.43:1 | 4.5:1 | Pass |
+docs/colour-roles.md:123:| light | on-primary-container (primary10 #00201B) | primary-container (primary90 #9FF2E1) | text | 13.30:1 | 4.5:1 | Pass |
+docs/colour-roles.md:124:| light | primary (primary40 #006B5E) | surface (neutral98 #F8FAF7) | text | 6.13:1 | 4.5:1 | Pass |
+docs/colour-roles.md:125:| light | on-secondary (secondary100 #FFFFFF) | secondary (secondary40 #4A635F) | text | 6.48:1 | 4.5:1 | Pass |
+docs/colour-roles.md:126:| light | on-secondary-container (secondary10 #061F1D) | secondary-container (secondary90 #CDE8E3) | text | 13.30:1 | 4.5:1 | Pass |
+docs/colour-roles.md:127:| light | secondary (secondary40 #4A635F) | surface (neutral98 #F8FAF7) | text | 6.17:1 | 4.5:1 | Pass |
+docs/colour-roles.md:128:| light | on-tertiary (tertiary100 #FFFFFF) | tertiary (tertiary40 #3F6375) | text | 6.46:1 | 4.5:1 | Pass |
+docs/colour-roles.md:129:| light | on-tertiary-container (tertiary10 #001E2B) | tertiary-container (tertiary90 #C2E8FD) | text | 13.32:1 | 4.5:1 | Pass |
+docs/colour-roles.md:130:| light | tertiary (tertiary40 #3F6375) | surface (neutral98 #F8FAF7) | text | 6.15:1 | 4.5:1 | Pass |
+docs/colour-roles.md:131:| light | on-error (error100 #FFFFFF) | error (error40 #BA1A1A) | text | 6.46:1 | 4.5:1 | Pass |
+docs/colour-roles.md:132:| light | on-error-container (error10 #410002) | error-container (error90 #FFDAD5) | text | 13.25:1 | 4.5:1 | Pass |
+docs/colour-roles.md:133:| light | error (error40 #BA1A1A) | surface (neutral98 #F8FAF7) | text | 6.16:1 | 4.5:1 | Pass |
+docs/colour-roles.md:134:| light | on-warning (warning100 #FFFFFF) | warning (warning40 #924C00) | text | 6.45:1 | 4.5:1 | Pass |
+docs/colour-roles.md:135:| light | on-warning-container (warning10 #2F1400) | warning-container (warning90 #FFDCC4) | text | 13.34:1 | 4.5:1 | Pass |
+docs/colour-roles.md:136:| light | warning (warning40 #924C00) | surface (neutral98 #F8FAF7) | text | 6.15:1 | 4.5:1 | Pass |
+docs/colour-roles.md:137:| light | on-success (success100 #FFFFFF) | success (success40 #006D3B) | text | 6.46:1 | 4.5:1 | Pass |
+docs/colour-roles.md:138:| light | on-success-container (success10 #00210E) | success-container (success90 #9BF6B6) | text | 13.28:1 | 4.5:1 | Pass |
+docs/colour-roles.md:139:| light | success (success40 #006D3B) | surface (neutral98 #F8FAF7) | text | 6.16:1 | 4.5:1 | Pass |
+docs/colour-roles.md:140:| dark | on-surface (neutral90 #E1E3E0) | surface (neutral10 #191C1B) | text | 13.30:1 | 4.5:1 | Pass |
+docs/colour-roles.md:141:| dark | on-surface (neutral90 #E1E3E0) | surface-container (neutral20 #2E312F) | text | 10.19:1 | 4.5:1 | Pass |
+docs/colour-roles.md:142:| dark | on-surface-variant (neutralVariant80 #BEC9C6) | surface (neutral10 #191C1B) | text | 10.10:1 | 4.5:1 | Pass |
+docs/colour-roles.md:143:| dark | on-surface-variant (neutralVariant80 #BEC9C6) | surface-container (neutral20 #2E312F) | text | 7.74:1 | 4.5:1 | Pass |
+docs/colour-roles.md:144:| dark | outline (neutralVariant60 #889390) | surface (neutral10 #191C1B) | boundary | 5.41:1 | 3.0:1 | Pass |
+docs/colour-roles.md:145:| dark | outline (neutralVariant60 #889390) | surface-container (neutral20 #2E312F) | boundary | 4.15:1 | 3.0:1 | Pass |
+docs/colour-roles.md:146:| dark | on-primary (primary20 #003730) | primary (primary80 #83D5C5) | text | 7.73:1 | 4.5:1 | Pass |
+docs/colour-roles.md:147:| dark | on-primary-container (primary90 #9FF2E1) | primary-container (primary30 #005046) | text | 7.27:1 | 4.5:1 | Pass |
+docs/colour-roles.md:148:| dark | primary (primary80 #83D5C5) | surface (neutral10 #191C1B) | text | 10.05:1 | 4.5:1 | Pass |
+docs/colour-roles.md:149:| dark | on-secondary (secondary20 #1C3531) | secondary (secondary80 #B1CCC7) | text | 7.69:1 | 4.5:1 | Pass |
+docs/colour-roles.md:150:| dark | on-secondary-container (secondary90 #CDE8E3) | secondary-container (secondary30 #334B48) | text | 7.25:1 | 4.5:1 | Pass |
+docs/colour-roles.md:151:| dark | secondary (secondary80 #B1CCC7) | surface (neutral10 #191C1B) | text | 10.08:1 | 4.5:1 | Pass |
+docs/colour-roles.md:152:| dark | on-tertiary (tertiary20 #0A3445) | tertiary (tertiary80 #A7CCE1) | text | 7.78:1 | 4.5:1 | Pass |
+docs/colour-roles.md:153:| dark | on-tertiary-container (tertiary90 #C2E8FD) | tertiary-container (tertiary30 #264B5C) | text | 7.25:1 | 4.5:1 | Pass |
+docs/colour-roles.md:154:| dark | tertiary (tertiary80 #A7CCE1) | surface (neutral10 #191C1B) | text | 10.11:1 | 4.5:1 | Pass |
+docs/colour-roles.md:155:| dark | on-error (error20 #690004) | error (error80 #FFB4AB) | text | 7.72:1 | 4.5:1 | Pass |
+docs/colour-roles.md:156:| dark | on-error-container (error90 #FFDAD5) | error-container (error30 #930009) | text | 7.24:1 | 4.5:1 | Pass |
+docs/colour-roles.md:157:| dark | error (error80 #FFB4AB) | surface (neutral10 #191C1B) | text | 10.11:1 | 4.5:1 | Pass |
+docs/colour-roles.md:158:| dark | on-warning (warning20 #4E2600) | warning (warning80 #FFB780) | text | 7.70:1 | 4.5:1 | Pass |
+docs/colour-roles.md:159:| dark | on-warning-container (warning90 #FFDCC4) | warning-container (warning30 #6F3800) | text | 7.27:1 | 4.5:1 | Pass |
+docs/colour-roles.md:160:| dark | warning (warning80 #FFB780) | surface (neutral10 #191C1B) | text | 10.09:1 | 4.5:1 | Pass |
+docs/colour-roles.md:161:| dark | on-success (success20 #00391C) | success (success80 #80D99C) | text | 7.69:1 | 4.5:1 | Pass |
+docs/colour-roles.md:162:| dark | on-success-container (success90 #9BF6B6) | success-container (success30 #00522B) | text | 7.25:1 | 4.5:1 | Pass |
+docs/colour-roles.md:163:| dark | success (success80 #80D99C) | surface (neutral10 #191C1B) | text | 10.07:1 | 4.5:1 | Pass |
+docs/colour-roles.md:164:| light | primary (primary40 #006B5E) | surface-container (neutral95 #EFF1EE) | text | 5.66:1 | 4.5:1 | Pass |
+docs/colour-roles.md:165:| light | error (error40 #BA1A1A) | surface-container (neutral95 #EFF1EE) | text | 5.69:1 | 4.5:1 | Pass |
+docs/colour-roles.md:166:| light | warning (warning40 #924C00) | surface-container (neutral95 #EFF1EE) | text | 5.68:1 | 4.5:1 | Pass |
+docs/colour-roles.md:167:| light | success (success40 #006D3B) | surface-container (neutral95 #EFF1EE) | text | 5.69:1 | 4.5:1 | Pass |
+docs/colour-roles.md:168:| dark | primary (primary80 #83D5C5) | surface-container (neutral20 #2E312F) | text | 7.70:1 | 4.5:1 | Pass |
+docs/colour-roles.md:169:| dark | error (error80 #FFB4AB) | surface-container (neutral20 #2E312F) | text | 7.75:1 | 4.5:1 | Pass |
+docs/colour-roles.md:170:| dark | warning (warning80 #FFB780) | surface-container (neutral20 #2E312F) | text | 7.73:1 | 4.5:1 | Pass |
+docs/colour-roles.md:171:| dark | success (success80 #80D99C) | surface-container (neutral20 #2E312F) | text | 7.72:1 | 4.5:1 | Pass |
+docs/colour-roles.md:181:| White text on dark primary | #FFFFFF / #83D5C5 | 1.71:1 | 4.5:1 | on-primary #003730 | 7.73:1 |
+docs/colour-roles.md:182:| Warning key colour as light-mode text | #B25E00 / #F8FAF7 | 4.45:1 | 4.5:1 | warning40 #924C00 | 6.15:1 |
+docs/colour-roles.md:183:| Light outline-variant as a needed border | #BEC9C6 / #F8FAF7 | 1.62:1 | 3:1 | outline #6F7977 | 4.28:1 |
+docs/colour-roles.md:184:| Dark outline-variant as a needed border | #3F4947 / #191C1B | 1.84:1 | 3:1 | outline #889390 | 5.41:1 |
+docs/colour-roles.md:201:Warning Key Color = #B25E00 and Warning40 = #924C00 are intentionally different. A starting colour need not itself be tone 40. Do not change Warning40 to the key colour: the latter fails the listed normal-text-on-light-surface check.
+docs/export-check.md:7:- Three shadow effects: soft, medium, hard. All use RGB #006B5E; geometry matches shadows.md.
+docs/export-check.md:10:- Existing colour styles must not be mistaken for the chosen variable system: material-theme/sys/light/on-primary-container is #005046ff, whereas the recorded Light/On-Primary Container variable references Primary10.
+docs/shadows.md:7:All three shadows use primary colour #006B5E. Distances are in pixels. X moves the shadow sideways; Y moves it down. Blur softens its edge, spread grows or shrinks it, and opacity controls its strength.
+docs/shadows.md:11:| Soft | #006B5E | 4 | 6 | 12 | 0 | 12% |
+docs/shadows.md:12:| Medium | #006B5E | 4 | 16 | 24 | 0 | 18% |
+docs/shadows.md:13:| Hard | #006B5E | 4 | 20 | 20 | 0 | 20% |
+docs/shadows.md:25:All three exported colours use #006B5E. Their exported alpha bytes are 1f, 2e and 33, approximately 12.16%, 18.04% and 20%; these are the rounded eight-digit HEX representations of my 12%, 18% and 20% Figma settings.
+evidence/05-tokens-incomplete.json:7:        "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:19:        "value": "#000000ff",
+evidence/05-tokens-incomplete.json:33:            "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:45:            "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:57:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:69:            "value": "#9ff2e1ff",
+evidence/05-tokens-incomplete.json:81:            "value": "#005046ff",
+evidence/05-tokens-incomplete.json:93:            "value": "#4a635eff",
+evidence/05-tokens-incomplete.json:105:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:117:            "value": "#cde8e1ff",
+evidence/05-tokens-incomplete.json:129:            "value": "#334b46ff",
+evidence/05-tokens-incomplete.json:141:            "value": "#446279ff",
+evidence/05-tokens-incomplete.json:153:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:165:            "value": "#cae6ffff",
+evidence/05-tokens-incomplete.json:177:            "value": "#2c4a60ff",
+evidence/05-tokens-incomplete.json:189:            "value": "#ba1a1aff",
+evidence/05-tokens-incomplete.json:201:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:213:            "value": "#ffdad6ff",
+evidence/05-tokens-incomplete.json:225:            "value": "#93000aff",
+evidence/05-tokens-incomplete.json:237:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:249:            "value": "#171d1bff",
+evidence/05-tokens-incomplete.json:261:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:273:            "value": "#171d1bff",
+evidence/05-tokens-incomplete.json:285:            "value": "#dae5e1ff",
+evidence/05-tokens-incomplete.json:297:            "value": "#3f4946ff",
+evidence/05-tokens-incomplete.json:309:            "value": "#6f7976ff",
+evidence/05-tokens-incomplete.json:321:            "value": "#bec9c5ff",
+evidence/05-tokens-incomplete.json:333:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:345:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:357:            "value": "#2b3230ff",
+evidence/05-tokens-incomplete.json:369:            "value": "#ecf2efff",
+evidence/05-tokens-incomplete.json:381:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:393:            "value": "#9ff2e1ff",
+evidence/05-tokens-incomplete.json:405:            "value": "#00201bff",
+evidence/05-tokens-incomplete.json:417:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:429:            "value": "#005046ff",
+evidence/05-tokens-incomplete.json:441:            "value": "#cde8e1ff",
+evidence/05-tokens-incomplete.json:453:            "value": "#06201bff",
+evidence/05-tokens-incomplete.json:465:            "value": "#b1ccc5ff",
+evidence/05-tokens-incomplete.json:477:            "value": "#334b46ff",
+evidence/05-tokens-incomplete.json:489:            "value": "#cae6ffff",
+evidence/05-tokens-incomplete.json:501:            "value": "#001e30ff",
+evidence/05-tokens-incomplete.json:513:            "value": "#accae5ff",
+evidence/05-tokens-incomplete.json:525:            "value": "#2c4a60ff",
+evidence/05-tokens-incomplete.json:537:            "value": "#d5dbd8ff",
+evidence/05-tokens-incomplete.json:549:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:561:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:573:            "value": "#eff5f2ff",
+evidence/05-tokens-incomplete.json:585:            "value": "#e9efecff",
+evidence/05-tokens-incomplete.json:597:            "value": "#e3eae7ff",
+evidence/05-tokens-incomplete.json:609:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:623:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:635:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:647:            "value": "#003730ff",
+evidence/05-tokens-incomplete.json:659:            "value": "#005046ff",
+evidence/05-tokens-incomplete.json:671:            "value": "#9ff2e1ff",
+evidence/05-tokens-incomplete.json:683:            "value": "#b1ccc5ff",
+evidence/05-tokens-incomplete.json:695:            "value": "#1c3530ff",
+evidence/05-tokens-incomplete.json:707:            "value": "#334b46ff",
+evidence/05-tokens-incomplete.json:719:            "value": "#cde8e1ff",
+evidence/05-tokens-incomplete.json:731:            "value": "#accae5ff",
+evidence/05-tokens-incomplete.json:743:            "value": "#133348ff",
+evidence/05-tokens-incomplete.json:755:            "value": "#2c4a60ff",
+evidence/05-tokens-incomplete.json:767:            "value": "#cae6ffff",
+evidence/05-tokens-incomplete.json:779:            "value": "#ffb4abff",
+evidence/05-tokens-incomplete.json:791:            "value": "#690005ff",
+evidence/05-tokens-incomplete.json:803:            "value": "#93000aff",
+evidence/05-tokens-incomplete.json:815:            "value": "#ffdad6ff",
+evidence/05-tokens-incomplete.json:827:            "value": "#0e1513ff",
+evidence/05-tokens-incomplete.json:839:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:851:            "value": "#0e1513ff",
+evidence/05-tokens-incomplete.json:863:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:875:            "value": "#3f4946ff",
+evidence/05-tokens-incomplete.json:887:            "value": "#bec9c5ff",
+evidence/05-tokens-incomplete.json:899:            "value": "#899390ff",
+evidence/05-tokens-incomplete.json:911:            "value": "#3f4946ff",
+evidence/05-tokens-incomplete.json:923:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:935:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:947:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:959:            "value": "#2b3230ff",
+evidence/05-tokens-incomplete.json:971:            "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:983:            "value": "#9ff2e1ff",
+evidence/05-tokens-incomplete.json:995:            "value": "#00201bff",
+evidence/05-tokens-incomplete.json:1007:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:1019:            "value": "#005046ff",
+evidence/05-tokens-incomplete.json:1031:            "value": "#cde8e1ff",
+evidence/05-tokens-incomplete.json:1043:            "value": "#06201bff",
+evidence/05-tokens-incomplete.json:1055:            "value": "#b1ccc5ff",
+evidence/05-tokens-incomplete.json:1067:            "value": "#334b46ff",
+evidence/05-tokens-incomplete.json:1079:            "value": "#cae6ffff",
+evidence/05-tokens-incomplete.json:1091:            "value": "#001e30ff",
+evidence/05-tokens-incomplete.json:1103:            "value": "#accae5ff",
+evidence/05-tokens-incomplete.json:1115:            "value": "#2c4a60ff",
+evidence/05-tokens-incomplete.json:1127:            "value": "#0e1513ff",
+evidence/05-tokens-incomplete.json:1139:            "value": "#343b39ff",
+evidence/05-tokens-incomplete.json:1151:            "value": "#090f0eff",
+evidence/05-tokens-incomplete.json:1163:            "value": "#171d1bff",
+evidence/05-tokens-incomplete.json:1175:            "value": "#1b211fff",
+evidence/05-tokens-incomplete.json:1187:            "value": "#252b2aff",
+evidence/05-tokens-incomplete.json:1199:            "value": "#303634ff",
+evidence/05-tokens-incomplete.json:1213:            "value": "#00332cff",
+evidence/05-tokens-incomplete.json:1225:            "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:1237:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1249:            "value": "#005349ff",
+evidence/05-tokens-incomplete.json:1261:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1273:            "value": "#18302cff",
+evidence/05-tokens-incomplete.json:1285:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1297:            "value": "#354e49ff",
+evidence/05-tokens-incomplete.json:1309:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1321:            "value": "#0d2f44ff",
+evidence/05-tokens-incomplete.json:1333:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1345:            "value": "#2e4c62ff",
+evidence/05-tokens-incomplete.json:1357:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1369:            "value": "#600004ff",
+evidence/05-tokens-incomplete.json:1381:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1393:            "value": "#98000aff",
+evidence/05-tokens-incomplete.json:1405:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1417:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:1429:            "value": "#171d1bff",
+evidence/05-tokens-incomplete.json:1441:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:1453:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:1465:            "value": "#dae5e1ff",
+evidence/05-tokens-incomplete.json:1477:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:1489:            "value": "#252e2cff",
+evidence/05-tokens-incomplete.json:1501:            "value": "#414b49ff",
+evidence/05-tokens-incomplete.json:1513:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:1525:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:1537:            "value": "#2b3230ff",
+evidence/05-tokens-incomplete.json:1549:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1561:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:1573:            "value": "#005349ff",
+evidence/05-tokens-incomplete.json:1585:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1597:            "value": "#003a32ff",
+evidence/05-tokens-incomplete.json:1609:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1621:            "value": "#354e49ff",
+evidence/05-tokens-incomplete.json:1633:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1645:            "value": "#1f3732ff",
+evidence/05-tokens-incomplete.json:1657:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1669:            "value": "#2e4c62ff",
+evidence/05-tokens-incomplete.json:1681:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1693:            "value": "#16354bff",
+evidence/05-tokens-incomplete.json:1705:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1717:            "value": "#b4bab7ff",
+evidence/05-tokens-incomplete.json:1729:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:1741:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:1753:            "value": "#ecf2efff",
+evidence/05-tokens-incomplete.json:1765:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:1777:            "value": "#cfd6d3ff",
+evidence/05-tokens-incomplete.json:1789:            "value": "#c1c8c5ff",
+evidence/05-tokens-incomplete.json:1803:            "value": "#b0ffefff",
+evidence/05-tokens-incomplete.json:1815:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:1827:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:1839:            "value": "#7fd1c1ff",
+evidence/05-tokens-incomplete.json:1851:            "value": "#000e0bff",
+evidence/05-tokens-incomplete.json:1863:            "value": "#daf6eeff",
+evidence/05-tokens-incomplete.json:1875:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:1887:            "value": "#adc8c1ff",
+evidence/05-tokens-incomplete.json:1899:            "value": "#000e0bff",
+evidence/05-tokens-incomplete.json:1911:            "value": "#e5f1ffff",
+evidence/05-tokens-incomplete.json:1923:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:1935:            "value": "#a8c6e1ff",
+evidence/05-tokens-incomplete.json:1947:            "value": "#000d17ff",
+evidence/05-tokens-incomplete.json:1959:            "value": "#ffece9ff",
+evidence/05-tokens-incomplete.json:1971:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:1983:            "value": "#ffaea4ff",
+evidence/05-tokens-incomplete.json:1995:            "value": "#220001ff",
+evidence/05-tokens-incomplete.json:2007:            "value": "#0e1513ff",
+evidence/05-tokens-incomplete.json:2019:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:2031:            "value": "#0e1513ff",
+evidence/05-tokens-incomplete.json:2043:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2055:            "value": "#3f4946ff",
+evidence/05-tokens-incomplete.json:2067:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2079:            "value": "#e8f2eeff",
+evidence/05-tokens-incomplete.json:2091:            "value": "#bbc5c1ff",
+evidence/05-tokens-incomplete.json:2103:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:2115:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:2127:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:2139:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:2151:            "value": "#005247ff",
+evidence/05-tokens-incomplete.json:2163:            "value": "#9ff2e1ff",
+evidence/05-tokens-incomplete.json:2175:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:2187:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:2199:            "value": "#001511ff",
+evidence/05-tokens-incomplete.json:2211:            "value": "#cde8e1ff",
+evidence/05-tokens-incomplete.json:2223:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:2235:            "value": "#b1ccc5ff",
+evidence/05-tokens-incomplete.json:2247:            "value": "#001511ff",
+evidence/05-tokens-incomplete.json:2259:            "value": "#cae6ffff",
+evidence/05-tokens-incomplete.json:2271:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:2283:            "value": "#accae5ff",
+evidence/05-tokens-incomplete.json:2295:            "value": "#001320ff",
+evidence/05-tokens-incomplete.json:2307:            "value": "#0e1513ff",
+evidence/05-tokens-incomplete.json:2319:            "value": "#4b514fff",
+evidence/05-tokens-incomplete.json:2331:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:2343:            "value": "#1b211fff",
+evidence/05-tokens-incomplete.json:2355:            "value": "#2b3230ff",
+evidence/05-tokens-incomplete.json:2367:            "value": "#363d3bff",
+evidence/05-tokens-incomplete.json:2379:            "value": "#424846ff",
+evidence/05-tokens-incomplete.json:2393:            "value": "#003e36ff",
+evidence/05-tokens-incomplete.json:2405:            "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:2417:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2429:            "value": "#207a6cff",
+evidence/05-tokens-incomplete.json:2441:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2453:            "value": "#223b36ff",
+evidence/05-tokens-incomplete.json:2465:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2477:            "value": "#59726cff",
+evidence/05-tokens-incomplete.json:2489:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2501:            "value": "#1a394eff",
+evidence/05-tokens-incomplete.json:2513:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2525:            "value": "#537088ff",
+evidence/05-tokens-incomplete.json:2537:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2549:            "value": "#740006ff",
+evidence/05-tokens-incomplete.json:2561:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2573:            "value": "#cf2c27ff",
+evidence/05-tokens-incomplete.json:2585:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2597:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:2609:            "value": "#171d1bff",
+evidence/05-tokens-incomplete.json:2621:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:2633:            "value": "#0c1211ff",
+evidence/05-tokens-incomplete.json:2645:            "value": "#dae5e1ff",
+evidence/05-tokens-incomplete.json:2657:            "value": "#2f3836ff",
+evidence/05-tokens-incomplete.json:2669:            "value": "#4b5552ff",
+evidence/05-tokens-incomplete.json:2681:            "value": "#656f6cff",
+evidence/05-tokens-incomplete.json:2693:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:2705:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:2717:            "value": "#2b3230ff",
+evidence/05-tokens-incomplete.json:2729:            "value": "#ecf2efff",
+evidence/05-tokens-incomplete.json:2741:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:2753:            "value": "#207a6cff",
+evidence/05-tokens-incomplete.json:2765:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2777:            "value": "#006054ff",
+evidence/05-tokens-incomplete.json:2789:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2801:            "value": "#59726cff",
+evidence/05-tokens-incomplete.json:2813:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2825:            "value": "#415a54ff",
+evidence/05-tokens-incomplete.json:2837:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2849:            "value": "#537088ff",
+evidence/05-tokens-incomplete.json:2861:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2873:            "value": "#3a586fff",
+evidence/05-tokens-incomplete.json:2885:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2897:            "value": "#c1c8c5ff",
+evidence/05-tokens-incomplete.json:2909:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:2921:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:2933:            "value": "#eff5f2ff",
+evidence/05-tokens-incomplete.json:2945:            "value": "#e3eae7ff",
+evidence/05-tokens-incomplete.json:2957:            "value": "#d8dedbff",
+evidence/05-tokens-incomplete.json:2969:            "value": "#cdd3d0ff",
+evidence/05-tokens-incomplete.json:2983:            "value": "#99ecdbff",
+evidence/05-tokens-incomplete.json:2995:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:3007:            "value": "#002b25ff",
+evidence/05-tokens-incomplete.json:3019:            "value": "#4b9e90ff",
+evidence/05-tokens-incomplete.json:3031:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:3043:            "value": "#c7e2dbff",
+evidence/05-tokens-incomplete.json:3055:            "value": "#112a25ff",
+evidence/05-tokens-incomplete.json:3067:            "value": "#7c9690ff",
+evidence/05-tokens-incomplete.json:3079:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:3091:            "value": "#c1e0fbff",
+evidence/05-tokens-incomplete.json:3103:            "value": "#05283dff",
+evidence/05-tokens-incomplete.json:3115:            "value": "#7694adff",
+evidence/05-tokens-incomplete.json:3127:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:3139:            "value": "#ffd2ccff",
+evidence/05-tokens-incomplete.json:3151:            "value": "#540003ff",
+evidence/05-tokens-incomplete.json:3163:            "value": "#ff5449ff",
+evidence/05-tokens-incomplete.json:3175:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:3187:            "value": "#0e1513ff",
+evidence/05-tokens-incomplete.json:3199:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:3211:            "value": "#0e1513ff",
+evidence/05-tokens-incomplete.json:3223:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:3235:            "value": "#3f4946ff",
+evidence/05-tokens-incomplete.json:3247:            "value": "#d4dfdbff",
+evidence/05-tokens-incomplete.json:3259:            "value": "#aab4b1ff",
+evidence/05-tokens-incomplete.json:3271:            "value": "#88928fff",
+evidence/05-tokens-incomplete.json:3283:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:3295:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:3307:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:3319:            "value": "#252b2aff",
+evidence/05-tokens-incomplete.json:3331:            "value": "#005247ff",
+evidence/05-tokens-incomplete.json:3343:            "value": "#9ff2e1ff",
+evidence/05-tokens-incomplete.json:3355:            "value": "#001511ff",
+evidence/05-tokens-incomplete.json:3367:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:3379:            "value": "#003e36ff",
+evidence/05-tokens-incomplete.json:3391:            "value": "#cde8e1ff",
+evidence/05-tokens-incomplete.json:3403:            "value": "#001511ff",
+evidence/05-tokens-incomplete.json:3415:            "value": "#b1ccc5ff",
+evidence/05-tokens-incomplete.json:3427:            "value": "#223b36ff",
+evidence/05-tokens-incomplete.json:3439:            "value": "#cae6ffff",
+evidence/05-tokens-incomplete.json:3451:            "value": "#001320ff",
+evidence/05-tokens-incomplete.json:3463:            "value": "#accae5ff",
+evidence/05-tokens-incomplete.json:3475:            "value": "#1a394eff",
+evidence/05-tokens-incomplete.json:3487:            "value": "#0e1513ff",
+evidence/05-tokens-incomplete.json:3499:            "value": "#3f4644ff",
+evidence/05-tokens-incomplete.json:3511:            "value": "#040807ff",
+evidence/05-tokens-incomplete.json:3523:            "value": "#191f1dff",
+evidence/05-tokens-incomplete.json:3535:            "value": "#232927ff",
+evidence/05-tokens-incomplete.json:3547:            "value": "#2d3432ff",
+evidence/05-tokens-incomplete.json:3559:            "value": "#383f3dff",
+evidence/05-tokens-incomplete.json:3573:            "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:3585:            "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:3597:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:3609:            "value": "#9ff2e1ff",
+evidence/05-tokens-incomplete.json:3621:            "value": "#005046ff",
+evidence/05-tokens-incomplete.json:3633:            "value": "#4a635eff",
+evidence/05-tokens-incomplete.json:3645:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:3657:            "value": "#cde8e1ff",
+evidence/05-tokens-incomplete.json:3669:            "value": "#334b46ff",
+evidence/05-tokens-incomplete.json:3681:            "value": "#446279ff",
+evidence/05-tokens-incomplete.json:3693:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:3705:            "value": "#cae6ffff",
+evidence/05-tokens-incomplete.json:3717:            "value": "#2c4a60ff",
+evidence/05-tokens-incomplete.json:3729:            "value": "#ba1a1aff",
+evidence/05-tokens-incomplete.json:3741:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:3753:            "value": "#ffdad6ff",
+evidence/05-tokens-incomplete.json:3765:            "value": "#93000aff",
+evidence/05-tokens-incomplete.json:3777:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:3789:            "value": "#171d1bff",
+evidence/05-tokens-incomplete.json:3801:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:3813:            "value": "#171d1bff",
+evidence/05-tokens-incomplete.json:3825:            "value": "#dae5e1ff",
+evidence/05-tokens-incomplete.json:3837:            "value": "#3f4946ff",
+evidence/05-tokens-incomplete.json:3849:            "value": "#6f7976ff",
+evidence/05-tokens-incomplete.json:3861:            "value": "#bec9c5ff",
+evidence/05-tokens-incomplete.json:3873:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:3885:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:3897:            "value": "#2b3230ff",
+evidence/05-tokens-incomplete.json:3909:            "value": "#ecf2efff",
+evidence/05-tokens-incomplete.json:3921:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:3933:            "value": "#9ff2e1ff",
+evidence/05-tokens-incomplete.json:3945:            "value": "#00201bff",
+evidence/05-tokens-incomplete.json:3957:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:3969:            "value": "#005046ff",
+evidence/05-tokens-incomplete.json:3981:            "value": "#cde8e1ff",
+evidence/05-tokens-incomplete.json:3993:            "value": "#06201bff",
+evidence/05-tokens-incomplete.json:4005:            "value": "#b1ccc5ff",
+evidence/05-tokens-incomplete.json:4017:            "value": "#334b46ff",
+evidence/05-tokens-incomplete.json:4029:            "value": "#cae6ffff",
+evidence/05-tokens-incomplete.json:4041:            "value": "#001e30ff",
+evidence/05-tokens-incomplete.json:4053:            "value": "#accae5ff",
+evidence/05-tokens-incomplete.json:4065:            "value": "#2c4a60ff",
+evidence/05-tokens-incomplete.json:4077:            "value": "#d5dbd8ff",
+evidence/05-tokens-incomplete.json:4089:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:4101:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:4113:            "value": "#eff5f2ff",
+evidence/05-tokens-incomplete.json:4125:            "value": "#e9efecff",
+evidence/05-tokens-incomplete.json:4137:            "value": "#e3eae7ff",
+evidence/05-tokens-incomplete.json:4149:            "value": "#dee4e1ff",
+evidence/05-tokens-incomplete.json:4165:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:4177:            "value": "#f3fffbff",
+evidence/05-tokens-incomplete.json:4189:            "value": "#e5fff8ff",
+evidence/05-tokens-incomplete.json:4201:            "value": "#b5ffefff",
+evidence/05-tokens-incomplete.json:4213:            "value": "#9ff2e1ff",
+evidence/05-tokens-incomplete.json:4225:            "value": "#83d5c5ff",
+evidence/05-tokens-incomplete.json:4237:            "value": "#67baaaff",
+evidence/05-tokens-incomplete.json:4249:            "value": "#4b9e90ff",
+evidence/05-tokens-incomplete.json:4261:            "value": "#2d8476ff",
+evidence/05-tokens-incomplete.json:4273:            "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:4285:            "value": "#005d52ff",
+evidence/05-tokens-incomplete.json:4297:            "value": "#005046ff",
+evidence/05-tokens-incomplete.json:4309:            "value": "#00443bff",
+evidence/05-tokens-incomplete.json:4321:            "value": "#003730ff",
+evidence/05-tokens-incomplete.json:4333:            "value": "#002c25ff",
+evidence/05-tokens-incomplete.json:4345:            "value": "#00201bff",
+evidence/05-tokens-incomplete.json:4357:            "value": "#001411ff",
+evidence/05-tokens-incomplete.json:4369:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:4383:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:4395:            "value": "#f3fffbff",
+evidence/05-tokens-incomplete.json:4407:            "value": "#ebfef8ff",
+evidence/05-tokens-incomplete.json:4419:            "value": "#e2f5efff",
+evidence/05-tokens-incomplete.json:4431:            "value": "#d4e7e1ff",
+evidence/05-tokens-incomplete.json:4443:            "value": "#b8cac5ff",
+evidence/05-tokens-incomplete.json:4455:            "value": "#9dafaaff",
+evidence/05-tokens-incomplete.json:4467:            "value": "#839490ff",
+evidence/05-tokens-incomplete.json:4479:            "value": "#697b76ff",
+evidence/05-tokens-incomplete.json:4491:            "value": "#51625eff",
+evidence/05-tokens-incomplete.json:4503:            "value": "#455652ff",
+evidence/05-tokens-incomplete.json:4515:            "value": "#394a46ff",
+evidence/05-tokens-incomplete.json:4527:            "value": "#2e3f3bff",
+evidence/05-tokens-incomplete.json:4539:            "value": "#233430ff",
+evidence/05-tokens-incomplete.json:4551:            "value": "#192925ff",
+evidence/05-tokens-incomplete.json:4563:            "value": "#0e1e1bff",
+evidence/05-tokens-incomplete.json:4575:            "value": "#041411ff",
+evidence/05-tokens-incomplete.json:4587:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:4601:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:4613:            "value": "#fcfcffff",
+evidence/05-tokens-incomplete.json:4625:            "value": "#f6f9ffff",
+evidence/05-tokens-incomplete.json:4637:            "value": "#e6f2ffff",
+evidence/05-tokens-incomplete.json:4649:            "value": "#d0e5f9ff",
+evidence/05-tokens-incomplete.json:4661:            "value": "#b5c9dcff",
+evidence/05-tokens-incomplete.json:4673:            "value": "#9aaec0ff",
+evidence/05-tokens-incomplete.json:4685:            "value": "#7f93a5ff",
+evidence/05-tokens-incomplete.json:4697:            "value": "#66798aff",
+evidence/05-tokens-incomplete.json:4709:            "value": "#4d6171ff",
+evidence/05-tokens-incomplete.json:4721:            "value": "#415565ff",
+evidence/05-tokens-incomplete.json:4733:            "value": "#364959ff",
+evidence/05-tokens-incomplete.json:4745:            "value": "#2a3d4dff",
+evidence/05-tokens-incomplete.json:4757:            "value": "#1f3241ff",
+evidence/05-tokens-incomplete.json:4769:            "value": "#142836ff",
+evidence/05-tokens-incomplete.json:4781:            "value": "#081d2bff",
+evidence/05-tokens-incomplete.json:4793:            "value": "#001320ff",
+evidence/05-tokens-incomplete.json:4805:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:4819:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:4831:            "value": "#fffbffff",
+evidence/05-tokens-incomplete.json:4843:            "value": "#fff8f7ff",
+evidence/05-tokens-incomplete.json:4855:            "value": "#ffedeaff",
+evidence/05-tokens-incomplete.json:4867:            "value": "#ffdad6ff",
+evidence/05-tokens-incomplete.json:4879:            "value": "#ffb4abff",
+evidence/05-tokens-incomplete.json:4891:            "value": "#ff897dff",
+evidence/05-tokens-incomplete.json:4903:            "value": "#ff5449ff",
+evidence/05-tokens-incomplete.json:4915:            "value": "#de3730ff",
+evidence/05-tokens-incomplete.json:4927:            "value": "#ba1a1aff",
+evidence/05-tokens-incomplete.json:4939:            "value": "#a80710ff",
+evidence/05-tokens-incomplete.json:4951:            "value": "#93000aff",
+evidence/05-tokens-incomplete.json:4963:            "value": "#7e0007ff",
+evidence/05-tokens-incomplete.json:4975:            "value": "#690005ff",
+evidence/05-tokens-incomplete.json:4987:            "value": "#540003ff",
+evidence/05-tokens-incomplete.json:4999:            "value": "#410002ff",
+evidence/05-tokens-incomplete.json:5011:            "value": "#2d0001ff",
+evidence/05-tokens-incomplete.json:5023:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:5037:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:5049:            "value": "#fcfcfaff",
+evidence/05-tokens-incomplete.json:5061:            "value": "#f9f9f8ff",
+evidence/05-tokens-incomplete.json:5073:            "value": "#f0f1efff",
+evidence/05-tokens-incomplete.json:5085:            "value": "#e2e3e1ff",
+evidence/05-tokens-incomplete.json:5097:            "value": "#c6c7c5ff",
+evidence/05-tokens-incomplete.json:5109:            "value": "#aaabaaff",
+evidence/05-tokens-incomplete.json:5121:            "value": "#8f9190ff",
+evidence/05-tokens-incomplete.json:5133:            "value": "#767776ff",
+evidence/05-tokens-incomplete.json:5145:            "value": "#5d5f5eff",
+evidence/05-tokens-incomplete.json:5157:            "value": "#515352ff",
+evidence/05-tokens-incomplete.json:5169:            "value": "#454746ff",
+evidence/05-tokens-incomplete.json:5181:            "value": "#3a3c3bff",
+evidence/05-tokens-incomplete.json:5193:            "value": "#2e3130ff",
+evidence/05-tokens-incomplete.json:5205:            "value": "#242625ff",
+evidence/05-tokens-incomplete.json:5217:            "value": "#1a1c1bff",
+evidence/05-tokens-incomplete.json:5229:            "value": "#0f1111ff",
+evidence/05-tokens-incomplete.json:5241:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:5255:            "value": "#ffffffff",
+evidence/05-tokens-incomplete.json:5267:            "value": "#f7fefaff",
+evidence/05-tokens-incomplete.json:5279:            "value": "#f4fbf8ff",
+evidence/05-tokens-incomplete.json:5291:            "value": "#ecf2efff",
+evidence/05-tokens-incomplete.json:5303:            "value": "#dde4e1ff",
+evidence/05-tokens-incomplete.json:5315:            "value": "#c1c8c5ff",
+evidence/05-tokens-incomplete.json:5327:            "value": "#a6adaaff",
+evidence/05-tokens-incomplete.json:5339:            "value": "#8b9290ff",
+evidence/05-tokens-incomplete.json:5351:            "value": "#727876ff",
+evidence/05-tokens-incomplete.json:5363:            "value": "#59605eff",
+evidence/05-tokens-incomplete.json:5375:            "value": "#4d5452ff",
+evidence/05-tokens-incomplete.json:5387:            "value": "#424846ff",
+evidence/05-tokens-incomplete.json:5399:            "value": "#363d3bff",
+evidence/05-tokens-incomplete.json:5411:            "value": "#2b3230ff",
+evidence/05-tokens-incomplete.json:5423:            "value": "#212725ff",
+evidence/05-tokens-incomplete.json:5435:            "value": "#171d1bff",
+evidence/05-tokens-incomplete.json:5447:            "value": "#0c1211ff",
+evidence/05-tokens-incomplete.json:5459:            "value": "#000000ff",
+evidence/05-tokens-incomplete.json:5474:          "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:5488:          "value": "#006b5eff",
+evidence/05-tokens-incomplete.json:5840:          "color": "#006b5e1f",
+evidence/05-tokens-incomplete.json:5858:          "color": "#006b5e2e",
+evidence/05-tokens-incomplete.json:5876:          "color": "#006b5e33",
+evidence/06-tokens-complete.json:7:        "value": "#ffffffff",
+evidence/06-tokens-complete.json:19:        "value": "#000000ff",
+evidence/06-tokens-complete.json:33:            "value": "#006b5eff",
+evidence/06-tokens-complete.json:45:            "value": "#006b5eff",
+evidence/06-tokens-complete.json:57:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:69:            "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:81:            "value": "#005046ff",
+evidence/06-tokens-complete.json:93:            "value": "#4a635eff",
+evidence/06-tokens-complete.json:105:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:117:            "value": "#cde8e1ff",
+evidence/06-tokens-complete.json:129:            "value": "#334b46ff",
+evidence/06-tokens-complete.json:141:            "value": "#446279ff",
+evidence/06-tokens-complete.json:153:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:165:            "value": "#cae6ffff",
+evidence/06-tokens-complete.json:177:            "value": "#2c4a60ff",
+evidence/06-tokens-complete.json:189:            "value": "#ba1a1aff",
+evidence/06-tokens-complete.json:201:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:213:            "value": "#ffdad6ff",
+evidence/06-tokens-complete.json:225:            "value": "#93000aff",
+evidence/06-tokens-complete.json:237:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:249:            "value": "#171d1bff",
+evidence/06-tokens-complete.json:261:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:273:            "value": "#171d1bff",
+evidence/06-tokens-complete.json:285:            "value": "#dae5e1ff",
+evidence/06-tokens-complete.json:297:            "value": "#3f4946ff",
+evidence/06-tokens-complete.json:309:            "value": "#6f7976ff",
+evidence/06-tokens-complete.json:321:            "value": "#bec9c5ff",
+evidence/06-tokens-complete.json:333:            "value": "#000000ff",
+evidence/06-tokens-complete.json:345:            "value": "#000000ff",
+evidence/06-tokens-complete.json:357:            "value": "#2b3230ff",
+evidence/06-tokens-complete.json:369:            "value": "#ecf2efff",
+evidence/06-tokens-complete.json:381:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:393:            "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:405:            "value": "#00201bff",
+evidence/06-tokens-complete.json:417:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:429:            "value": "#005046ff",
+evidence/06-tokens-complete.json:441:            "value": "#cde8e1ff",
+evidence/06-tokens-complete.json:453:            "value": "#06201bff",
+evidence/06-tokens-complete.json:465:            "value": "#b1ccc5ff",
+evidence/06-tokens-complete.json:477:            "value": "#334b46ff",
+evidence/06-tokens-complete.json:489:            "value": "#cae6ffff",
+evidence/06-tokens-complete.json:501:            "value": "#001e30ff",
+evidence/06-tokens-complete.json:513:            "value": "#accae5ff",
+evidence/06-tokens-complete.json:525:            "value": "#2c4a60ff",
+evidence/06-tokens-complete.json:537:            "value": "#d5dbd8ff",
+evidence/06-tokens-complete.json:549:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:561:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:573:            "value": "#eff5f2ff",
+evidence/06-tokens-complete.json:585:            "value": "#e9efecff",
+evidence/06-tokens-complete.json:597:            "value": "#e3eae7ff",
+evidence/06-tokens-complete.json:609:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:623:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:635:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:647:            "value": "#003730ff",
+evidence/06-tokens-complete.json:659:            "value": "#005046ff",
+evidence/06-tokens-complete.json:671:            "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:683:            "value": "#b1ccc5ff",
+evidence/06-tokens-complete.json:695:            "value": "#1c3530ff",
+evidence/06-tokens-complete.json:707:            "value": "#334b46ff",
+evidence/06-tokens-complete.json:719:            "value": "#cde8e1ff",
+evidence/06-tokens-complete.json:731:            "value": "#accae5ff",
+evidence/06-tokens-complete.json:743:            "value": "#133348ff",
+evidence/06-tokens-complete.json:755:            "value": "#2c4a60ff",
+evidence/06-tokens-complete.json:767:            "value": "#cae6ffff",
+evidence/06-tokens-complete.json:779:            "value": "#ffb4abff",
+evidence/06-tokens-complete.json:791:            "value": "#690005ff",
+evidence/06-tokens-complete.json:803:            "value": "#93000aff",
+evidence/06-tokens-complete.json:815:            "value": "#ffdad6ff",
+evidence/06-tokens-complete.json:827:            "value": "#0e1513ff",
+evidence/06-tokens-complete.json:839:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:851:            "value": "#0e1513ff",
+evidence/06-tokens-complete.json:863:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:875:            "value": "#3f4946ff",
+evidence/06-tokens-complete.json:887:            "value": "#bec9c5ff",
+evidence/06-tokens-complete.json:899:            "value": "#899390ff",
+evidence/06-tokens-complete.json:911:            "value": "#3f4946ff",
+evidence/06-tokens-complete.json:923:            "value": "#000000ff",
+evidence/06-tokens-complete.json:935:            "value": "#000000ff",
+evidence/06-tokens-complete.json:947:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:959:            "value": "#2b3230ff",
+evidence/06-tokens-complete.json:971:            "value": "#006b5eff",
+evidence/06-tokens-complete.json:983:            "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:995:            "value": "#00201bff",
+evidence/06-tokens-complete.json:1007:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:1019:            "value": "#005046ff",
+evidence/06-tokens-complete.json:1031:            "value": "#cde8e1ff",
+evidence/06-tokens-complete.json:1043:            "value": "#06201bff",
+evidence/06-tokens-complete.json:1055:            "value": "#b1ccc5ff",
+evidence/06-tokens-complete.json:1067:            "value": "#334b46ff",
+evidence/06-tokens-complete.json:1079:            "value": "#cae6ffff",
+evidence/06-tokens-complete.json:1091:            "value": "#001e30ff",
+evidence/06-tokens-complete.json:1103:            "value": "#accae5ff",
+evidence/06-tokens-complete.json:1115:            "value": "#2c4a60ff",
+evidence/06-tokens-complete.json:1127:            "value": "#0e1513ff",
+evidence/06-tokens-complete.json:1139:            "value": "#343b39ff",
+evidence/06-tokens-complete.json:1151:            "value": "#090f0eff",
+evidence/06-tokens-complete.json:1163:            "value": "#171d1bff",
+evidence/06-tokens-complete.json:1175:            "value": "#1b211fff",
+evidence/06-tokens-complete.json:1187:            "value": "#252b2aff",
+evidence/06-tokens-complete.json:1199:            "value": "#303634ff",
+evidence/06-tokens-complete.json:1213:            "value": "#00332cff",
+evidence/06-tokens-complete.json:1225:            "value": "#006b5eff",
+evidence/06-tokens-complete.json:1237:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1249:            "value": "#005349ff",
+evidence/06-tokens-complete.json:1261:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1273:            "value": "#18302cff",
+evidence/06-tokens-complete.json:1285:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1297:            "value": "#354e49ff",
+evidence/06-tokens-complete.json:1309:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1321:            "value": "#0d2f44ff",
+evidence/06-tokens-complete.json:1333:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1345:            "value": "#2e4c62ff",
+evidence/06-tokens-complete.json:1357:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1369:            "value": "#600004ff",
+evidence/06-tokens-complete.json:1381:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1393:            "value": "#98000aff",
+evidence/06-tokens-complete.json:1405:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1417:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:1429:            "value": "#171d1bff",
+evidence/06-tokens-complete.json:1441:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:1453:            "value": "#000000ff",
+evidence/06-tokens-complete.json:1465:            "value": "#dae5e1ff",
+evidence/06-tokens-complete.json:1477:            "value": "#000000ff",
+evidence/06-tokens-complete.json:1489:            "value": "#252e2cff",
+evidence/06-tokens-complete.json:1501:            "value": "#414b49ff",
+evidence/06-tokens-complete.json:1513:            "value": "#000000ff",
+evidence/06-tokens-complete.json:1525:            "value": "#000000ff",
+evidence/06-tokens-complete.json:1537:            "value": "#2b3230ff",
+evidence/06-tokens-complete.json:1549:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1561:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:1573:            "value": "#005349ff",
+evidence/06-tokens-complete.json:1585:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1597:            "value": "#003a32ff",
+evidence/06-tokens-complete.json:1609:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1621:            "value": "#354e49ff",
+evidence/06-tokens-complete.json:1633:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1645:            "value": "#1f3732ff",
+evidence/06-tokens-complete.json:1657:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1669:            "value": "#2e4c62ff",
+evidence/06-tokens-complete.json:1681:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1693:            "value": "#16354bff",
+evidence/06-tokens-complete.json:1705:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1717:            "value": "#b4bab7ff",
+evidence/06-tokens-complete.json:1729:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:1741:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:1753:            "value": "#ecf2efff",
+evidence/06-tokens-complete.json:1765:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:1777:            "value": "#cfd6d3ff",
+evidence/06-tokens-complete.json:1789:            "value": "#c1c8c5ff",
+evidence/06-tokens-complete.json:1803:            "value": "#b0ffefff",
+evidence/06-tokens-complete.json:1815:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:1827:            "value": "#000000ff",
+evidence/06-tokens-complete.json:1839:            "value": "#7fd1c1ff",
+evidence/06-tokens-complete.json:1851:            "value": "#000e0bff",
+evidence/06-tokens-complete.json:1863:            "value": "#daf6eeff",
+evidence/06-tokens-complete.json:1875:            "value": "#000000ff",
+evidence/06-tokens-complete.json:1887:            "value": "#adc8c1ff",
+evidence/06-tokens-complete.json:1899:            "value": "#000e0bff",
+evidence/06-tokens-complete.json:1911:            "value": "#e5f1ffff",
+evidence/06-tokens-complete.json:1923:            "value": "#000000ff",
+evidence/06-tokens-complete.json:1935:            "value": "#a8c6e1ff",
+evidence/06-tokens-complete.json:1947:            "value": "#000d17ff",
+evidence/06-tokens-complete.json:1959:            "value": "#ffece9ff",
+evidence/06-tokens-complete.json:1971:            "value": "#000000ff",
+evidence/06-tokens-complete.json:1983:            "value": "#ffaea4ff",
+evidence/06-tokens-complete.json:1995:            "value": "#220001ff",
+evidence/06-tokens-complete.json:2007:            "value": "#0e1513ff",
+evidence/06-tokens-complete.json:2019:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:2031:            "value": "#0e1513ff",
+evidence/06-tokens-complete.json:2043:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2055:            "value": "#3f4946ff",
+evidence/06-tokens-complete.json:2067:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2079:            "value": "#e8f2eeff",
+evidence/06-tokens-complete.json:2091:            "value": "#bbc5c1ff",
+evidence/06-tokens-complete.json:2103:            "value": "#000000ff",
+evidence/06-tokens-complete.json:2115:            "value": "#000000ff",
+evidence/06-tokens-complete.json:2127:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:2139:            "value": "#000000ff",
+evidence/06-tokens-complete.json:2151:            "value": "#005247ff",
+evidence/06-tokens-complete.json:2163:            "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:2175:            "value": "#000000ff",
+evidence/06-tokens-complete.json:2187:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:2199:            "value": "#001511ff",
+evidence/06-tokens-complete.json:2211:            "value": "#cde8e1ff",
+evidence/06-tokens-complete.json:2223:            "value": "#000000ff",
+evidence/06-tokens-complete.json:2235:            "value": "#b1ccc5ff",
+evidence/06-tokens-complete.json:2247:            "value": "#001511ff",
+evidence/06-tokens-complete.json:2259:            "value": "#cae6ffff",
+evidence/06-tokens-complete.json:2271:            "value": "#000000ff",
+evidence/06-tokens-complete.json:2283:            "value": "#accae5ff",
+evidence/06-tokens-complete.json:2295:            "value": "#001320ff",
+evidence/06-tokens-complete.json:2307:            "value": "#0e1513ff",
+evidence/06-tokens-complete.json:2319:            "value": "#4b514fff",
+evidence/06-tokens-complete.json:2331:            "value": "#000000ff",
+evidence/06-tokens-complete.json:2343:            "value": "#1b211fff",
+evidence/06-tokens-complete.json:2355:            "value": "#2b3230ff",
+evidence/06-tokens-complete.json:2367:            "value": "#363d3bff",
+evidence/06-tokens-complete.json:2379:            "value": "#424846ff",
+evidence/06-tokens-complete.json:2393:            "value": "#003e36ff",
+evidence/06-tokens-complete.json:2405:            "value": "#006b5eff",
+evidence/06-tokens-complete.json:2417:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2429:            "value": "#207a6cff",
+evidence/06-tokens-complete.json:2441:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2453:            "value": "#223b36ff",
+evidence/06-tokens-complete.json:2465:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2477:            "value": "#59726cff",
+evidence/06-tokens-complete.json:2489:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2501:            "value": "#1a394eff",
+evidence/06-tokens-complete.json:2513:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2525:            "value": "#537088ff",
+evidence/06-tokens-complete.json:2537:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2549:            "value": "#740006ff",
+evidence/06-tokens-complete.json:2561:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2573:            "value": "#cf2c27ff",
+evidence/06-tokens-complete.json:2585:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2597:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:2609:            "value": "#171d1bff",
+evidence/06-tokens-complete.json:2621:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:2633:            "value": "#0c1211ff",
+evidence/06-tokens-complete.json:2645:            "value": "#dae5e1ff",
+evidence/06-tokens-complete.json:2657:            "value": "#2f3836ff",
+evidence/06-tokens-complete.json:2669:            "value": "#4b5552ff",
+evidence/06-tokens-complete.json:2681:            "value": "#656f6cff",
+evidence/06-tokens-complete.json:2693:            "value": "#000000ff",
+evidence/06-tokens-complete.json:2705:            "value": "#000000ff",
+evidence/06-tokens-complete.json:2717:            "value": "#2b3230ff",
+evidence/06-tokens-complete.json:2729:            "value": "#ecf2efff",
+evidence/06-tokens-complete.json:2741:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:2753:            "value": "#207a6cff",
+evidence/06-tokens-complete.json:2765:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2777:            "value": "#006054ff",
+evidence/06-tokens-complete.json:2789:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2801:            "value": "#59726cff",
+evidence/06-tokens-complete.json:2813:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2825:            "value": "#415a54ff",
+evidence/06-tokens-complete.json:2837:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2849:            "value": "#537088ff",
+evidence/06-tokens-complete.json:2861:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2873:            "value": "#3a586fff",
+evidence/06-tokens-complete.json:2885:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2897:            "value": "#c1c8c5ff",
+evidence/06-tokens-complete.json:2909:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:2921:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:2933:            "value": "#eff5f2ff",
+evidence/06-tokens-complete.json:2945:            "value": "#e3eae7ff",
+evidence/06-tokens-complete.json:2957:            "value": "#d8dedbff",
+evidence/06-tokens-complete.json:2969:            "value": "#cdd3d0ff",
+evidence/06-tokens-complete.json:2983:            "value": "#99ecdbff",
+evidence/06-tokens-complete.json:2995:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:3007:            "value": "#002b25ff",
+evidence/06-tokens-complete.json:3019:            "value": "#4b9e90ff",
+evidence/06-tokens-complete.json:3031:            "value": "#000000ff",
+evidence/06-tokens-complete.json:3043:            "value": "#c7e2dbff",
+evidence/06-tokens-complete.json:3055:            "value": "#112a25ff",
+evidence/06-tokens-complete.json:3067:            "value": "#7c9690ff",
+evidence/06-tokens-complete.json:3079:            "value": "#000000ff",
+evidence/06-tokens-complete.json:3091:            "value": "#c1e0fbff",
+evidence/06-tokens-complete.json:3103:            "value": "#05283dff",
+evidence/06-tokens-complete.json:3115:            "value": "#7694adff",
+evidence/06-tokens-complete.json:3127:            "value": "#000000ff",
+evidence/06-tokens-complete.json:3139:            "value": "#ffd2ccff",
+evidence/06-tokens-complete.json:3151:            "value": "#540003ff",
+evidence/06-tokens-complete.json:3163:            "value": "#ff5449ff",
+evidence/06-tokens-complete.json:3175:            "value": "#000000ff",
+evidence/06-tokens-complete.json:3187:            "value": "#0e1513ff",
+evidence/06-tokens-complete.json:3199:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:3211:            "value": "#0e1513ff",
+evidence/06-tokens-complete.json:3223:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:3235:            "value": "#3f4946ff",
+evidence/06-tokens-complete.json:3247:            "value": "#d4dfdbff",
+evidence/06-tokens-complete.json:3259:            "value": "#aab4b1ff",
+evidence/06-tokens-complete.json:3271:            "value": "#88928fff",
+evidence/06-tokens-complete.json:3283:            "value": "#000000ff",
+evidence/06-tokens-complete.json:3295:            "value": "#000000ff",
+evidence/06-tokens-complete.json:3307:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:3319:            "value": "#252b2aff",
+evidence/06-tokens-complete.json:3331:            "value": "#005247ff",
+evidence/06-tokens-complete.json:3343:            "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:3355:            "value": "#001511ff",
+evidence/06-tokens-complete.json:3367:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:3379:            "value": "#003e36ff",
+evidence/06-tokens-complete.json:3391:            "value": "#cde8e1ff",
+evidence/06-tokens-complete.json:3403:            "value": "#001511ff",
+evidence/06-tokens-complete.json:3415:            "value": "#b1ccc5ff",
+evidence/06-tokens-complete.json:3427:            "value": "#223b36ff",
+evidence/06-tokens-complete.json:3439:            "value": "#cae6ffff",
+evidence/06-tokens-complete.json:3451:            "value": "#001320ff",
+evidence/06-tokens-complete.json:3463:            "value": "#accae5ff",
+evidence/06-tokens-complete.json:3475:            "value": "#1a394eff",
+evidence/06-tokens-complete.json:3487:            "value": "#0e1513ff",
+evidence/06-tokens-complete.json:3499:            "value": "#3f4644ff",
+evidence/06-tokens-complete.json:3511:            "value": "#040807ff",
+evidence/06-tokens-complete.json:3523:            "value": "#191f1dff",
+evidence/06-tokens-complete.json:3535:            "value": "#232927ff",
+evidence/06-tokens-complete.json:3547:            "value": "#2d3432ff",
+evidence/06-tokens-complete.json:3559:            "value": "#383f3dff",
+evidence/06-tokens-complete.json:3573:            "value": "#006b5eff",
+evidence/06-tokens-complete.json:3585:            "value": "#006b5eff",
+evidence/06-tokens-complete.json:3597:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:3609:            "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:3621:            "value": "#005046ff",
+evidence/06-tokens-complete.json:3633:            "value": "#4a635eff",
+evidence/06-tokens-complete.json:3645:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:3657:            "value": "#cde8e1ff",
+evidence/06-tokens-complete.json:3669:            "value": "#334b46ff",
+evidence/06-tokens-complete.json:3681:            "value": "#446279ff",
+evidence/06-tokens-complete.json:3693:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:3705:            "value": "#cae6ffff",
+evidence/06-tokens-complete.json:3717:            "value": "#2c4a60ff",
+evidence/06-tokens-complete.json:3729:            "value": "#ba1a1aff",
+evidence/06-tokens-complete.json:3741:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:3753:            "value": "#ffdad6ff",
+evidence/06-tokens-complete.json:3765:            "value": "#93000aff",
+evidence/06-tokens-complete.json:3777:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:3789:            "value": "#171d1bff",
+evidence/06-tokens-complete.json:3801:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:3813:            "value": "#171d1bff",
+evidence/06-tokens-complete.json:3825:            "value": "#dae5e1ff",
+evidence/06-tokens-complete.json:3837:            "value": "#3f4946ff",
+evidence/06-tokens-complete.json:3849:            "value": "#6f7976ff",
+evidence/06-tokens-complete.json:3861:            "value": "#bec9c5ff",
+evidence/06-tokens-complete.json:3873:            "value": "#000000ff",
+evidence/06-tokens-complete.json:3885:            "value": "#000000ff",
+evidence/06-tokens-complete.json:3897:            "value": "#2b3230ff",
+evidence/06-tokens-complete.json:3909:            "value": "#ecf2efff",
+evidence/06-tokens-complete.json:3921:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:3933:            "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:3945:            "value": "#00201bff",
+evidence/06-tokens-complete.json:3957:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:3969:            "value": "#005046ff",
+evidence/06-tokens-complete.json:3981:            "value": "#cde8e1ff",
+evidence/06-tokens-complete.json:3993:            "value": "#06201bff",
+evidence/06-tokens-complete.json:4005:            "value": "#b1ccc5ff",
+evidence/06-tokens-complete.json:4017:            "value": "#334b46ff",
+evidence/06-tokens-complete.json:4029:            "value": "#cae6ffff",
+evidence/06-tokens-complete.json:4041:            "value": "#001e30ff",
+evidence/06-tokens-complete.json:4053:            "value": "#accae5ff",
+evidence/06-tokens-complete.json:4065:            "value": "#2c4a60ff",
+evidence/06-tokens-complete.json:4077:            "value": "#d5dbd8ff",
+evidence/06-tokens-complete.json:4089:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:4101:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:4113:            "value": "#eff5f2ff",
+evidence/06-tokens-complete.json:4125:            "value": "#e9efecff",
+evidence/06-tokens-complete.json:4137:            "value": "#e3eae7ff",
+evidence/06-tokens-complete.json:4149:            "value": "#dee4e1ff",
+evidence/06-tokens-complete.json:4165:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:4177:            "value": "#f3fffbff",
+evidence/06-tokens-complete.json:4189:            "value": "#e5fff8ff",
+evidence/06-tokens-complete.json:4201:            "value": "#b5ffefff",
+evidence/06-tokens-complete.json:4213:            "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:4225:            "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:4237:            "value": "#67baaaff",
+evidence/06-tokens-complete.json:4249:            "value": "#4b9e90ff",
+evidence/06-tokens-complete.json:4261:            "value": "#2d8476ff",
+evidence/06-tokens-complete.json:4273:            "value": "#006b5eff",
+evidence/06-tokens-complete.json:4285:            "value": "#005d52ff",
+evidence/06-tokens-complete.json:4297:            "value": "#005046ff",
+evidence/06-tokens-complete.json:4309:            "value": "#00443bff",
+evidence/06-tokens-complete.json:4321:            "value": "#003730ff",
+evidence/06-tokens-complete.json:4333:            "value": "#002c25ff",
+evidence/06-tokens-complete.json:4345:            "value": "#00201bff",
+evidence/06-tokens-complete.json:4357:            "value": "#001411ff",
+evidence/06-tokens-complete.json:4369:            "value": "#000000ff",
+evidence/06-tokens-complete.json:4383:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:4395:            "value": "#f3fffbff",
+evidence/06-tokens-complete.json:4407:            "value": "#ebfef8ff",
+evidence/06-tokens-complete.json:4419:            "value": "#e2f5efff",
+evidence/06-tokens-complete.json:4431:            "value": "#d4e7e1ff",
+evidence/06-tokens-complete.json:4443:            "value": "#b8cac5ff",
+evidence/06-tokens-complete.json:4455:            "value": "#9dafaaff",
+evidence/06-tokens-complete.json:4467:            "value": "#839490ff",
+evidence/06-tokens-complete.json:4479:            "value": "#697b76ff",
+evidence/06-tokens-complete.json:4491:            "value": "#51625eff",
+evidence/06-tokens-complete.json:4503:            "value": "#455652ff",
+evidence/06-tokens-complete.json:4515:            "value": "#394a46ff",
+evidence/06-tokens-complete.json:4527:            "value": "#2e3f3bff",
+evidence/06-tokens-complete.json:4539:            "value": "#233430ff",
+evidence/06-tokens-complete.json:4551:            "value": "#192925ff",
+evidence/06-tokens-complete.json:4563:            "value": "#0e1e1bff",
+evidence/06-tokens-complete.json:4575:            "value": "#041411ff",
+evidence/06-tokens-complete.json:4587:            "value": "#000000ff",
+evidence/06-tokens-complete.json:4601:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:4613:            "value": "#fcfcffff",
+evidence/06-tokens-complete.json:4625:            "value": "#f6f9ffff",
+evidence/06-tokens-complete.json:4637:            "value": "#e6f2ffff",
+evidence/06-tokens-complete.json:4649:            "value": "#d0e5f9ff",
+evidence/06-tokens-complete.json:4661:            "value": "#b5c9dcff",
+evidence/06-tokens-complete.json:4673:            "value": "#9aaec0ff",
+evidence/06-tokens-complete.json:4685:            "value": "#7f93a5ff",
+evidence/06-tokens-complete.json:4697:            "value": "#66798aff",
+evidence/06-tokens-complete.json:4709:            "value": "#4d6171ff",
+evidence/06-tokens-complete.json:4721:            "value": "#415565ff",
+evidence/06-tokens-complete.json:4733:            "value": "#364959ff",
+evidence/06-tokens-complete.json:4745:            "value": "#2a3d4dff",
+evidence/06-tokens-complete.json:4757:            "value": "#1f3241ff",
+evidence/06-tokens-complete.json:4769:            "value": "#142836ff",
+evidence/06-tokens-complete.json:4781:            "value": "#081d2bff",
+evidence/06-tokens-complete.json:4793:            "value": "#001320ff",
+evidence/06-tokens-complete.json:4805:            "value": "#000000ff",
+evidence/06-tokens-complete.json:4819:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:4831:            "value": "#fffbffff",
+evidence/06-tokens-complete.json:4843:            "value": "#fff8f7ff",
+evidence/06-tokens-complete.json:4855:            "value": "#ffedeaff",
+evidence/06-tokens-complete.json:4867:            "value": "#ffdad6ff",
+evidence/06-tokens-complete.json:4879:            "value": "#ffb4abff",
+evidence/06-tokens-complete.json:4891:            "value": "#ff897dff",
+evidence/06-tokens-complete.json:4903:            "value": "#ff5449ff",
+evidence/06-tokens-complete.json:4915:            "value": "#de3730ff",
+evidence/06-tokens-complete.json:4927:            "value": "#ba1a1aff",
+evidence/06-tokens-complete.json:4939:            "value": "#a80710ff",
+evidence/06-tokens-complete.json:4951:            "value": "#93000aff",
+evidence/06-tokens-complete.json:4963:            "value": "#7e0007ff",
+evidence/06-tokens-complete.json:4975:            "value": "#690005ff",
+evidence/06-tokens-complete.json:4987:            "value": "#540003ff",
+evidence/06-tokens-complete.json:4999:            "value": "#410002ff",
+evidence/06-tokens-complete.json:5011:            "value": "#2d0001ff",
+evidence/06-tokens-complete.json:5023:            "value": "#000000ff",
+evidence/06-tokens-complete.json:5037:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:5049:            "value": "#fcfcfaff",
+evidence/06-tokens-complete.json:5061:            "value": "#f9f9f8ff",
+evidence/06-tokens-complete.json:5073:            "value": "#f0f1efff",
+evidence/06-tokens-complete.json:5085:            "value": "#e2e3e1ff",
+evidence/06-tokens-complete.json:5097:            "value": "#c6c7c5ff",
+evidence/06-tokens-complete.json:5109:            "value": "#aaabaaff",
+evidence/06-tokens-complete.json:5121:            "value": "#8f9190ff",
+evidence/06-tokens-complete.json:5133:            "value": "#767776ff",
+evidence/06-tokens-complete.json:5145:            "value": "#5d5f5eff",
+evidence/06-tokens-complete.json:5157:            "value": "#515352ff",
+evidence/06-tokens-complete.json:5169:            "value": "#454746ff",
+evidence/06-tokens-complete.json:5181:            "value": "#3a3c3bff",
+evidence/06-tokens-complete.json:5193:            "value": "#2e3130ff",
+evidence/06-tokens-complete.json:5205:            "value": "#242625ff",
+evidence/06-tokens-complete.json:5217:            "value": "#1a1c1bff",
+evidence/06-tokens-complete.json:5229:            "value": "#0f1111ff",
+evidence/06-tokens-complete.json:5241:            "value": "#000000ff",
+evidence/06-tokens-complete.json:5255:            "value": "#ffffffff",
+evidence/06-tokens-complete.json:5267:            "value": "#f7fefaff",
+evidence/06-tokens-complete.json:5279:            "value": "#f4fbf8ff",
+evidence/06-tokens-complete.json:5291:            "value": "#ecf2efff",
+evidence/06-tokens-complete.json:5303:            "value": "#dde4e1ff",
+evidence/06-tokens-complete.json:5315:            "value": "#c1c8c5ff",
+evidence/06-tokens-complete.json:5327:            "value": "#a6adaaff",
+evidence/06-tokens-complete.json:5339:            "value": "#8b9290ff",
+evidence/06-tokens-complete.json:5351:            "value": "#727876ff",
+evidence/06-tokens-complete.json:5363:            "value": "#59605eff",
+evidence/06-tokens-complete.json:5375:            "value": "#4d5452ff",
+evidence/06-tokens-complete.json:5387:            "value": "#424846ff",
+evidence/06-tokens-complete.json:5399:            "value": "#363d3bff",
+evidence/06-tokens-complete.json:5411:            "value": "#2b3230ff",
+evidence/06-tokens-complete.json:5423:            "value": "#212725ff",
+evidence/06-tokens-complete.json:5435:            "value": "#171d1bff",
+evidence/06-tokens-complete.json:5447:            "value": "#0c1211ff",
+evidence/06-tokens-complete.json:5459:            "value": "#000000ff",
+evidence/06-tokens-complete.json:5474:          "value": "#006b5eff",
+evidence/06-tokens-complete.json:5488:          "value": "#006b5eff",
+evidence/06-tokens-complete.json:5840:          "color": "#006b5e1f",
+evidence/06-tokens-complete.json:5858:          "color": "#006b5e2e",
+evidence/06-tokens-complete.json:5876:          "color": "#006b5e33",
+evidence/06-tokens-complete.json:5894:        "value": "#006b5eff",
+evidence/06-tokens-complete.json:5909:        "value": "#4a635fff",
+evidence/06-tokens-complete.json:5924:        "value": "#3f6375ff",
+evidence/06-tokens-complete.json:5939:        "value": "#fbfdfaff",
+evidence/06-tokens-complete.json:5954:        "value": "#bec9c6ff",
+evidence/06-tokens-complete.json:5969:        "value": "#ba1a1aff",
+evidence/06-tokens-complete.json:5984:        "value": "#b25e00ff",
+evidence/06-tokens-complete.json:5999:        "value": "#006d3bff",
+evidence/06-tokens-complete.json:6017:          "value": "#000000ff",
+evidence/06-tokens-complete.json:6032:          "value": "#00201bff",
+evidence/06-tokens-complete.json:6047:          "value": "#003730ff",
+evidence/06-tokens-complete.json:6062:          "value": "#005046ff",
+evidence/06-tokens-complete.json:6077:          "value": "#006b5eff",
+evidence/06-tokens-complete.json:6092:          "value": "#2d8476ff",
+evidence/06-tokens-complete.json:6107:          "value": "#4b9e90ff",
+evidence/06-tokens-complete.json:6122:          "value": "#67baaaff",
+evidence/06-tokens-complete.json:6137:          "value": "#83d5c5ff",
+evidence/06-tokens-complete.json:6152:          "value": "#9ff2e1ff",
+evidence/06-tokens-complete.json:6167:          "value": "#b5ffefff",
+evidence/06-tokens-complete.json:6182:          "value": "#e5fff8ff",
+evidence/06-tokens-complete.json:6197:          "value": "#f3fffbff",
+evidence/06-tokens-complete.json:6212:          "value": "#ffffffff",
+evidence/06-tokens-complete.json:6229:          "value": "#000000ff",
+evidence/06-tokens-complete.json:6244:          "value": "#061f1dff",
+evidence/06-tokens-complete.json:6259:          "value": "#1c3531ff",
+evidence/06-tokens-complete.json:6274:          "value": "#334b48ff",
+evidence/06-tokens-complete.json:6289:          "value": "#4a635fff",
+evidence/06-tokens-complete.json:6304:          "value": "#637c78ff",
+evidence/06-tokens-complete.json:6319:          "value": "#7c9691ff",
+evidence/06-tokens-complete.json:6334:          "value": "#96b1acff",
+evidence/06-tokens-complete.json:6349:          "value": "#b1ccc7ff",
+evidence/06-tokens-complete.json:6364:          "value": "#cde8e3ff",
+evidence/06-tokens-complete.json:6379:          "value": "#dbf7f1ff",
+evidence/06-tokens-complete.json:6394:          "value": "#e4fffaff",
+evidence/06-tokens-complete.json:6409:          "value": "#f2fffcff",
+evidence/06-tokens-complete.json:6424:          "value": "#ffffffff",
+evidence/06-tokens-complete.json:6441:          "value": "#000000ff",
+evidence/06-tokens-complete.json:6456:          "value": "#001e2bff",
+evidence/06-tokens-complete.json:6471:          "value": "#0a3445ff",
+evidence/06-tokens-complete.json:6486:          "value": "#264b5cff",
+evidence/06-tokens-complete.json:6501:          "value": "#3f6375ff",
+evidence/06-tokens-complete.json:6516:          "value": "#587c8fff",
+evidence/06-tokens-complete.json:6531:          "value": "#7196a9ff",
+evidence/06-tokens-complete.json:6546:          "value": "#8cb0c4ff",
+evidence/06-tokens-complete.json:6561:          "value": "#a7cce1ff",
+evidence/06-tokens-complete.json:6576:          "value": "#c2e8fdff",
+evidence/06-tokens-complete.json:6591:          "value": "#e1f3ffff",
+evidence/06-tokens-complete.json:6606:          "value": "#f4faffff",
+evidence/06-tokens-complete.json:6621:          "value": "#fafcffff",
+evidence/06-tokens-complete.json:6636:          "value": "#ffffffff",
+evidence/06-tokens-complete.json:6653:          "value": "#000000ff",
+evidence/06-tokens-complete.json:6668:          "value": "#191c1bff",
+evidence/06-tokens-complete.json:6683:          "value": "#2e312fff",
+evidence/06-tokens-complete.json:6698:          "value": "#444746ff",
+evidence/06-tokens-complete.json:6713:          "value": "#5c5f5dff",
+evidence/06-tokens-complete.json:6728:          "value": "#757876ff",
+evidence/06-tokens-complete.json:6743:          "value": "#8e918fff",
+evidence/06-tokens-complete.json:6758:          "value": "#a9aca9ff",
+evidence/06-tokens-complete.json:6773:          "value": "#c5c7c4ff",
+evidence/06-tokens-complete.json:6788:          "value": "#e1e3e0ff",
+evidence/06-tokens-complete.json:6803:          "value": "#eff1eeff",
+evidence/06-tokens-complete.json:6818:          "value": "#f8faf7ff",
+evidence/06-tokens-complete.json:6833:          "value": "#fbfdfaff",
+evidence/06-tokens-complete.json:6848:          "value": "#ffffffff",
+evidence/06-tokens-complete.json:6865:          "value": "#000000ff",
+evidence/06-tokens-complete.json:6880:          "value": "#141d1cff",
+evidence/06-tokens-complete.json:6895:          "value": "#283231ff",
+evidence/06-tokens-complete.json:6910:          "value": "#3f4947ff",
+evidence/06-tokens-complete.json:6925:          "value": "#56615eff",
+evidence/06-tokens-complete.json:6940:          "value": "#6f7977ff",
+evidence/06-tokens-complete.json:6955:          "value": "#889390ff",
+evidence/06-tokens-complete.json:6970:          "value": "#a3aeabff",
+evidence/06-tokens-complete.json:6985:          "value": "#bec9c6ff",
+evidence/06-tokens-complete.json:7000:          "value": "#dae5e2ff",
+evidence/06-tokens-complete.json:7015:          "value": "#e8f3f0ff",
+evidence/06-tokens-complete.json:7030:          "value": "#f1fcf8ff",
+evidence/06-tokens-complete.json:7045:          "value": "#f4fffbff",
+evidence/06-tokens-complete.json:7060:          "value": "#ffffffff",
+evidence/06-tokens-complete.json:7077:          "value": "#000000ff",
+evidence/06-tokens-complete.json:7092:          "value": "#410002ff",
+evidence/06-tokens-complete.json:7107:          "value": "#690004ff",
+evidence/06-tokens-complete.json:7122:          "value": "#930009ff",
+evidence/06-tokens-complete.json:7137:          "value": "#ba1a1aff",
+evidence/06-tokens-complete.json:7152:          "value": "#de372fff",
+evidence/06-tokens-complete.json:7167:          "value": "#ff5449ff",
+evidence/06-tokens-complete.json:7182:          "value": "#ff897dff",
+evidence/06-tokens-complete.json:7197:          "value": "#ffb4abff",
+evidence/06-tokens-complete.json:7212:          "value": "#ffdad5ff",
+evidence/06-tokens-complete.json:7227:          "value": "#ffedeaff",
+evidence/06-tokens-complete.json:7242:          "value": "#fff8f7ff",
+evidence/06-tokens-complete.json:7257:          "value": "#fffbffff",
+evidence/06-tokens-complete.json:7272:          "value": "#ffffffff",
+evidence/06-tokens-complete.json:7289:          "value": "#000000ff",
+evidence/06-tokens-complete.json:7304:          "value": "#2f1400ff",
+evidence/06-tokens-complete.json:7319:          "value": "#4e2600ff",
+evidence/06-tokens-complete.json:7334:          "value": "#6f3800ff",
+evidence/06-tokens-complete.json:7349:          "value": "#924c00ff",
+evidence/06-tokens-complete.json:7364:          "value": "#b66104ff",
+evidence/06-tokens-complete.json:7379:          "value": "#d57924ff",
+evidence/06-tokens-complete.json:7394:          "value": "#f6933dff",
+evidence/06-tokens-complete.json:7409:          "value": "#ffb780ff",
+evidence/06-tokens-complete.json:7424:          "value": "#ffdcc4ff",
+evidence/06-tokens-complete.json:7439:          "value": "#ffede3ff",
+evidence/06-tokens-complete.json:7454:          "value": "#fff8f5ff",
+evidence/06-tokens-complete.json:7469:          "value": "#fffbffff",
+evidence/06-tokens-complete.json:7484:          "value": "#ffffffff",
+evidence/06-tokens-complete.json:7501:          "value": "#000000ff",
+evidence/06-tokens-complete.json:7516:          "value": "#00210eff",
+evidence/06-tokens-complete.json:7531:          "value": "#00391cff",
+evidence/06-tokens-complete.json:7546:          "value": "#00522bff",
+evidence/06-tokens-complete.json:7561:          "value": "#006d3bff",
+evidence/06-tokens-complete.json:7576:          "value": "#2c8752ff",
+evidence/06-tokens-complete.json:7591:          "value": "#49a26aff",
+evidence/06-tokens-complete.json:7606:          "value": "#64bd82ff",
+evidence/06-tokens-complete.json:7621:          "value": "#80d99cff",
+evidence/06-tokens-complete.json:7636:          "value": "#9bf6b6ff",
+evidence/06-tokens-complete.json:7651:          "value": "#c2ffd0ff",
+evidence/06-tokens-complete.json:7666:          "value": "#e9ffebff",
+evidence/06-tokens-complete.json:7681:          "value": "#f5fff3ff",
+evidence/06-tokens-complete.json:7696:          "value": "#ffffffff",
+evidence/primary-palette-calculation:3:Source: #006B5E
+evidence/primary-palette-calculation:8:0      #000000      #000000
+evidence/primary-palette-calculation:9:10     #00201B      #00201B
+evidence/primary-palette-calculation:10:20     #003730      #003730
+evidence/primary-palette-calculation:11:30     #005046      #005046
+evidence/primary-palette-calculation:12:40     #006B5E      #006B5E
+evidence/primary-palette-calculation:13:50     #2D8476      #2D8476
+evidence/primary-palette-calculation:14:60     #4B9E90      #4B9E90
+evidence/primary-palette-calculation:15:70     #67BAAA      #67BAAA
+evidence/primary-palette-calculation:16:80     #83D5C5      #83D5C5
+evidence/primary-palette-calculation:17:90     #9FF2E1      #9FF2E1
+evidence/primary-palette-calculation:18:95     #B5FFEF      #B5FFEF
+evidence/primary-palette-calculation:19:98     #E5FFF8      #E5FFF8
+evidence/primary-palette-calculation:20:99     #F3FFFB      #F3FFFB
+evidence/primary-palette-calculation:21:100    #FFFFFF      #FFFFFF
+styles/tokens.css:12:  --kw-palette-error-key-color: #ba1a1aff;
+styles/tokens.css:13:  --kw-palette-neutral-key-color: #fbfdfaff;
+styles/tokens.css:14:  --kw-palette-neutral-variant-key-color: #bec9c6ff;
+styles/tokens.css:15:  --kw-palette-primary-key-color: #006b5eff;
+styles/tokens.css:16:  --kw-palette-secondary-key-color: #4a635fff;
+styles/tokens.css:17:  --kw-palette-success-key-color: #006d3bff;
+styles/tokens.css:18:  --kw-palette-tertiary-key-color: #3f6375ff;
+styles/tokens.css:19:  --kw-palette-warning-key-color: #b25e00ff;
+styles/tokens.css:23:  --kw-palette-primary-0: #000000ff;
+styles/tokens.css:24:  --kw-palette-primary-10: #00201bff;
+styles/tokens.css:25:  --kw-palette-primary-20: #003730ff;
+styles/tokens.css:26:  --kw-palette-primary-30: #005046ff;
+styles/tokens.css:27:  --kw-palette-primary-40: #006b5eff;
+styles/tokens.css:28:  --kw-palette-primary-50: #2d8476ff;
+styles/tokens.css:29:  --kw-palette-primary-60: #4b9e90ff;
+styles/tokens.css:30:  --kw-palette-primary-70: #67baaaff;
+styles/tokens.css:31:  --kw-palette-primary-80: #83d5c5ff;
+styles/tokens.css:32:  --kw-palette-primary-90: #9ff2e1ff;
+styles/tokens.css:33:  --kw-palette-primary-95: #b5ffefff;
+styles/tokens.css:34:  --kw-palette-primary-98: #e5fff8ff;
+styles/tokens.css:35:  --kw-palette-primary-99: #f3fffbff;
+styles/tokens.css:36:  --kw-palette-primary-100: #ffffffff;
+styles/tokens.css:38:  --kw-palette-secondary-0: #000000ff;
+styles/tokens.css:39:  --kw-palette-secondary-10: #061f1dff;
+styles/tokens.css:40:  --kw-palette-secondary-20: #1c3531ff;
+styles/tokens.css:41:  --kw-palette-secondary-30: #334b48ff;
+styles/tokens.css:42:  --kw-palette-secondary-40: #4a635fff;
+styles/tokens.css:43:  --kw-palette-secondary-50: #637c78ff;
+styles/tokens.css:44:  --kw-palette-secondary-60: #7c9691ff;
+styles/tokens.css:45:  --kw-palette-secondary-70: #96b1acff;
+styles/tokens.css:46:  --kw-palette-secondary-80: #b1ccc7ff;
+styles/tokens.css:47:  --kw-palette-secondary-90: #cde8e3ff;
+styles/tokens.css:48:  --kw-palette-secondary-95: #dbf7f1ff;
+styles/tokens.css:49:  --kw-palette-secondary-98: #e4fffaff;
+styles/tokens.css:50:  --kw-palette-secondary-99: #f2fffcff;
+styles/tokens.css:51:  --kw-palette-secondary-100: #ffffffff;
+styles/tokens.css:53:  --kw-palette-tertiary-0: #000000ff;
+styles/tokens.css:54:  --kw-palette-tertiary-10: #001e2bff;
+styles/tokens.css:55:  --kw-palette-tertiary-20: #0a3445ff;
+styles/tokens.css:56:  --kw-palette-tertiary-30: #264b5cff;
+styles/tokens.css:57:  --kw-palette-tertiary-40: #3f6375ff;
+styles/tokens.css:58:  --kw-palette-tertiary-50: #587c8fff;
+styles/tokens.css:59:  --kw-palette-tertiary-60: #7196a9ff;
+styles/tokens.css:60:  --kw-palette-tertiary-70: #8cb0c4ff;
+styles/tokens.css:61:  --kw-palette-tertiary-80: #a7cce1ff;
+styles/tokens.css:62:  --kw-palette-tertiary-90: #c2e8fdff;
+styles/tokens.css:63:  --kw-palette-tertiary-95: #e1f3ffff;
+styles/tokens.css:64:  --kw-palette-tertiary-98: #f4faffff;
+styles/tokens.css:65:  --kw-palette-tertiary-99: #fafcffff;
+styles/tokens.css:66:  --kw-palette-tertiary-100: #ffffffff;
+styles/tokens.css:68:  --kw-palette-neutral-0: #000000ff;
+styles/tokens.css:69:  --kw-palette-neutral-10: #191c1bff;
+styles/tokens.css:70:  --kw-palette-neutral-20: #2e312fff;
+styles/tokens.css:71:  --kw-palette-neutral-30: #444746ff;
+styles/tokens.css:72:  --kw-palette-neutral-40: #5c5f5dff;
+styles/tokens.css:73:  --kw-palette-neutral-50: #757876ff;
+styles/tokens.css:74:  --kw-palette-neutral-60: #8e918fff;
+styles/tokens.css:75:  --kw-palette-neutral-70: #a9aca9ff;
+styles/tokens.css:76:  --kw-palette-neutral-80: #c5c7c4ff;
+styles/tokens.css:77:  --kw-palette-neutral-90: #e1e3e0ff;
+styles/tokens.css:78:  --kw-palette-neutral-95: #eff1eeff;
+styles/tokens.css:79:  --kw-palette-neutral-98: #f8faf7ff;
+styles/tokens.css:80:  --kw-palette-neutral-99: #fbfdfaff;
+styles/tokens.css:81:  --kw-palette-neutral-100: #ffffffff;
+styles/tokens.css:83:  --kw-palette-neutral-variant-0: #000000ff;
+styles/tokens.css:84:  --kw-palette-neutral-variant-10: #141d1cff;
+styles/tokens.css:85:  --kw-palette-neutral-variant-20: #283231ff;
+styles/tokens.css:86:  --kw-palette-neutral-variant-30: #3f4947ff;
+styles/tokens.css:87:  --kw-palette-neutral-variant-40: #56615eff;
+styles/tokens.css:88:  --kw-palette-neutral-variant-50: #6f7977ff;
+styles/tokens.css:89:  --kw-palette-neutral-variant-60: #889390ff;
+styles/tokens.css:90:  --kw-palette-neutral-variant-70: #a3aeabff;
+styles/tokens.css:91:  --kw-palette-neutral-variant-80: #bec9c6ff;
+styles/tokens.css:92:  --kw-palette-neutral-variant-90: #dae5e2ff;
+styles/tokens.css:93:  --kw-palette-neutral-variant-95: #e8f3f0ff;
+styles/tokens.css:94:  --kw-palette-neutral-variant-98: #f1fcf8ff;
+styles/tokens.css:95:  --kw-palette-neutral-variant-99: #f4fffbff;
+styles/tokens.css:96:  --kw-palette-neutral-variant-100: #ffffffff;
+styles/tokens.css:98:  --kw-palette-error-0: #000000ff;
+styles/tokens.css:99:  --kw-palette-error-10: #410002ff;
+styles/tokens.css:100:  --kw-palette-error-20: #690004ff;
+styles/tokens.css:101:  --kw-palette-error-30: #930009ff;
+styles/tokens.css:102:  --kw-palette-error-40: #ba1a1aff;
+styles/tokens.css:103:  --kw-palette-error-50: #de372fff;
+styles/tokens.css:104:  --kw-palette-error-60: #ff5449ff;
+styles/tokens.css:105:  --kw-palette-error-70: #ff897dff;
+styles/tokens.css:106:  --kw-palette-error-80: #ffb4abff;
+styles/tokens.css:107:  --kw-palette-error-90: #ffdad5ff;
+styles/tokens.css:108:  --kw-palette-error-95: #ffedeaff;
+styles/tokens.css:109:  --kw-palette-error-98: #fff8f7ff;
+styles/tokens.css:110:  --kw-palette-error-99: #fffbffff;
+styles/tokens.css:111:  --kw-palette-error-100: #ffffffff;
+styles/tokens.css:113:  --kw-palette-warning-0: #000000ff;
+styles/tokens.css:114:  --kw-palette-warning-10: #2f1400ff;
+styles/tokens.css:115:  --kw-palette-warning-20: #4e2600ff;
+styles/tokens.css:116:  --kw-palette-warning-30: #6f3800ff;
+styles/tokens.css:117:  --kw-palette-warning-40: #924c00ff;
+styles/tokens.css:118:  --kw-palette-warning-50: #b66104ff;
+styles/tokens.css:119:  --kw-palette-warning-60: #d57924ff;
+styles/tokens.css:120:  --kw-palette-warning-70: #f6933dff;
+styles/tokens.css:121:  --kw-palette-warning-80: #ffb780ff;
+styles/tokens.css:122:  --kw-palette-warning-90: #ffdcc4ff;
+styles/tokens.css:123:  --kw-palette-warning-95: #ffede3ff;
+styles/tokens.css:124:  --kw-palette-warning-98: #fff8f5ff;
+styles/tokens.css:125:  --kw-palette-warning-99: #fffbffff;
+styles/tokens.css:126:  --kw-palette-warning-100: #ffffffff;
+styles/tokens.css:128:  --kw-palette-success-0: #000000ff;
+styles/tokens.css:129:  --kw-palette-success-10: #00210eff;
+styles/tokens.css:130:  --kw-palette-success-20: #00391cff;
+styles/tokens.css:131:  --kw-palette-success-30: #00522bff;
+styles/tokens.css:132:  --kw-palette-success-40: #006d3bff;
+styles/tokens.css:133:  --kw-palette-success-50: #2c8752ff;
+styles/tokens.css:134:  --kw-palette-success-60: #49a26aff;
+styles/tokens.css:135:  --kw-palette-success-70: #64bd82ff;
+styles/tokens.css:136:  --kw-palette-success-80: #80d99cff;
+styles/tokens.css:137:  --kw-palette-success-90: #9bf6b6ff;
+styles/tokens.css:138:  --kw-palette-success-95: #c2ffd0ff;
+styles/tokens.css:139:  --kw-palette-success-98: #e9ffebff;
+styles/tokens.css:140:  --kw-palette-success-99: #f5fff3ff;
+styles/tokens.css:141:  --kw-palette-success-100: #ffffffff;
+styles/tokens.css:146:  --kw-shadow-hard: 4px 20px 20px 0px #006b5e33;
+styles/tokens.css:147:  --kw-shadow-medium: 4px 16px 24px 0px #006b5e2e;
+styles/tokens.css:148:  --kw-shadow-soft: 4px 6px 12px 0px #006b5e1f;
+--- 1287 matching lines ---
+=== RAW COLOUR VALUES: CSS COLOUR FUNCTIONS ===
+docs/prompts.md:243:- rgb(), rgba(), hsl() and hsla().
+--- 1 matching lines ---
+=== RAW COLOUR VALUES: NAMED CSS COLOURS ===
+docs/colour-roles.md:15:**Colour:** deep teal, #006B5E.
+docs/colour-roles.md:17:**Source:** I chose #006B5E from colour suggestions supplied by ChatGPT for Kobo Watt. I compared deep teal with a restrained blue, but did not record the alternative blue HEX. ChatGPT suggested options; I made the final choice.
+docs/colour-roles.md:19:**Why it fits the brief:** Kobo Watt should feel calm, dependable and connected to energy. Dark teal gives the payment action clear emphasis on a light background. This is my design intention. It has not been tested with users.
+docs/colour-roles.md:21:**Weakness:** teal can look like the green success colour. I separate a payment action from a confirmed result with labels, icons and position. A payment button says what can be done. A success message says what has already happened.
+docs/colour-roles.md:53:Eight families (primary, secondary, tertiary, neutral, neutral variant, error, warning, success), each with 14 tones: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 99, 100. That is 112 named tone entries. The video shows 120 entries in the Primitives collection: 112 tones plus eight key colours. It is not 112 different hex values, because black, white and a few others repeat. No extra neutral tones are used.
+docs/colour-roles.md:112:Normal text needs 4.5:1. Visual cues needed to identify controls, states or meaningful graphics need 3:1 against relevant adjacent colours, subject to WCAG exceptions. Decorative dividers do not carry this requirement. I use a conservative 4.5:1 minimum for every text pair listed here, including larger text. Ratios are shown to two decimals, and pass or fail is decided from the unrounded value. All pairs are solid colours at full opacity. The checker includes sanity checks: black on white gives 21:1 and a colour on itself gives 1:1. Output: `evidence/02b-contrast-script-output.txt`.
+docs/colour-roles.md:181:| White text on dark primary | #FFFFFF / #83D5C5 | 1.71:1 | 4.5:1 | on-primary #003730 | 7.73:1 |
+docs/export-check.md:20:- Existing color, font, effect and typography sections are exactly unchanged from the incomplete export. The fifteen typography styles and three corrected teal shadows remain present.
+docs/export-check.md:26:Conversion guardrails: use the color roles and primitives variable sections for interface colours, not the separate material-theme colour styles, which contain different values. Preserve role references in CSS rather than replacing them with fixed colours. The Light/Dark Shadow colour roles reference black palette entries; they are distinct from the three verified teal effect styles. Use those effect styles for the required brand shadows.
+docs/pricing-model.md:22:## 2. Transparent fixed-budget scenario
+docs/pricing-model.md:46:These calculations deliberately hold all other allowances fixed. They are a transparent arithmetic scenario, not a claim that funding and recovery costs really remain unchanged.
+docs/prompts.md:67:   Use effect/shadow for these shadows. The colour roles named “shadow” point to black and must not replace the three teal effect styles.
+docs/shadows.md:19:A shadow made from Kobo Watt’s primary colour adds a teal tint around the card, connecting the shadow to the brand colour. A black shadow would darken the background without that teal tint, giving a more neutral appearance.
+evidence/05-tokens-incomplete.json:4:      "white": {
+evidence/05-tokens-incomplete.json:16:      "black": {
+evidence/06-tokens-complete.json:4:      "white": {
+evidence/06-tokens-complete.json:16:      "black": {
+tools/search-raw-colours.py:55:    "aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige",
+tools/search-raw-colours.py:56:    "bisque", "black", "blanchedalmond", "blue", "blueviolet", "brown",
+tools/search-raw-colours.py:57:    "burlywood", "cadetblue", "chartreuse", "chocolate", "coral",
+tools/search-raw-colours.py:58:    "cornflowerblue", "cornsilk", "crimson", "cyan", "darkblue", "darkcyan",
+tools/search-raw-colours.py:59:    "darkgoldenrod", "darkgray", "darkgreen", "darkgrey", "darkkhaki",
+tools/search-raw-colours.py:60:    "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred",
+tools/search-raw-colours.py:61:    "darksalmon", "darkseagreen", "darkslateblue", "darkslategray",
+tools/search-raw-colours.py:62:    "darkslategrey", "darkturquoise", "darkviolet", "deeppink", "deepskyblue",
+tools/search-raw-colours.py:63:    "dimgray", "dimgrey", "dodgerblue", "firebrick", "floralwhite",
+tools/search-raw-colours.py:64:    "forestgreen", "fuchsia", "gainsboro", "ghostwhite", "gold", "goldenrod",
+tools/search-raw-colours.py:65:    "gray", "green", "greenyellow", "grey", "honeydew", "hotpink",
+tools/search-raw-colours.py:66:    "indianred", "indigo", "ivory", "khaki", "lavender", "lavenderblush",
+tools/search-raw-colours.py:67:    "lawngreen", "lemonchiffon", "lightblue", "lightcoral", "lightcyan",
+tools/search-raw-colours.py:68:    "lightgoldenrodyellow", "lightgray", "lightgreen", "lightgrey",
+tools/search-raw-colours.py:69:    "lightpink", "lightsalmon", "lightseagreen", "lightskyblue",
+tools/search-raw-colours.py:70:    "lightslategray", "lightslategrey", "lightsteelblue", "lightyellow",
+tools/search-raw-colours.py:71:    "lime", "limegreen", "linen", "magenta", "maroon", "mediumaquamarine",
+tools/search-raw-colours.py:72:    "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen",
+tools/search-raw-colours.py:73:    "mediumslateblue", "mediumspringgreen", "mediumturquoise",
+tools/search-raw-colours.py:74:    "mediumvioletred", "midnightblue", "mintcream", "mistyrose", "moccasin",
+tools/search-raw-colours.py:75:    "navajowhite", "navy", "oldlace", "olive", "olivedrab", "orange",
+tools/search-raw-colours.py:76:    "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise",
+tools/search-raw-colours.py:77:    "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum",
+tools/search-raw-colours.py:78:    "powderblue", "purple", "rebeccapurple", "red", "rosybrown", "royalblue",
+tools/search-raw-colours.py:79:    "saddlebrown", "salmon", "sandybrown", "seagreen", "seashell", "sienna",
+tools/search-raw-colours.py:80:    "silver", "skyblue", "slateblue", "slategray", "slategrey", "snow",
+tools/search-raw-colours.py:81:    "springgreen", "steelblue", "tan", "teal", "thistle", "tomato",
+tools/search-raw-colours.py:82:    "turquoise", "violet", "wheat", "white", "whitesmoke", "yellow",
+tools/search-raw-colours.py:83:    "yellowgreen", "transparent", "currentcolor",
+--- 46 matching lines ---
+
+--- SKIPPED: binary extension ---
+(0 files)
+--- SKIPPED: not valid UTF-8 text ---
+(0 files)
+--- SKIPPED: evidence output file ---
+evidence/07-raw-value-search.txt
+(1 files)
+--- FILES SCANNED: 9 ---
+=== PRIMITIVE PALETTE VARIABLE REFERENCES (--kw-palette-) ===
+styles/tokens.css:12:  --kw-palette-error-key-color: #ba1a1aff;
+styles/tokens.css:13:  --kw-palette-neutral-key-color: #fbfdfaff;
+styles/tokens.css:14:  --kw-palette-neutral-variant-key-color: #bec9c6ff;
+styles/tokens.css:15:  --kw-palette-primary-key-color: #006b5eff;
+styles/tokens.css:16:  --kw-palette-secondary-key-color: #4a635fff;
+styles/tokens.css:17:  --kw-palette-success-key-color: #006d3bff;
+styles/tokens.css:18:  --kw-palette-tertiary-key-color: #3f6375ff;
+styles/tokens.css:19:  --kw-palette-warning-key-color: #b25e00ff;
+styles/tokens.css:23:  --kw-palette-primary-0: #000000ff;
+styles/tokens.css:24:  --kw-palette-primary-10: #00201bff;
+styles/tokens.css:25:  --kw-palette-primary-20: #003730ff;
+styles/tokens.css:26:  --kw-palette-primary-30: #005046ff;
+styles/tokens.css:27:  --kw-palette-primary-40: #006b5eff;
+styles/tokens.css:28:  --kw-palette-primary-50: #2d8476ff;
+styles/tokens.css:29:  --kw-palette-primary-60: #4b9e90ff;
+styles/tokens.css:30:  --kw-palette-primary-70: #67baaaff;
+styles/tokens.css:31:  --kw-palette-primary-80: #83d5c5ff;
+styles/tokens.css:32:  --kw-palette-primary-90: #9ff2e1ff;
+styles/tokens.css:33:  --kw-palette-primary-95: #b5ffefff;
+styles/tokens.css:34:  --kw-palette-primary-98: #e5fff8ff;
+styles/tokens.css:35:  --kw-palette-primary-99: #f3fffbff;
+styles/tokens.css:36:  --kw-palette-primary-100: #ffffffff;
+styles/tokens.css:38:  --kw-palette-secondary-0: #000000ff;
+styles/tokens.css:39:  --kw-palette-secondary-10: #061f1dff;
+styles/tokens.css:40:  --kw-palette-secondary-20: #1c3531ff;
+styles/tokens.css:41:  --kw-palette-secondary-30: #334b48ff;
+styles/tokens.css:42:  --kw-palette-secondary-40: #4a635fff;
+styles/tokens.css:43:  --kw-palette-secondary-50: #637c78ff;
+styles/tokens.css:44:  --kw-palette-secondary-60: #7c9691ff;
+styles/tokens.css:45:  --kw-palette-secondary-70: #96b1acff;
+styles/tokens.css:46:  --kw-palette-secondary-80: #b1ccc7ff;
+styles/tokens.css:47:  --kw-palette-secondary-90: #cde8e3ff;
+styles/tokens.css:48:  --kw-palette-secondary-95: #dbf7f1ff;
+styles/tokens.css:49:  --kw-palette-secondary-98: #e4fffaff;
+styles/tokens.css:50:  --kw-palette-secondary-99: #f2fffcff;
+styles/tokens.css:51:  --kw-palette-secondary-100: #ffffffff;
+styles/tokens.css:53:  --kw-palette-tertiary-0: #000000ff;
+styles/tokens.css:54:  --kw-palette-tertiary-10: #001e2bff;
+styles/tokens.css:55:  --kw-palette-tertiary-20: #0a3445ff;
+styles/tokens.css:56:  --kw-palette-tertiary-30: #264b5cff;
+styles/tokens.css:57:  --kw-palette-tertiary-40: #3f6375ff;
+styles/tokens.css:58:  --kw-palette-tertiary-50: #587c8fff;
+styles/tokens.css:59:  --kw-palette-tertiary-60: #7196a9ff;
+styles/tokens.css:60:  --kw-palette-tertiary-70: #8cb0c4ff;
+styles/tokens.css:61:  --kw-palette-tertiary-80: #a7cce1ff;
+styles/tokens.css:62:  --kw-palette-tertiary-90: #c2e8fdff;
+styles/tokens.css:63:  --kw-palette-tertiary-95: #e1f3ffff;
+styles/tokens.css:64:  --kw-palette-tertiary-98: #f4faffff;
+styles/tokens.css:65:  --kw-palette-tertiary-99: #fafcffff;
+styles/tokens.css:66:  --kw-palette-tertiary-100: #ffffffff;
+styles/tokens.css:68:  --kw-palette-neutral-0: #000000ff;
+styles/tokens.css:69:  --kw-palette-neutral-10: #191c1bff;
+styles/tokens.css:70:  --kw-palette-neutral-20: #2e312fff;
+styles/tokens.css:71:  --kw-palette-neutral-30: #444746ff;
+styles/tokens.css:72:  --kw-palette-neutral-40: #5c5f5dff;
+styles/tokens.css:73:  --kw-palette-neutral-50: #757876ff;
+styles/tokens.css:74:  --kw-palette-neutral-60: #8e918fff;
+styles/tokens.css:75:  --kw-palette-neutral-70: #a9aca9ff;
+styles/tokens.css:76:  --kw-palette-neutral-80: #c5c7c4ff;
+styles/tokens.css:77:  --kw-palette-neutral-90: #e1e3e0ff;
+styles/tokens.css:78:  --kw-palette-neutral-95: #eff1eeff;
+styles/tokens.css:79:  --kw-palette-neutral-98: #f8faf7ff;
+styles/tokens.css:80:  --kw-palette-neutral-99: #fbfdfaff;
+styles/tokens.css:81:  --kw-palette-neutral-100: #ffffffff;
+styles/tokens.css:83:  --kw-palette-neutral-variant-0: #000000ff;
+styles/tokens.css:84:  --kw-palette-neutral-variant-10: #141d1cff;
+styles/tokens.css:85:  --kw-palette-neutral-variant-20: #283231ff;
+styles/tokens.css:86:  --kw-palette-neutral-variant-30: #3f4947ff;
+styles/tokens.css:87:  --kw-palette-neutral-variant-40: #56615eff;
+styles/tokens.css:88:  --kw-palette-neutral-variant-50: #6f7977ff;
+styles/tokens.css:89:  --kw-palette-neutral-variant-60: #889390ff;
+styles/tokens.css:90:  --kw-palette-neutral-variant-70: #a3aeabff;
+styles/tokens.css:91:  --kw-palette-neutral-variant-80: #bec9c6ff;
+styles/tokens.css:92:  --kw-palette-neutral-variant-90: #dae5e2ff;
+styles/tokens.css:93:  --kw-palette-neutral-variant-95: #e8f3f0ff;
+styles/tokens.css:94:  --kw-palette-neutral-variant-98: #f1fcf8ff;
+styles/tokens.css:95:  --kw-palette-neutral-variant-99: #f4fffbff;
+styles/tokens.css:96:  --kw-palette-neutral-variant-100: #ffffffff;
+styles/tokens.css:98:  --kw-palette-error-0: #000000ff;
+styles/tokens.css:99:  --kw-palette-error-10: #410002ff;
+styles/tokens.css:100:  --kw-palette-error-20: #690004ff;
+styles/tokens.css:101:  --kw-palette-error-30: #930009ff;
+styles/tokens.css:102:  --kw-palette-error-40: #ba1a1aff;
+styles/tokens.css:103:  --kw-palette-error-50: #de372fff;
+styles/tokens.css:104:  --kw-palette-error-60: #ff5449ff;
+styles/tokens.css:105:  --kw-palette-error-70: #ff897dff;
+styles/tokens.css:106:  --kw-palette-error-80: #ffb4abff;
+styles/tokens.css:107:  --kw-palette-error-90: #ffdad5ff;
+styles/tokens.css:108:  --kw-palette-error-95: #ffedeaff;
+styles/tokens.css:109:  --kw-palette-error-98: #fff8f7ff;
+styles/tokens.css:110:  --kw-palette-error-99: #fffbffff;
+styles/tokens.css:111:  --kw-palette-error-100: #ffffffff;
+styles/tokens.css:113:  --kw-palette-warning-0: #000000ff;
+styles/tokens.css:114:  --kw-palette-warning-10: #2f1400ff;
+styles/tokens.css:115:  --kw-palette-warning-20: #4e2600ff;
+styles/tokens.css:116:  --kw-palette-warning-30: #6f3800ff;
+styles/tokens.css:117:  --kw-palette-warning-40: #924c00ff;
+styles/tokens.css:118:  --kw-palette-warning-50: #b66104ff;
+styles/tokens.css:119:  --kw-palette-warning-60: #d57924ff;
+styles/tokens.css:120:  --kw-palette-warning-70: #f6933dff;
+styles/tokens.css:121:  --kw-palette-warning-80: #ffb780ff;
+styles/tokens.css:122:  --kw-palette-warning-90: #ffdcc4ff;
+styles/tokens.css:123:  --kw-palette-warning-95: #ffede3ff;
+styles/tokens.css:124:  --kw-palette-warning-98: #fff8f5ff;
+styles/tokens.css:125:  --kw-palette-warning-99: #fffbffff;
+styles/tokens.css:126:  --kw-palette-warning-100: #ffffffff;
+styles/tokens.css:128:  --kw-palette-success-0: #000000ff;
+styles/tokens.css:129:  --kw-palette-success-10: #00210eff;
+styles/tokens.css:130:  --kw-palette-success-20: #00391cff;
+styles/tokens.css:131:  --kw-palette-success-30: #00522bff;
+styles/tokens.css:132:  --kw-palette-success-40: #006d3bff;
+styles/tokens.css:133:  --kw-palette-success-50: #2c8752ff;
+styles/tokens.css:134:  --kw-palette-success-60: #49a26aff;
+styles/tokens.css:135:  --kw-palette-success-70: #64bd82ff;
+styles/tokens.css:136:  --kw-palette-success-80: #80d99cff;
+styles/tokens.css:137:  --kw-palette-success-90: #9bf6b6ff;
+styles/tokens.css:138:  --kw-palette-success-95: #c2ffd0ff;
+styles/tokens.css:139:  --kw-palette-success-98: #e9ffebff;
+styles/tokens.css:140:  --kw-palette-success-99: #f5fff3ff;
+styles/tokens.css:141:  --kw-palette-success-100: #ffffffff;
+styles/tokens.css:153:  --kw-color-background: var(--kw-palette-neutral-98);
+styles/tokens.css:154:  --kw-color-error: var(--kw-palette-error-40);
+styles/tokens.css:155:  --kw-color-error-container: var(--kw-palette-error-90);
+styles/tokens.css:156:  --kw-color-inverse-primary: var(--kw-palette-primary-80);
+styles/tokens.css:157:  --kw-color-on-background: var(--kw-palette-neutral-10);
+styles/tokens.css:158:  --kw-color-on-error: var(--kw-palette-error-100);
+styles/tokens.css:159:  --kw-color-on-error-container: var(--kw-palette-error-10);
+styles/tokens.css:160:  --kw-color-on-primary: var(--kw-palette-primary-100);
+styles/tokens.css:161:  --kw-color-on-primary-container: var(--kw-palette-primary-10);
+styles/tokens.css:162:  --kw-color-on-primary-fixed: var(--kw-palette-primary-10);
+styles/tokens.css:163:  --kw-color-on-primary-fixed-variant: var(--kw-palette-primary-30);
+styles/tokens.css:164:  --kw-color-on-secondary: var(--kw-palette-secondary-100);
+styles/tokens.css:165:  --kw-color-on-secondary-container: var(--kw-palette-secondary-10);
+styles/tokens.css:166:  --kw-color-on-secondary-fixed: var(--kw-palette-secondary-10);
+styles/tokens.css:167:  --kw-color-on-secondary-fixed-dim: var(--kw-palette-secondary-30);
+styles/tokens.css:168:  --kw-color-on-success: var(--kw-palette-success-100);
+styles/tokens.css:169:  --kw-color-on-success-container: var(--kw-palette-success-10);
+styles/tokens.css:170:  --kw-color-on-surface: var(--kw-palette-neutral-10);
+styles/tokens.css:171:  --kw-color-on-surface-variant: var(--kw-palette-neutral-variant-30);
+styles/tokens.css:172:  --kw-color-on-tertiary: var(--kw-palette-tertiary-100);
+styles/tokens.css:173:  --kw-color-on-tertiary-container: var(--kw-palette-tertiary-10);
+styles/tokens.css:174:  --kw-color-on-tertiary-fixed: var(--kw-palette-tertiary-10);
+styles/tokens.css:175:  --kw-color-on-tertiary-fixed-variant: var(--kw-palette-tertiary-30);
+styles/tokens.css:176:  --kw-color-on-warning: var(--kw-palette-warning-100);
+styles/tokens.css:177:  --kw-color-on-warning-container: var(--kw-palette-warning-10);
+styles/tokens.css:178:  --kw-color-outline: var(--kw-palette-neutral-variant-50);
+styles/tokens.css:179:  --kw-color-outline-variant: var(--kw-palette-neutral-variant-80);
+styles/tokens.css:180:  --kw-color-primary: var(--kw-palette-primary-40);
+styles/tokens.css:181:  --kw-color-primary-container: var(--kw-palette-primary-90);
+styles/tokens.css:182:  --kw-color-primary-fixed: var(--kw-palette-primary-90);
+styles/tokens.css:183:  --kw-color-primary-fixed-dim: var(--kw-palette-primary-80);
+styles/tokens.css:184:  --kw-color-scrim: var(--kw-palette-neutral-0);
+styles/tokens.css:185:  --kw-color-secondary: var(--kw-palette-secondary-40);
+styles/tokens.css:186:  --kw-color-secondary-container: var(--kw-palette-secondary-90);
+styles/tokens.css:187:  --kw-color-secondary-fixed: var(--kw-palette-secondary-90);
+styles/tokens.css:188:  --kw-color-secondary-fixed-dim: var(--kw-palette-secondary-80);
+styles/tokens.css:189:  --kw-color-shadow: var(--kw-palette-neutral-0);
+styles/tokens.css:190:  --kw-color-success: var(--kw-palette-success-40);
+styles/tokens.css:191:  --kw-color-success-container: var(--kw-palette-success-90);
+styles/tokens.css:192:  --kw-color-surface: var(--kw-palette-neutral-98);
+styles/tokens.css:193:  --kw-color-surface-bright: var(--kw-palette-neutral-98);
+styles/tokens.css:194:  --kw-color-surface-container: var(--kw-palette-neutral-95);
+styles/tokens.css:195:  --kw-color-surface-dim: var(--kw-palette-neutral-90);
+styles/tokens.css:196:  --kw-color-surface-variant: var(--kw-palette-neutral-variant-90);
+styles/tokens.css:197:  --kw-color-tertiary: var(--kw-palette-tertiary-40);
+styles/tokens.css:198:  --kw-color-tertiary-container: var(--kw-palette-tertiary-90);
+styles/tokens.css:199:  --kw-color-tertiary-fixed: var(--kw-palette-tertiary-90);
+styles/tokens.css:200:  --kw-color-tertiary-fixed-dim: var(--kw-palette-tertiary-80);
+styles/tokens.css:201:  --kw-color-warning: var(--kw-palette-warning-40);
+styles/tokens.css:202:  --kw-color-warning-container: var(--kw-palette-warning-90);
+styles/tokens.css:209:  --kw-color-background: var(--kw-palette-neutral-10);
+styles/tokens.css:210:  --kw-color-error: var(--kw-palette-error-80);
+styles/tokens.css:211:  --kw-color-error-container: var(--kw-palette-error-30);
+styles/tokens.css:212:  --kw-color-inverse-primary: var(--kw-palette-primary-40);
+styles/tokens.css:213:  --kw-color-on-background: var(--kw-palette-neutral-90);
+styles/tokens.css:214:  --kw-color-on-error: var(--kw-palette-error-20);
+styles/tokens.css:215:  --kw-color-on-error-container: var(--kw-palette-error-90);
+styles/tokens.css:216:  --kw-color-on-primary: var(--kw-palette-primary-20);
+styles/tokens.css:217:  --kw-color-on-primary-container: var(--kw-palette-primary-90);
+styles/tokens.css:218:  --kw-color-on-primary-fixed: var(--kw-palette-primary-10);
+styles/tokens.css:219:  --kw-color-on-primary-fixed-variant: var(--kw-palette-primary-30);
+styles/tokens.css:220:  --kw-color-on-secondary: var(--kw-palette-secondary-20);
+styles/tokens.css:221:  --kw-color-on-secondary-container: var(--kw-palette-secondary-90);
+styles/tokens.css:222:  --kw-color-on-secondary-fixed: var(--kw-palette-secondary-10);
+styles/tokens.css:223:  --kw-color-on-secondary-fixed-dim: var(--kw-palette-secondary-30);
+styles/tokens.css:224:  --kw-color-on-success: var(--kw-palette-success-20);
+styles/tokens.css:225:  --kw-color-on-success-container: var(--kw-palette-success-90);
+styles/tokens.css:226:  --kw-color-on-surface: var(--kw-palette-neutral-90);
+styles/tokens.css:227:  --kw-color-on-surface-variant: var(--kw-palette-neutral-variant-80);
+styles/tokens.css:228:  --kw-color-on-tertiary: var(--kw-palette-tertiary-20);
+styles/tokens.css:229:  --kw-color-on-tertiary-container: var(--kw-palette-tertiary-90);
+styles/tokens.css:230:  --kw-color-on-tertiary-fixed: var(--kw-palette-tertiary-10);
+styles/tokens.css:231:  --kw-color-on-tertiary-fixed-variant: var(--kw-palette-tertiary-30);
+styles/tokens.css:232:  --kw-color-on-warning: var(--kw-palette-warning-20);
+styles/tokens.css:233:  --kw-color-on-warning-container: var(--kw-palette-warning-90);
+styles/tokens.css:234:  --kw-color-outline: var(--kw-palette-neutral-variant-60);
+styles/tokens.css:235:  --kw-color-outline-variant: var(--kw-palette-neutral-variant-30);
+styles/tokens.css:236:  --kw-color-primary: var(--kw-palette-primary-80);
+styles/tokens.css:237:  --kw-color-primary-container: var(--kw-palette-primary-30);
+styles/tokens.css:238:  --kw-color-primary-fixed: var(--kw-palette-primary-90);
+styles/tokens.css:239:  --kw-color-primary-fixed-dim: var(--kw-palette-primary-80);
+styles/tokens.css:240:  --kw-color-scrim: var(--kw-palette-neutral-0);
+styles/tokens.css:241:  --kw-color-secondary: var(--kw-palette-secondary-80);
+styles/tokens.css:242:  --kw-color-secondary-container: var(--kw-palette-secondary-30);
+styles/tokens.css:243:  --kw-color-secondary-fixed: var(--kw-palette-secondary-90);
+styles/tokens.css:244:  --kw-color-secondary-fixed-dim: var(--kw-palette-secondary-80);
+styles/tokens.css:245:  --kw-color-shadow: var(--kw-palette-neutral-variant-0);
+styles/tokens.css:246:  --kw-color-success: var(--kw-palette-success-80);
+styles/tokens.css:247:  --kw-color-success-container: var(--kw-palette-success-30);
+styles/tokens.css:248:  --kw-color-surface: var(--kw-palette-neutral-10);
+styles/tokens.css:249:  --kw-color-surface-bright: var(--kw-palette-neutral-20);
+styles/tokens.css:250:  --kw-color-surface-container: var(--kw-palette-neutral-20);
+styles/tokens.css:251:  --kw-color-surface-dim: var(--kw-palette-neutral-10);
+styles/tokens.css:252:  --kw-color-surface-variant: var(--kw-palette-neutral-variant-30);
+styles/tokens.css:253:  --kw-color-tertiary: var(--kw-palette-tertiary-80);
+styles/tokens.css:254:  --kw-color-tertiary-container: var(--kw-palette-tertiary-30);
+styles/tokens.css:255:  --kw-color-tertiary-fixed: var(--kw-palette-tertiary-90);
+styles/tokens.css:256:  --kw-color-tertiary-fixed-dim: var(--kw-palette-tertiary-80);
+styles/tokens.css:257:  --kw-color-warning: var(--kw-palette-warning-80);
+styles/tokens.css:258:  --kw-color-warning-container: var(--kw-palette-warning-30);
+--- 220 matching lines ---
+=== MATERIAL-THEME REFERENCES ===
+--- 0 matching lines ---
+
+--- SKIPPED: binary extension ---
+(0 files)
+--- SKIPPED: not valid UTF-8 text ---
+(0 files)
+--- SKIPPED: evidence output file ---
+(0 files)
+--- FILES SCANNED: 6 ---
+=== PRIMITIVE PALETTE VARIABLE REFERENCES (--kw-palette-) ===
+--- 0 matching lines ---
+=== MATERIAL-THEME REFERENCES ===
+--- 0 matching lines ---
+
+================================================================================
+EXPLANATION
+================================================================================
+
+1. WHICH MATCHES ARE LEGITIMATE SOURCE DEFINITIONS OR EVIDENCE
+
+   HEX (1,287 matching lines)
+       578  evidence/06-tokens-complete.json
+       458  evidence/05-tokens-incomplete.json
+       123  styles/tokens.css
+       106  docs/colour-roles.md
+        15  evidence/primary-palette-calculation
+         5  docs/shadows.md
+         2  docs/export-check.md
+
+     These are the two preserved Figma exports, the generated primitive, shadow
+     and colour-role definitions, the recorded colour tables, the shadow record
+     and the recreated palette comparison. They are expected source/evidence
+     matches and were kept in full. styles/tokens.css contains exactly 120
+     primitive declarations and 3 shadow values; its 123 HEX lines are those
+     definitions.
+
+   CSS COLOUR FUNCTIONS (1 matching line)
+     docs/prompts.md line 243: the text of this prompt listing "rgb(), rgba(),
+     hsl() and hsla()". It is documentation, not a CSS declaration.
+
+   NAMED CSS COLOURS (46 matching lines)
+     Prose in docs/colour-roles.md, docs/export-check.md,
+     docs/pricing-model.md, docs/shadows.md and docs/prompts.md ("teal",
+     "black", "white", "transparent"); the JSON font keys "white" and "black"
+     in both exports; and the NAMED_COLOURS pattern definition in
+     tools/search-raw-colours.py. The pricing-model matches come from the prose
+     heading "Transparent fixed-budget scenario", not the CSS keyword. No named
+     colour is used as an interface colour value.
+
+   PRIMITIVE PALETTE VARIABLES (220 matching lines)
+     All 220 are in styles/tokens.css:
+       - 120 primitive palette declarations (the source definitions), and
+       - 100 colour-role declarations that reference primitives through var(),
+         for example --kw-color-primary: var(--kw-palette-primary-40).
+     This is the generated colour system itself, not interface code selecting a
+     primitive directly.
+
+   MATERIAL-THEME (0 matching lines in HTML/CSS/JS/MJS)
+     The string occurs only in historical documentation (for example
+     docs/export-check.md) as a warning not to use the separate material-theme
+     styles. It does not occur in active code.
+
+   No hidden project source files were present. The walker does not skip dotfiles
+   or dot-directories; only .git/ and the stated dependency/cache folders are
+   excluded.
+
+2. DO ACTIVE INTERFACE FILES USE PRIMITIVE PALETTE OR MATERIAL-THEME VALUES DIRECTLY?
+
+   Command 3 checks primitive palette variable references and material-theme
+   references only; it is not a raw-colour search. It returned 0 matches in the
+   hand-written active interface:
+     prototype/index.html, prototype/help.html, prototype/help-no-power.html,
+     prototype/screen.css, prototype/demo.js, styles/fonts.css.
+
+   Command 1's whole-project output contains no raw-colour match in those same
+   hand-written files. prototype/screen.css uses only --kw-color-* role
+   variables, the generated .kw-typography-* classes and --kw-shadow-soft. The
+   HTML has no inline style attributes, and demo.js creates no colours. No
+   active interface bypass was found, so no fix or follow-up command was
+   appended.
+
+3. LIMITS OF THIS SEARCH
+
+   - This is a static text search. It cannot prove that computed styles, browser
+     defaults, pseudo-elements, focus/hover/disabled states, SVG, canvas, images
+     or JavaScript-generated styles are correct.
+   - The 148 CSS named colours plus transparent/currentcolor are matched as whole
+     tokens. Colour words inside longer identifiers are deliberately not matched,
+     and CSS system colours (for example Canvas, ButtonText) are not in the
+     named list.
+   - HEX matching covers 3-, 4-, 6- and 8-digit HEX. Text that merely looks like
+     one of those forms can be a false positive; none was found in this run.
+   - Function matching covers rgb/rgba/hsl/hsla/hwb/lab/lch/oklab/oklch/color/
+     color-mix/light-dark/device-cmyk/color-contrast. It does not resolve colour
+     profiles, variables or fallback chains.
+   - Binary files (PNG captures, WOFF2 fonts) are excluded, so colours embedded
+     in images or fonts fall outside the search. Git internals and dependency
+     folders are excluded. This evidence file is excluded so reruns do not match
+     their own text.
+   - Matching text in JSON, documentation and tool definitions was preserved.
+     Its presence does not make it interface code; see section 1.
+   - This text search does not establish accessibility, rendering accuracy or
+     correctness in every browser state. It records only that these raw-value
+     and palette-reference patterns do, or do not, occur in the searched text.

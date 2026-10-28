@@ -1,0 +1,259 @@
+/**
+ * Kobo Watt Design System — Token Definitions
+ * Generated automatically from evidence/06-tokens-complete.json.
+ * Do not edit manually. Regenerate using: python tools/convert-tokens.py
+ */
+
+:root {
+  /* =======================================================================
+   * 1. Primitive Colours (120 Base Values)
+   * ======================================================================= */
+  /* Key Colours (8) */
+  --kw-palette-error-key-color: #ba1a1aff;
+  --kw-palette-neutral-key-color: #fbfdfaff;
+  --kw-palette-neutral-variant-key-color: #bec9c6ff;
+  --kw-palette-primary-key-color: #006b5eff;
+  --kw-palette-secondary-key-color: #4a635fff;
+  --kw-palette-success-key-color: #006d3bff;
+  --kw-palette-tertiary-key-color: #3f6375ff;
+  --kw-palette-warning-key-color: #b25e00ff;
+
+  /* Tonal Palettes (112 tones: 8 families × 14 tones) */
+  /* Primary Palette */
+  --kw-palette-primary-0: #000000ff;
+  --kw-palette-primary-10: #00201bff;
+  --kw-palette-primary-20: #003730ff;
+  --kw-palette-primary-30: #005046ff;
+  --kw-palette-primary-40: #006b5eff;
+  --kw-palette-primary-50: #2d8476ff;
+  --kw-palette-primary-60: #4b9e90ff;
+  --kw-palette-primary-70: #67baaaff;
+  --kw-palette-primary-80: #83d5c5ff;
+  --kw-palette-primary-90: #9ff2e1ff;
+  --kw-palette-primary-95: #b5ffefff;
+  --kw-palette-primary-98: #e5fff8ff;
+  --kw-palette-primary-99: #f3fffbff;
+  --kw-palette-primary-100: #ffffffff;
+  /* Secondary Palette */
+  --kw-palette-secondary-0: #000000ff;
+  --kw-palette-secondary-10: #061f1dff;
+  --kw-palette-secondary-20: #1c3531ff;
+  --kw-palette-secondary-30: #334b48ff;
+  --kw-palette-secondary-40: #4a635fff;
+  --kw-palette-secondary-50: #637c78ff;
+  --kw-palette-secondary-60: #7c9691ff;
+  --kw-palette-secondary-70: #96b1acff;
+  --kw-palette-secondary-80: #b1ccc7ff;
+  --kw-palette-secondary-90: #cde8e3ff;
+  --kw-palette-secondary-95: #dbf7f1ff;
+  --kw-palette-secondary-98: #e4fffaff;
+  --kw-palette-secondary-99: #f2fffcff;
+  --kw-palette-secondary-100: #ffffffff;
+  /* Tertiary Palette */
+  --kw-palette-tertiary-0: #000000ff;
+  --kw-palette-tertiary-10: #001e2bff;
+  --kw-palette-tertiary-20: #0a3445ff;
+  --kw-palette-tertiary-30: #264b5cff;
+  --kw-palette-tertiary-40: #3f6375ff;
+  --kw-palette-tertiary-50: #587c8fff;
+  --kw-palette-tertiary-60: #7196a9ff;
+  --kw-palette-tertiary-70: #8cb0c4ff;
+  --kw-palette-tertiary-80: #a7cce1ff;
+  --kw-palette-tertiary-90: #c2e8fdff;
+  --kw-palette-tertiary-95: #e1f3ffff;
+  --kw-palette-tertiary-98: #f4faffff;
+  --kw-palette-tertiary-99: #fafcffff;
+  --kw-palette-tertiary-100: #ffffffff;
+  /* Neutral Palette */
+  --kw-palette-neutral-0: #000000ff;
+  --kw-palette-neutral-10: #191c1bff;
+  --kw-palette-neutral-20: #2e312fff;
+  --kw-palette-neutral-30: #444746ff;
+  --kw-palette-neutral-40: #5c5f5dff;
+  --kw-palette-neutral-50: #757876ff;
+  --kw-palette-neutral-60: #8e918fff;
+  --kw-palette-neutral-70: #a9aca9ff;
+  --kw-palette-neutral-80: #c5c7c4ff;
+  --kw-palette-neutral-90: #e1e3e0ff;
+  --kw-palette-neutral-95: #eff1eeff;
+  --kw-palette-neutral-98: #f8faf7ff;
+  --kw-palette-neutral-99: #fbfdfaff;
+  --kw-palette-neutral-100: #ffffffff;
+  /* Neutral Variant Palette */
+  --kw-palette-neutral-variant-0: #000000ff;
+  --kw-palette-neutral-variant-10: #141d1cff;
+  --kw-palette-neutral-variant-20: #283231ff;
+  --kw-palette-neutral-variant-30: #3f4947ff;
+  --kw-palette-neutral-variant-40: #56615eff;
+  --kw-palette-neutral-variant-50: #6f7977ff;
+  --kw-palette-neutral-variant-60: #889390ff;
+  --kw-palette-neutral-variant-70: #a3aeabff;
+  --kw-palette-neutral-variant-80: #bec9c6ff;
+  --kw-palette-neutral-variant-90: #dae5e2ff;
+  --kw-palette-neutral-variant-95: #e8f3f0ff;
+  --kw-palette-neutral-variant-98: #f1fcf8ff;
+  --kw-palette-neutral-variant-99: #f4fffbff;
+  --kw-palette-neutral-variant-100: #ffffffff;
+  /* Error Palette */
+  --kw-palette-error-0: #000000ff;
+  --kw-palette-error-10: #410002ff;
+  --kw-palette-error-20: #690004ff;
+  --kw-palette-error-30: #930009ff;
+  --kw-palette-error-40: #ba1a1aff;
+  --kw-palette-error-50: #de372fff;
+  --kw-palette-error-60: #ff5449ff;
+  --kw-palette-error-70: #ff897dff;
+  --kw-palette-error-80: #ffb4abff;
+  --kw-palette-error-90: #ffdad5ff;
+  --kw-palette-error-95: #ffedeaff;
+  --kw-palette-error-98: #fff8f7ff;
+  --kw-palette-error-99: #fffbffff;
+  --kw-palette-error-100: #ffffffff;
+  /* Warning Palette */
+  --kw-palette-warning-0: #000000ff;
+  --kw-palette-warning-10: #2f1400ff;
+  --kw-palette-warning-20: #4e2600ff;
+  --kw-palette-warning-30: #6f3800ff;
+  --kw-palette-warning-40: #924c00ff;
+  --kw-palette-warning-50: #b66104ff;
+  --kw-palette-warning-60: #d57924ff;
+  --kw-palette-warning-70: #f6933dff;
+  --kw-palette-warning-80: #ffb780ff;
+  --kw-palette-warning-90: #ffdcc4ff;
+  --kw-palette-warning-95: #ffede3ff;
+  --kw-palette-warning-98: #fff8f5ff;
+  --kw-palette-warning-99: #fffbffff;
+  --kw-palette-warning-100: #ffffffff;
+  /* Success Palette */
+  --kw-palette-success-0: #000000ff;
+  --kw-palette-success-10: #00210eff;
+  --kw-palette-success-20: #00391cff;
+  --kw-palette-success-30: #00522bff;
+  --kw-palette-success-40: #006d3bff;
+  --kw-palette-success-50: #2c8752ff;
+  --kw-palette-success-60: #49a26aff;
+  --kw-palette-success-70: #64bd82ff;
+  --kw-palette-success-80: #80d99cff;
+  --kw-palette-success-90: #9bf6b6ff;
+  --kw-palette-success-95: #c2ffd0ff;
+  --kw-palette-success-98: #e9ffebff;
+  --kw-palette-success-99: #f5fff3ff;
+  --kw-palette-success-100: #ffffffff;
+
+  /* =======================================================================
+   * 2. Shadow Effects (3 Styles from effect/shadow)
+   * ======================================================================= */
+  --kw-shadow-hard: 4px 20px 20px 0px #006b5e33;
+  --kw-shadow-medium: 4px 16px 24px 0px #006b5e2e;
+  --kw-shadow-soft: 4px 6px 12px 0px #006b5e1f;
+
+  /* =======================================================================
+   * 3. Colour Roles — Light Theme (Default, 50 Roles)
+   * ======================================================================= */
+  --kw-color-background: var(--kw-palette-neutral-98);
+  --kw-color-error: var(--kw-palette-error-40);
+  --kw-color-error-container: var(--kw-palette-error-90);
+  --kw-color-inverse-primary: var(--kw-palette-primary-80);
+  --kw-color-on-background: var(--kw-palette-neutral-10);
+  --kw-color-on-error: var(--kw-palette-error-100);
+  --kw-color-on-error-container: var(--kw-palette-error-10);
+  --kw-color-on-primary: var(--kw-palette-primary-100);
+  --kw-color-on-primary-container: var(--kw-palette-primary-10);
+  --kw-color-on-primary-fixed: var(--kw-palette-primary-10);
+  --kw-color-on-primary-fixed-variant: var(--kw-palette-primary-30);
+  --kw-color-on-secondary: var(--kw-palette-secondary-100);
+  --kw-color-on-secondary-container: var(--kw-palette-secondary-10);
+  --kw-color-on-secondary-fixed: var(--kw-palette-secondary-10);
+  --kw-color-on-secondary-fixed-dim: var(--kw-palette-secondary-30);
+  --kw-color-on-success: var(--kw-palette-success-100);
+  --kw-color-on-success-container: var(--kw-palette-success-10);
+  --kw-color-on-surface: var(--kw-palette-neutral-10);
+  --kw-color-on-surface-variant: var(--kw-palette-neutral-variant-30);
+  --kw-color-on-tertiary: var(--kw-palette-tertiary-100);
+  --kw-color-on-tertiary-container: var(--kw-palette-tertiary-10);
+  --kw-color-on-tertiary-fixed: var(--kw-palette-tertiary-10);
+  --kw-color-on-tertiary-fixed-variant: var(--kw-palette-tertiary-30);
+  --kw-color-on-warning: var(--kw-palette-warning-100);
+  --kw-color-on-warning-container: var(--kw-palette-warning-10);
+  --kw-color-outline: var(--kw-palette-neutral-variant-50);
+  --kw-color-outline-variant: var(--kw-palette-neutral-variant-80);
+  --kw-color-primary: var(--kw-palette-primary-40);
+  --kw-color-primary-container: var(--kw-palette-primary-90);
+  --kw-color-primary-fixed: var(--kw-palette-primary-90);
+  --kw-color-primary-fixed-dim: var(--kw-palette-primary-80);
+  --kw-color-scrim: var(--kw-palette-neutral-0);
+  --kw-color-secondary: var(--kw-palette-secondary-40);
+  --kw-color-secondary-container: var(--kw-palette-secondary-90);
+  --kw-color-secondary-fixed: var(--kw-palette-secondary-90);
+  --kw-color-secondary-fixed-dim: var(--kw-palette-secondary-80);
+  --kw-color-shadow: var(--kw-palette-neutral-0);
+  --kw-color-success: var(--kw-palette-success-40);
+  --kw-color-success-container: var(--kw-palette-success-90);
+  --kw-color-surface: var(--kw-palette-neutral-98);
+  --kw-color-surface-bright: var(--kw-palette-neutral-98);
+  --kw-color-surface-container: var(--kw-palette-neutral-95);
+  --kw-color-surface-dim: var(--kw-palette-neutral-90);
+  --kw-color-surface-variant: var(--kw-palette-neutral-variant-90);
+  --kw-color-tertiary: var(--kw-palette-tertiary-40);
+  --kw-color-tertiary-container: var(--kw-palette-tertiary-90);
+  --kw-color-tertiary-fixed: var(--kw-palette-tertiary-90);
+  --kw-color-tertiary-fixed-dim: var(--kw-palette-tertiary-80);
+  --kw-color-warning: var(--kw-palette-warning-40);
+  --kw-color-warning-container: var(--kw-palette-warning-90);
+}
+
+/* =========================================================================
+ * 4. Colour Roles — Dark Theme (50 Roles under [data-theme="dark"])
+ * ========================================================================= */
+[data-theme="dark"] {
+  --kw-color-background: var(--kw-palette-neutral-10);
+  --kw-color-error: var(--kw-palette-error-80);
+  --kw-color-error-container: var(--kw-palette-error-30);
+  --kw-color-inverse-primary: var(--kw-palette-primary-40);
+  --kw-color-on-background: var(--kw-palette-neutral-90);
+  --kw-color-on-error: var(--kw-palette-error-20);
+  --kw-color-on-error-container: var(--kw-palette-error-90);
+  --kw-color-on-primary: var(--kw-palette-primary-20);
+  --kw-color-on-primary-container: var(--kw-palette-primary-90);
+  --kw-color-on-primary-fixed: var(--kw-palette-primary-10);
+  --kw-color-on-primary-fixed-variant: var(--kw-palette-primary-30);
+  --kw-color-on-secondary: var(--kw-palette-secondary-20);
+  --kw-color-on-secondary-container: var(--kw-palette-secondary-90);
+  --kw-color-on-secondary-fixed: var(--kw-palette-secondary-10);
+  --kw-color-on-secondary-fixed-dim: var(--kw-palette-secondary-30);
+  --kw-color-on-success: var(--kw-palette-success-20);
+  --kw-color-on-success-container: var(--kw-palette-success-90);
+  --kw-color-on-surface: var(--kw-palette-neutral-90);
+  --kw-color-on-surface-variant: var(--kw-palette-neutral-variant-80);
+  --kw-color-on-tertiary: var(--kw-palette-tertiary-20);
+  --kw-color-on-tertiary-container: var(--kw-palette-tertiary-90);
+  --kw-color-on-tertiary-fixed: var(--kw-palette-tertiary-10);
+  --kw-color-on-tertiary-fixed-variant: var(--kw-palette-tertiary-30);
+  --kw-color-on-warning: var(--kw-palette-warning-20);
+  --kw-color-on-warning-container: var(--kw-palette-warning-90);
+  --kw-color-outline: var(--kw-palette-neutral-variant-60);
+  --kw-color-outline-variant: var(--kw-palette-neutral-variant-30);
+  --kw-color-primary: var(--kw-palette-primary-80);
+  --kw-color-primary-container: var(--kw-palette-primary-30);
+  --kw-color-primary-fixed: var(--kw-palette-primary-90);
+  --kw-color-primary-fixed-dim: var(--kw-palette-primary-80);
+  --kw-color-scrim: var(--kw-palette-neutral-0);
+  --kw-color-secondary: var(--kw-palette-secondary-80);
+  --kw-color-secondary-container: var(--kw-palette-secondary-30);
+  --kw-color-secondary-fixed: var(--kw-palette-secondary-90);
+  --kw-color-secondary-fixed-dim: var(--kw-palette-secondary-80);
+  --kw-color-shadow: var(--kw-palette-neutral-variant-0);
+  --kw-color-success: var(--kw-palette-success-80);
+  --kw-color-success-container: var(--kw-palette-success-30);
+  --kw-color-surface: var(--kw-palette-neutral-10);
+  --kw-color-surface-bright: var(--kw-palette-neutral-20);
+  --kw-color-surface-container: var(--kw-palette-neutral-20);
+  --kw-color-surface-dim: var(--kw-palette-neutral-10);
+  --kw-color-surface-variant: var(--kw-palette-neutral-variant-30);
+  --kw-color-tertiary: var(--kw-palette-tertiary-80);
+  --kw-color-tertiary-container: var(--kw-palette-tertiary-30);
+  --kw-color-tertiary-fixed: var(--kw-palette-tertiary-90);
+  --kw-color-tertiary-fixed-dim: var(--kw-palette-tertiary-80);
+  --kw-color-warning: var(--kw-palette-warning-80);
+  --kw-color-warning-container: var(--kw-palette-warning-30);
+}

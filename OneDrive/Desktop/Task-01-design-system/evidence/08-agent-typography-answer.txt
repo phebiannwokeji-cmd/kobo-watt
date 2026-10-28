@@ -1,0 +1,86 @@
+KOBO WATT — TASK 1: TYPOGRAPHY TRACE
+Element: "Remaining purchase balance" amount (₦2,538,180)
+Recorded: 28 October 2026
+
+ANSWER
+The element uses the exact typography style **Display Small**, applied through
+the class .kw-typography-display-small.
+
+ELEMENT
+prototype/index.html:50
+  <p class="big-amount kw-typography-display-small">₦2,538,180</p>
+
+TRACE THROUGH THE SOURCE
+
+1. HTML class
+   prototype/index.html:50
+   The paragraph carries two classes: "big-amount" and
+   "kw-typography-display-small". The latter is the typography style class.
+
+2. Stylesheet is loaded
+   prototype/index.html:10
+     <link rel="stylesheet" href="../styles/typography.css">
+   The generated typography stylesheet is loaded after tokens.css (line 9) and
+   before screen.css (line 11).
+
+3. CSS rule for the class
+   styles/typography.css:141-149
+     141  /* Display Small */
+     142  .kw-typography-display-small,
+     143  .display-small {
+     144    font-family: var(--kw-typography-display-small-font-family);
+     145    font-size: var(--kw-typography-display-small-font-size);
+     146    font-weight: var(--kw-typography-display-small-font-weight);
+     147    line-height: var(--kw-typography-display-small-line-height);
+     148    letter-spacing: var(--kw-typography-display-small-letter-spacing);
+     149  }
+   The rule maps every typography property to the Display Small custom
+   properties. ".display-small" is an alias of the same rule and is not used by
+   this element.
+
+4. Typography tokens
+   styles/typography.css:25-30
+     25  /* Display Small */
+     26  --kw-typography-display-small-font-family: 'Source Sans Pro', sans-serif;
+     27  --kw-typography-display-small-font-size: 40px;
+     28  --kw-typography-display-small-font-weight: 600;
+     29  --kw-typography-display-small-line-height: 60px;
+     30  --kw-typography-display-small-letter-spacing: -0.8px;
+
+5. The other class does not set typography
+   prototype/screen.css:161-164
+     161  .big-amount {
+     162    margin-bottom: 8px;
+     163    overflow-wrap: anywhere;
+     164  }
+   ".big-amount" only sets spacing and wrapping. It does not override the font
+   properties supplied by .kw-typography-display-small.
+
+6. Inheritance is overridden
+   prototype/index.html:13 sets <body class="kw-typography-body-large">, which
+   would otherwise supply Body Large. The element's own
+   .kw-typography-display-small class supplies the type properties, so the
+   inherited Body Large values do not apply to this amount.
+
+RESOLVED VALUES
+
+  Property        Token custom property                          Value
+  --------------- --------------------------------------------- -------------------------
+  font-family     --kw-typography-display-small-font-family     'Source Sans Pro', sans-serif
+  font-weight     --kw-typography-display-small-font-weight     600
+  font-size       --kw-typography-display-small-font-size       40px
+  line-height     --kw-typography-display-small-line-height     60px
+  letter-spacing  --kw-typography-display-small-letter-spacing  -0.8px
+
+Token values: styles/typography.css:26-30.
+Properties applied to the element: styles/typography.css:144-148.
+
+CROSS-CHECK
+docs/type-scale.md:15 records Display Small as Source Sans Pro, SemiBold,
+40 px, -2%, 60 px line height, multiplier 1.5. The generated token -0.8px is
+-2% of 40px, so the export and the recorded type scale agree. The 60px line
+height is 1.5 x the 40px font size.
+
+SCOPE
+This answer is a static source trace of the files and line numbers above. No
+design or code was changed.

@@ -1,0 +1,27 @@
+KOBO WATT — RECREATED PRIMARY PALETTE COMPARISON
+Package: @material/material-color-utilities 0.3.0
+Source: #006B5E
+Source measured tone: 40.120141482462465
+Method: TonalPalette.fromInt(argbFromHex(source)).tone(tone)
+
+Tone   BEFORE       AFTER
+0      #000000      #000000
+10     #00201B      #00201B
+20     #003730      #003730
+30     #005046      #005046
+40     #006B5E      #006B5E
+50     #2D8476      #2D8476
+60     #4B9E90      #4B9E90
+70     #67BAAA      #67BAAA
+80     #83D5C5      #83D5C5
+90     #9FF2E1      #9FF2E1
+95     #B5FFEF      #B5FFEF
+98     #E5FFF8      #E5FFF8
+99     #F3FFFB      #F3FFFB
+100    #FFFFFF      #FFFFFF
+
+Replace only the tone-40 entry with the exact source HEX; other entries unchanged. This is an explicit brand override, not a new measured tone-40 calculation.
+Primary family only, derived from source hue and chroma; not a complete dynamic Material theme.
+Recreated comparison, not the historical ChatGPT before-state.
+
+Figma: create labelled swatches using BEFORE values, capture them, duplicate and freeze the original colours, then apply the exact-brand requirement to tone 40. If it already matches, leave it unchanged and label the override as having no effect. Include HEX labels in both captures.

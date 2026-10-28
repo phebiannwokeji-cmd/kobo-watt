@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kobo Watt demonstration account summary screen. Fictional account and simulated access only.">
+  <title>Account summary — Kobo Watt demonstration</title>
+  <link rel="stylesheet" href="../styles/fonts.css">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/typography.css">
+  <link rel="stylesheet" href="screen.css">
+</head>
+<body class="kw-typography-body-large">
+  <div class="page">
+    <header class="site-header">
+      <p class="brand kw-typography-title-large">Kobo Watt</p>
+      <p class="demo-label kw-typography-label-medium">Demonstration account</p>
+    </header>
+
+    <main>
+      <h1 class="kw-typography-headline-large">Account summary</h1>
+      <p class="lede kw-typography-body-medium">Adaobi Okafor · Account KW-DEMO-1042</p>
+
+      <div class="notice">
+        <p><strong>Demonstration data only.</strong> This is a fictional account with test payments and simulated account access. It does not control or monitor an inverter, and it cannot show whether power is on.</p>
+      </div>
+
+      <section class="card" aria-labelledby="access-heading">
+        <div class="card-heading">
+          <h2 id="access-heading" class="kw-typography-title-large">Recorded account access</h2>
+          <span class="status status-active kw-typography-label-medium">Active</span>
+        </div>
+
+        <dl class="facts">
+          <div>
+            <dt class="kw-typography-label-large">Paid until</dt>
+            <dd><time datetime="2026-10-31T09:42:00+01:00">Saturday 31 October 2026, 09:42 WAT</time></dd>
+          </div>
+          <div>
+            <dt class="kw-typography-label-large">Last updated</dt>
+            <dd><time datetime="2026-10-28T09:42:00+01:00">Wednesday 28 October 2026, 09:42 WAT</time></dd>
+          </div>
+        </dl>
+
+        <p class="note kw-typography-body-medium"><strong>Physical power is not shown here.</strong> “Active” is the access recorded by Kobo Watt, not a measurement of your inverter or electricity supply.</p>
+      </section>
+
+      <section class="card" aria-labelledby="balance-heading">
+        <h2 id="balance-heading" class="kw-typography-title-large">Remaining purchase balance</h2>
+        <p class="big-amount kw-typography-display-small">₦2,538,180</p>
+        <p class="hint kw-typography-body-medium">Purchase price ₦3,641,200 minus confirmed payments of ₦1,103,020. Equal to 717 paid-day equivalents at ₦3,540 per day.</p>
+      </section>
+
+      <section class="card" aria-labelledby="pay-heading">
+        <h2 id="pay-heading" class="kw-typography-title-large">Make an access payment</h2>
+        <p>Minimum <strong>₦3,540</strong> for one paid day. You may pay any amount up to the remaining balance. This is not a daily requirement.</p>
+
+        <form id="demo-payment-form" novalidate>
+          <label for="amount" class="kw-typography-label-large">Amount (₦)</label>
+          <div class="amount-input-row">
+            <span class="amount-prefix kw-typography-headline-small" aria-hidden="true">₦</span>
+            <input id="amount" class="kw-typography-headline-small" name="amount" type="text" inputmode="decimal" autocomplete="off" value="3,540" aria-describedby="amount-hint amount-error">
+          </div>
+          <p id="amount-hint" class="hint kw-typography-body-medium">Demonstration only. This form does not contact a payment provider and no money will move.</p>
+          <p id="amount-error" class="form-message" role="alert" hidden></p>
+          <button class="button kw-typography-label-large" id="pay-button" type="submit">Pay ₦3,540</button>
+          <p id="payment-message" class="form-message" role="status" aria-live="polite" hidden></p>
+        </form>
+
+        <noscript>
+          <p class="note kw-typography-body-medium">JavaScript is off. This demonstration form cannot send a payment.</p>
+        </noscript>
+      </section>
+
+      <section class="card" aria-labelledby="recent-heading">
+        <div class="card-heading">
+          <h2 id="recent-heading" class="kw-typography-title-large">Recent payment</h2>
+          <span class="status status-confirmed kw-typography-label-medium">Confirmed</span>
+        </div>
+
+        <dl class="facts">
+          <div>
+            <dt class="kw-typography-label-large">Amount</dt>
+            <dd>₦10,620</dd>
+          </div>
+          <div>
+            <dt class="kw-typography-label-large">Payment status</dt>
+            <dd>Confirmed</dd>
+          </div>
+          <div>
+            <dt class="kw-typography-label-large">Recorded</dt>
+            <dd><time datetime="2026-10-28T09:41:00+01:00">Wednesday 28 October 2026, 09:41 WAT</time></dd>
+          </div>
+          <div>
+            <dt class="kw-typography-label-large">Reference</dt>
+            <dd>DEMO-20261028-0941</dd>
+          </div>
+          <div>
+            <dt class="kw-typography-label-large">Effect</dt>
+            <dd>Added 3 paid days and reduced the purchase balance by ₦10,620.</dd>
+          </div>
+        </dl>
+
+        <p class="note kw-typography-body-medium">Payment status is separate from account access. A pending or failed payment would not add paid time.</p>
+      </section>
+
+      <section class="card" aria-labelledby="help-heading">
+        <h2 id="help-heading" class="kw-typography-title-large">Get help</h2>
+        <p>If Kobo Watt records your access as active but your appliances have no power, open the demonstration help route.</p>
+        <a class="button-link kw-typography-label-large" href="help.html">Get help</a>
+      </section>
+    </main>
+
+    <footer class="site-footer kw-typography-body-small">
+      <p>Prototype only. Fictional account, test payments and simulated access. Not a live service.</p>
+      <p>Times are shown in Africa/Lagos (WAT, UTC+1).</p>
+    </footer>
+  </div>
+
+  <script src="demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+/*
+  Kobo Watt account-summary screen — design-system layer.
+
+  Interface colours come only from generated colour-role custom properties
+  (--kw-color-*), typography from the generated .kw-typography-* classes and
+  elevation from the generated --kw-shadow-* effects.
+  No raw colour values and no primitive palette properties are used here.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--kw-color-surface);
+}
+
+body {
+  margin: 0;
+  background: var(--kw-color-surface);
+  color: var(--kw-color-on-surface);
+  -webkit-text-size-adjust: 100%;
+}
+
+.page {
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 16px 16px 40px;
+  overflow-wrap: break-word;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--kw-color-outline-variant);
+}
+
+.brand {
+  margin: 0;
+  color: var(--kw-color-primary);
+}
+
+.demo-label {
+  margin: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--kw-color-secondary-container);
+  color: var(--kw-color-on-secondary-container);
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 4px;
+}
+
+h2 {
+  margin-bottom: 12px;
+}
+
+.lede {
+  margin-bottom: 16px;
+  color: var(--kw-color-on-surface-variant);
+}
+
+.notice {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--kw-color-tertiary-container);
+  color: var(--kw-color-on-tertiary-container);
+  box-shadow: var(--kw-shadow-soft);
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
+.card {
+  margin: 0 0 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--kw-color-surface-container);
+  color: var(--kw-color-on-surface);
+  box-shadow: var(--kw-shadow-soft);
+}
+
+.card > :last-child {
+  margin-bottom: 0;
+}
+
+.card-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-heading h2 {
+  margin-bottom: 0;
+}
+
+.status {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.status-active {
+  background: var(--kw-color-primary-container);
+  color: var(--kw-color-on-primary-container);
+}
+
+.status-confirmed {
+  background: var(--kw-color-success-container);
+  color: var(--kw-color-on-success-container);
+}
+
+.facts {
+  margin: 0;
+}
+
+.facts > div {
+  padding: 10px 0;
+  border-top: 1px solid var(--kw-color-outline-variant);
+}
+
+.facts > div:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.facts > div:last-child {
+  padding-bottom: 0;
+}
+
+.facts dt {
+  margin-bottom: 2px;
+  color: var(--kw-color-on-surface-variant);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.big-amount {
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+.hint,
+.note {
+  color: var(--kw-color-on-surface-variant);
+}
+
+.note {
+  margin: 12px 0 0;
+}
+
+.hint {
+  margin: 0 0 12px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.amount-input-row {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 4px;
+  border: 1px solid var(--kw-color-outline);
+  border-radius: 8px;
+  background: var(--kw-color-surface);
+}
+
+.amount-input-row:focus-within {
+  outline: 3px solid var(--kw-color-primary);
+  outline-offset: 2px;
+}
+
+.amount-prefix {
+  display: flex;
+  align-items: center;
+  padding: 6px 0 6px 12px;
+  color: var(--kw-color-on-surface-variant);
+}
+
+.amount-input-row input {
+  width: 100%;
+  min-width: 0;
+  padding: 6px 12px 6px 4px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--kw-color-surface);
+  color: var(--kw-color-on-surface);
+}
+
+.amount-input-row input:focus {
+  outline: 0;
+}
+
+.button,
+.button-link {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: 1px solid var(--kw-color-primary);
+  border-radius: 8px;
+  background: var(--kw-color-primary);
+  color: var(--kw-color-on-primary);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--kw-shadow-soft);
+}
+
+.button-link {
+  background: var(--kw-color-surface);
+  color: var(--kw-color-primary);
+}
+
+.button:focus-visible,
+.button-link:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--kw-color-primary);
+  outline-offset: 2px;
+}
+
+a {
+  color: var(--kw-color-primary);
+  text-underline-offset: 0.15em;
+}
+
+.form-message {
+  margin: 12px 0 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--kw-color-secondary-container);
+  color: var(--kw-color-on-secondary-container);
+}
+
+.form-message[hidden] {
+  display: none;
+}
+
+#amount-error {
+  background: var(--kw-color-error-container);
+  color: var(--kw-color-on-error-container);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.plain-list {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.plain-list li + li {
+  margin-top: 8px;
+}
+
+.site-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--kw-color-outline-variant);
+  color: var(--kw-color-on-surface-variant);
+}
+
+.site-footer p {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 352px) {
+  .page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
