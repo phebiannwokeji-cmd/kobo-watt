@@ -320,5 +320,78 @@ Append this prompt verbatim to docs/prompts.md before committing.
 Stop after preparing the baseline. Do not break any colour references,
 change the brand colour, or create the experiment branch yet.
 
+## Step 8 Prompt: Deliberate Broken Colour Reference
+
+In docs/defects.md, add a section titled:
+“Deliberate regression: broken colour reference”
+
+Preserve any existing content. Add these three sentences:
+
+I replaced the light Primary role’s palette reference with the fixed colour #006B5E, then temporarily changed Primary40 and Primary90 in the CSS palette to purple values. The Active chip followed its Primary Container reference and became pale purple, while the Pay button stayed teal because its Primary role no longer followed the palette. This shows why colour roles should reference the palette: a shared colour change can otherwise leave disconnected parts of the screen behind.
+
+Link the section to:
+../evidence/11-broken-referencing.png
+
+State separately that the experiment changed the CSS palette only;
+the original Figma file and JSON exports were unchanged.
+
+Append this prompt verbatim to docs/prompts.md.
+Do not commit, switch branches, restore files, or delete the branch yet.
+
+## Step 8 Prompt: Preserve Regression Evidence on Main
+
+Preserve the Task 1 experiment evidence on main without merging
+the experiment.
+
+Repository root:
+C:/Users/LENOVO PC
+
+Project prefix:
+OneDrive/Desktop/Task-01-design-system/
+
+Baseline commit:
+5ba9467c3ee57f2727e906b05cb0c493b2cfe21c
+
+Experiment commit:
+d820faa523f498cd32b74a4c2d190adfa655d129
+
+First verify:
+- Current branch is task-01/broken-token-reference.
+- HEAD matches the experiment commit.
+- The project has no uncommitted changes.
+- main still points to the baseline commit.
+Stop and explain if any check fails.
+
+Switch to main.
+
+Restore ONLY these three files from the experiment commit:
+- OneDrive/Desktop/Task-01-design-system/evidence/11-broken-referencing.png
+- OneDrive/Desktop/Task-01-design-system/docs/defects.md
+- OneDrive/Desktop/Task-01-design-system/docs/prompts.md
+
+Do not restore styles/tokens.css.
+Do not merge or cherry-pick the experiment commit.
+
+Append this prompt verbatim to docs/prompts.md.
+Stage only the three exact paths above.
+Inspect the staged list before committing.
+
+Commit with this message:
+Preserve Task 1 regression evidence without broken styling
+
+Verify:
+1. styles/tokens.css matches the baseline commit exactly.
+2. The light Primary role references Primary40 again.
+3. Both JSON exports match the baseline.
+4. The screenshot and explanation remain present.
+5. The experiment commit is not an ancestor of main.
+   Use git merge-base --is-ancestor and report its exit code:
+   1 means it is not an ancestor; other errors must not count as success.
+
+Report the current branch, new commit ID, checks and project status.
+
+Do not delete the experiment branch yet.
+Do not stage or modify unrelated home-folder files.
+
 
 
