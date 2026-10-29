@@ -1,18 +1,20 @@
-# Kobo Watt Design System — Token Conversion
+# Kobo Watt Design System — Task 1 Submission
 
-This repository contains the design system tokens and conversion pipeline for **Kobo Watt** (Task 1, Step 6).
+This repository contains the complete Task 1 submission for **Kobo Watt**: the design tokens and conversion pipeline, the account-summary prototype with and without the applied design system, the supporting documentation, and the evidence for the checks and deliberate regression.
+
+The account-summary screen and instructions for opening it are documented in [prototype/README.md](prototype/README.md).
 
 ## Overview
 
 Figma design tokens exported to `evidence/06-tokens-complete.json` are converted into CSS custom properties and reusable typography classes.
 
 ### Generated CSS Files
-- [`styles/tokens.css`](file:///c:/Users/LENOVO%20PC/OneDrive/Desktop/Task-01-design-system/styles/tokens.css):
+- [`styles/tokens.css`](styles/tokens.css):
   - **120 Primitive Colours** in `:root` (8 key colours and 112 tonal palette steps across 8 tonal families).
   - **3 Shadow Effects** in `:root` (`--kw-shadow-soft`, `--kw-shadow-medium`, `--kw-shadow-hard`) preserving 8-digit HEX colours with alpha transparency.
   - **50 Light Colour Roles** in `:root` referencing primitive custom properties via `var()`.
   - **50 Dark Colour Roles** under `[data-theme="dark"]` referencing their exported dark targets via `var()`.
-- [`styles/typography.css`](file:///c:/Users/LENOVO%20PC/OneDrive/Desktop/Task-01-design-system/styles/typography.css):
+- [`styles/typography.css`](styles/typography.css):
   - **15 Typography Styles** represented as custom properties (`font-family`, `font-size`, `font-weight`, `line-height`, `letter-spacing`).
   - **15 Reusable Utility Classes** (`.kw-typography-<style>`, `.<style>`) applying the token definitions.
 

@@ -1,0 +1,8 @@
+Audit date: 2026-10-27
+Source: C:\Users\LENOVO PC\Videos\primitive palette record.mp4
+SHA256: 42f790150f36dccd46001b1d8aed91cbde81d636c3986f3c32fd7146a0fc32c4
+Duration: about 20.07 seconds. Visual review of extracted frames; audio not used.
+112/112 displayed tone-name and HEX pairs match the calculated palette. Eight key colours also match.
+Frame IDs were extracted at one frame per second; nominal times are approximately frame number minus 0.5 seconds. Crops show the name/value columns. The collection-counts image shows full context.
+The document contains a subset of tone values in its role table, not all 112. Those references match the video; the complete 112-row comparison is palette-video-comparison.csv.
+120 primitive entries = 8 key colours + 112 tones. Color Roles collection shows 82 entries, but its contents and aliases are not opened. No claim of role-binding verification is made.

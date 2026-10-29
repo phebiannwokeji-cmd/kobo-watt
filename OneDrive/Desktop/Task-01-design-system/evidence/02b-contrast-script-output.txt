@@ -1,0 +1,65 @@
+WCAG relative-luminance calculation; solid sRGB, full opacity.
+Formula: (lighter luminance + 0.05) / (darker luminance + 0.05).
+Results are calculated from docs/colour-roles.md; this is not a Figma inspection.
+Sanity checks: black/white = 21; same colour = 1.
+light | on-surface (neutral10 #191C1B) / surface (neutral98 #F8FAF7) | 16.35676224:1 | minimum 4.5:1 | Pass
+light | on-surface (neutral10 #191C1B) / surface-container (neutral95 #EFF1EE) | 15.11275941:1 | minimum 4.5:1 | Pass
+light | on-surface-variant (neutralVariant30 #3F4947) / surface (neutral98 #F8FAF7) | 8.87159844:1 | minimum 4.5:1 | Pass
+light | on-surface-variant (neutralVariant30 #3F4947) / surface-container (neutral95 #EFF1EE) | 8.19687483:1 | minimum 4.5:1 | Pass
+light | outline (neutralVariant50 #6F7977) / surface (neutral98 #F8FAF7) | 4.27787496:1 | minimum 3.0:1 | Pass
+light | outline (neutralVariant50 #6F7977) / surface-container (neutral95 #EFF1EE) | 3.95252398:1 | minimum 3.0:1 | Pass
+light | on-primary (primary100 #FFFFFF) / primary (primary40 #006B5E) | 6.43242738:1 | minimum 4.5:1 | Pass
+light | on-primary-container (primary10 #00201B) / primary-container (primary90 #9FF2E1) | 13.30323344:1 | minimum 4.5:1 | Pass
+light | primary (primary40 #006B5E) / surface (neutral98 #F8FAF7) | 6.12876003:1 | minimum 4.5:1 | Pass
+light | on-secondary (secondary100 #FFFFFF) / secondary (secondary40 #4A635F) | 6.47918190:1 | minimum 4.5:1 | Pass
+light | on-secondary-container (secondary10 #061F1D) / secondary-container (secondary90 #CDE8E3) | 13.30163761:1 | minimum 4.5:1 | Pass
+light | secondary (secondary40 #4A635F) / surface (neutral98 #F8FAF7) | 6.17330732:1 | minimum 4.5:1 | Pass
+light | on-tertiary (tertiary100 #FFFFFF) / tertiary (tertiary40 #3F6375) | 6.45566030:1 | minimum 4.5:1 | Pass
+light | on-tertiary-container (tertiary10 #001E2B) / tertiary-container (tertiary90 #C2E8FD) | 13.31720139:1 | minimum 4.5:1 | Pass
+light | tertiary (tertiary40 #3F6375) / surface (neutral98 #F8FAF7) | 6.15089615:1 | minimum 4.5:1 | Pass
+light | on-error (error100 #FFFFFF) / error (error40 #BA1A1A) | 6.46055505:1 | minimum 4.5:1 | Pass
+light | on-error-container (error10 #410002) / error-container (error90 #FFDAD5) | 13.25134621:1 | minimum 4.5:1 | Pass
+light | error (error40 #BA1A1A) / surface (neutral98 #F8FAF7) | 6.15555983:1 | minimum 4.5:1 | Pass
+light | on-warning (warning100 #FFFFFF) / warning (warning40 #924C00) | 6.44968098:1 | minimum 4.5:1 | Pass
+light | on-warning-container (warning10 #2F1400) / warning-container (warning90 #FFDCC4) | 13.33932827:1 | minimum 4.5:1 | Pass
+light | warning (warning40 #924C00) / surface (neutral98 #F8FAF7) | 6.14519911:1 | minimum 4.5:1 | Pass
+light | on-success (success100 #FFFFFF) / success (success40 #006D3B) | 6.46032778:1 | minimum 4.5:1 | Pass
+light | on-success-container (success10 #00210E) / success-container (success90 #9BF6B6) | 13.27862883:1 | minimum 4.5:1 | Pass
+light | success (success40 #006D3B) / surface (neutral98 #F8FAF7) | 6.15534328:1 | minimum 4.5:1 | Pass
+dark | on-surface (neutral90 #E1E3E0) / surface (neutral10 #191C1B) | 13.29682498:1 | minimum 4.5:1 | Pass
+dark | on-surface (neutral90 #E1E3E0) / surface-container (neutral20 #2E312F) | 10.18796932:1 | minimum 4.5:1 | Pass
+dark | on-surface-variant (neutralVariant80 #BEC9C6) / surface (neutral10 #191C1B) | 10.10374351:1 | minimum 4.5:1 | Pass
+dark | on-surface-variant (neutralVariant80 #BEC9C6) / surface-container (neutral20 #2E312F) | 7.74144422:1 | minimum 4.5:1 | Pass
+dark | outline (neutralVariant60 #889390) / surface (neutral10 #191C1B) | 5.41425776:1 | minimum 3.0:1 | Pass
+dark | outline (neutralVariant60 #889390) / surface-container (neutral20 #2E312F) | 4.14838068:1 | minimum 3.0:1 | Pass
+dark | on-primary (primary20 #003730) / primary (primary80 #83D5C5) | 7.73304003:1 | minimum 4.5:1 | Pass
+dark | on-primary-container (primary90 #9FF2E1) / primary-container (primary30 #005046) | 7.27325024:1 | minimum 4.5:1 | Pass
+dark | primary (primary80 #83D5C5) / surface (neutral10 #191C1B) | 10.04608730:1 | minimum 4.5:1 | Pass
+dark | on-secondary (secondary20 #1C3531) / secondary (secondary80 #B1CCC7) | 7.69278171:1 | minimum 4.5:1 | Pass
+dark | on-secondary-container (secondary90 #CDE8E3) / secondary-container (secondary30 #334B48) | 7.25094303:1 | minimum 4.5:1 | Pass
+dark | secondary (secondary80 #B1CCC7) / surface (neutral10 #191C1B) | 10.08064282:1 | minimum 4.5:1 | Pass
+dark | on-tertiary (tertiary20 #0A3445) / tertiary (tertiary80 #A7CCE1) | 7.77811736:1 | minimum 4.5:1 | Pass
+dark | on-tertiary-container (tertiary90 #C2E8FD) / tertiary-container (tertiary30 #264B5C) | 7.24569107:1 | minimum 4.5:1 | Pass
+dark | tertiary (tertiary80 #A7CCE1) / surface (neutral10 #191C1B) | 10.11025213:1 | minimum 4.5:1 | Pass
+dark | on-error (error20 #690004) / error (error80 #FFB4AB) | 7.71874811:1 | minimum 4.5:1 | Pass
+dark | on-error-container (error90 #FFDAD5) / error-container (error30 #930009) | 7.23590735:1 | minimum 4.5:1 | Pass
+dark | error (error80 #FFB4AB) / surface (neutral10 #191C1B) | 10.11112306:1 | minimum 4.5:1 | Pass
+dark | on-warning (warning20 #4E2600) / warning (warning80 #FFB780) | 7.70497661:1 | minimum 4.5:1 | Pass
+dark | on-warning-container (warning90 #FFDCC4) / warning-container (warning30 #6F3800) | 7.26561220:1 | minimum 4.5:1 | Pass
+dark | warning (warning80 #FFB780) / surface (neutral10 #191C1B) | 10.08540408:1 | minimum 4.5:1 | Pass
+dark | on-success (success20 #00391C) / success (success80 #80D99C) | 7.69219347:1 | minimum 4.5:1 | Pass
+dark | on-success-container (success90 #9BF6B6) / success-container (success30 #00522B) | 7.24930513:1 | minimum 4.5:1 | Pass
+dark | success (success80 #80D99C) / surface (neutral10 #191C1B) | 10.07391305:1 | minimum 4.5:1 | Pass
+light | primary (primary40 #006B5E) / surface-container (neutral95 #EFF1EE) | 5.66264120:1 | minimum 4.5:1 | Pass
+light | error (error40 #BA1A1A) / surface-container (neutral95 #EFF1EE) | 5.68740276:1 | minimum 4.5:1 | Pass
+light | warning (warning40 #924C00) / surface-container (neutral95 #EFF1EE) | 5.67783002:1 | minimum 4.5:1 | Pass
+light | success (success40 #006D3B) / surface-container (neutral95 #EFF1EE) | 5.68720268:1 | minimum 4.5:1 | Pass
+dark | primary (primary80 #83D5C5) / surface-container (neutral20 #2E312F) | 7.69726828:1 | minimum 4.5:1 | Pass
+dark | error (error80 #FFB4AB) / surface-container (neutral20 #2E312F) | 7.74709840:1 | minimum 4.5:1 | Pass
+dark | warning (warning80 #FFB780) / surface-container (neutral20 #2E312F) | 7.72739263:1 | minimum 4.5:1 | Pass
+dark | success (success80 #80D99C) / surface-container (neutral20 #2E312F) | 7.71858826:1 | minimum 4.5:1 | Pass
+Restriction: #FFFFFF/#83D5C5 = 1.70884498:1; replacement #003730/#83D5C5 = 7.73304003:1
+Restriction: #B25E00/#F8FAF7 = 4.45221899:1; replacement #924C00/#F8FAF7 = 6.14519911:1
+Restriction: #BEC9C6/#F8FAF7 = 1.61888138:1; replacement #6F7977/#F8FAF7 = 4.27787496:1
+Restriction: #3F4947/#191C1B = 1.84372212:1; replacement #889390/#191C1B = 5.41425776:1
+All 56 listed role rows and four restrictions match the document.

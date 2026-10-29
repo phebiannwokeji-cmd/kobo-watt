@@ -26,12 +26,16 @@ HCT means hue (colour family), chroma (colour strength), and tone (lightness). T
 
 There was no saved unforced original: my first ChatGPT prompt already required primary40 to match the brand. I describe any recreated comparison as a **reconstructed comparison**, not an original before-state.
 
+The submitted screenshots are `evidence/01-palette-before-pin.png` and `evidence/02-palette-after-pin.png`.
+
+My reconstructed baseline already gives Primary40 the exact brand colour #006B5E. Requiring Primary40 to keep that value therefore makes no visible colour change: all 14 displayed values remain the same. The screenshots differ in their labels and presentation, but those differences are not palette changes. This is a reconstructed comparison, because my original prompt already required the brand colour at tone 40.
+
 Two different comparisons must not be mixed:
 
-1. **Change primary40 only:** generate `TonalPalette.fromInt(source)`, then set tone 40 to #006B5E. All 14 values remain unchanged. This is the earlier no-change result.
-2. **Compare generation methods:** before = `CorePalette.of(source).a1` in version 0.3.0, whose legacy primary rule uses chroma at least 48; after = `TonalPalette.fromInt(source)`, using the source colour's own hue and chroma. This changes tones 50–90. It is a change of palette recipe, not an effect caused by editing a Figma swatch.
+1. **Change primary40 only:** generate `TonalPalette.fromInt(source)`, then set tone 40 to #006B5E. All 14 values remain unchanged. This is the comparison recorded in screenshots 01 and 02.
+2. **Compare generation methods:** before = `CorePalette.of(source).a1` in version 0.3.0, whose legacy primary rule uses chroma at least 48; after = `TonalPalette.fromInt(source)`, using the source colour's own hue and chroma. This changes tones 50–90. It is a change of palette recipe, not an effect caused by editing a Figma swatch and not the difference shown in screenshots 01 and 02.
 
-The following table uses comparison 2. It is a reproducible design comparison, not a universal default for every Material theme generator or Figma plugin. This recipe comparison does not itself demonstrate a before/after change caused by pinning tone 40. Full 14-tone results are saved in `evidence/verified-palettes.json`.
+The following table uses comparison 2. It is a reproducible design comparison of generation methods, not a universal default for every Material theme generator or Figma plugin. Its changed tones are not presented as the difference between screenshots 01 and 02. This recipe comparison does not itself demonstrate a before/after change caused by pinning tone 40. Full 14-tone results are saved in `evidence/verified-palettes.json`.
 
 | Tone | Reconstructed CorePalette method | Reconstructed source hue/chroma method |
 |---:|---|---|
@@ -105,7 +109,7 @@ A role is a job, not a colour. Surface is the page background. On-surface is its
 | success-container | success90 | #9BF6B6 | success30 | #00522B |
 | on-success-container | success10 | #00210E | success90 | #9BF6B6 |
 
-My exported label for `on-primary-container` is `on-primay container` in both themes. The table uses the intended spelling; the exported references still point to Primary10 in light and Primary90 in dark.
+The current complete export and generated CSS both use the corrected name `on-primary-container` in the light and dark themes. The earlier `on-primay container` spelling is preserved only in historical prompt records. The exported references still point to Primary10 in light and Primary90 in dark.
 
 ## 6. Contrast measurements
 

@@ -12,14 +12,15 @@ generated design system. It loads `styles/tokens.css`,
 
 ## Open it
 
-Serve the **repository root**, because the screen references `../styles/` and
-`../fonts/`:
+Serve the **project folder**, because the screen references `../styles/` and
+`../fonts/`. The Git repository root is the home folder, which must not be served:
 
 ```powershell
-python -m http.server 4173
+cd "C:/Users/LENOVO PC/OneDrive/Desktop/Task-01-design-system"
+python -m http.server 4173 --bind 127.0.0.1
 ```
 
-Then open <http://localhost:4173/prototype/>.
+Then open <http://127.0.0.1:4173/prototype/>.
 
 Routes:
 
@@ -63,7 +64,7 @@ line lengths.
 
 ## Reproduce the screenshots
 
-With Chrome installed, and the repository-root server above running:
+With Chrome installed, and the project-folder server above running:
 
 ```powershell
 node tools/capture-screen.mjs http://localhost:4173/prototype/ evidence/10-screen-with-system.png 390 844
