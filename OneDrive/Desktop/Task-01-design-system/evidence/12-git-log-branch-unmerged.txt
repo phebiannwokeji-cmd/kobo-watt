@@ -1,0 +1,59 @@
+Task 1, step 8 - Git evidence: unmerged experiment branch deleted
+
+Repository root: C:/Users/LENOVO PC
+Project prefix: OneDrive/Desktop/Task-01-design-system/
+
+PRE-DELETION CHECKS
+
+Command: git branch --show-current
+Output:
+main
+Exit code: 0
+
+Command: git rev-parse HEAD
+Output:
+e3cbe4f3ecdc889d1dc4d0974748be7e1e668113
+Exit code: 0
+
+Command: git log --graph --oneline --decorate --all -n 10
+Output:
+* e3cbe4f3 (HEAD -> main) Preserve Task 1 regression evidence without broken styling
+| * d820faa5 (task-01/broken-token-reference) Task 1 experiment: demonstrate broken colour referencing
+|/  
+* 5ba9467c Task 1 baseline: Kobo Watt design system, account screen, docs and evidence
+Exit code: 0
+
+Command: git merge-base --is-ancestor d820faa523f498cd32b74a4c2d190adfa655d129 main
+Output:
+
+Exit code: 1
+
+Interpretation: exit code 1 means the experiment commit is not an ancestor of main. It is not evidence of any other error.
+DELETION
+
+Command: git branch -D task-01/broken-token-reference
+Output:
+Deleted branch task-01/broken-token-reference (was d820faa5).
+Exit code: 0
+
+POST-DELETION CHECKS
+
+Command: git branch --list task-01/broken-token-reference
+Output:
+(no output)
+Exit code: 0
+
+The empty output above means the local branch is absent.
+
+Command: git log --graph --oneline --decorate main -n 10
+Output:
+* e3cbe4f3 (HEAD -> main) Preserve Task 1 regression evidence without broken styling
+* 5ba9467c Task 1 baseline: Kobo Watt design system, account screen, docs and evidence
+Exit code: 0
+
+Command: git merge-base --is-ancestor d820faa523f498cd32b74a4c2d190adfa655d129 main
+Output:
+(no output)
+Exit code: 1
+
+Interpretation: exit code 1 again means the experiment commit is not an ancestor of main. It is not evidence of any other error.

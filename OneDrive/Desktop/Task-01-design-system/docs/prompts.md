@@ -393,5 +393,60 @@ Report the current branch, new commit ID, checks and project status.
 Do not delete the experiment branch yet.
 Do not stage or modify unrelated home-folder files.
 
+## Step 8 Prompt: Delete Unmerged Experiment Branch and Record Git Evidence
+
+Finish Task 1, step 8: delete the experiment branch without merging it
+and save the actual Git evidence.
+
+Run from the repository root:
+C:/Users/LENOVO PC
+
+Verify before deletion:
+- Current branch is main.
+- HEAD is e3cbe4f3ecdc889d1dc4d0974748be7e1e668113.
+- The project has no uncommitted changes.
+- task-01/broken-token-reference points to:
+  d820faa523f498cd32b74a4c2d190adfa655d129
+- The screenshot and explanation are preserved on main.
+- The experiment commit is not an ancestor of main.
+
+Stop if any check fails.
+
+Create:
+OneDrive/Desktop/Task-01-design-system/evidence/12-git-log-branch-unmerged.txt
+
+Record the exact commands, actual outputs and exit codes for:
+1. Current branch and HEAD.
+2. git log --graph --oneline --decorate --all -n 10
+3. git merge-base --is-ancestor
+   d820faa523f498cd32b74a4c2d190adfa655d129 main
+   Expected exit code: 1, meaning not an ancestor.
+
+Then delete ONLY the local experiment branch:
+git branch -D task-01/broken-token-reference
+
+This intentional deletion is authorised because its evidence is
+preserved and its broken styling must not be merged.
+
+Append the actual deletion output, then record:
+4. git branch --list task-01/broken-token-reference
+   Expected: no output.
+5. git log --graph --oneline --decorate main -n 10
+6. Repeat the ancestry check above.
+   Expected exit code: 1.
+
+Do not describe an error as successful proof.
+Do not delete files, modify main's styling, merge, or cherry-pick.
+
+Append this prompt verbatim to the project's docs/prompts.md.
+Stage only that file and evidence/12-git-log-branch-unmerged.txt,
+using their full project-prefixed paths.
+
+Commit with this message:
+Record deletion of unmerged Task 1 experiment branch
+
+Report the final commit ID, current branch, project status and
+whether the experiment branch is absent.
+
 
 
