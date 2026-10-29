@@ -24,12 +24,12 @@
   --kw-palette-primary-10: #00201bff;
   --kw-palette-primary-20: #003730ff;
   --kw-palette-primary-30: #005046ff;
-  --kw-palette-primary-40: #006b5eff;
+  --kw-palette-primary-40: #6750a4;
   --kw-palette-primary-50: #2d8476ff;
   --kw-palette-primary-60: #4b9e90ff;
   --kw-palette-primary-70: #67baaaff;
   --kw-palette-primary-80: #83d5c5ff;
-  --kw-palette-primary-90: #9ff2e1ff;
+  --kw-palette-primary-90: #eaddff;
   --kw-palette-primary-95: #b5ffefff;
   --kw-palette-primary-98: #e5fff8ff;
   --kw-palette-primary-99: #f3fffbff;
@@ -177,7 +177,7 @@
   --kw-color-on-warning-container: var(--kw-palette-warning-10);
   --kw-color-outline: var(--kw-palette-neutral-variant-50);
   --kw-color-outline-variant: var(--kw-palette-neutral-variant-80);
-  --kw-color-primary: var(--kw-palette-primary-40);
+  --kw-color-primary: #006b5e;
   --kw-color-primary-container: var(--kw-palette-primary-90);
   --kw-color-primary-fixed: var(--kw-palette-primary-90);
   --kw-color-primary-fixed-dim: var(--kw-palette-primary-80);

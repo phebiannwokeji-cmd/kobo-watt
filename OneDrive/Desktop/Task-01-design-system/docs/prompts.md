@@ -320,5 +320,23 @@ Append this prompt verbatim to docs/prompts.md before committing.
 Stop after preparing the baseline. Do not break any colour references,
 change the brand colour, or create the experiment branch yet.
 
+## Step 8 Prompt: Deliberate Broken Colour Reference
+
+In docs/defects.md, add a section titled:
+“Deliberate regression: broken colour reference”
+
+Preserve any existing content. Add these three sentences:
+
+I replaced the light Primary role’s palette reference with the fixed colour #006B5E, then temporarily changed Primary40 and Primary90 in the CSS palette to purple values. The Active chip followed its Primary Container reference and became pale purple, while the Pay button stayed teal because its Primary role no longer followed the palette. This shows why colour roles should reference the palette: a shared colour change can otherwise leave disconnected parts of the screen behind.
+
+Link the section to:
+../evidence/11-broken-referencing.png
+
+State separately that the experiment changed the CSS palette only;
+the original Figma file and JSON exports were unchanged.
+
+Append this prompt verbatim to docs/prompts.md.
+Do not commit, switch branches, restore files, or delete the branch yet.
+
 
 
