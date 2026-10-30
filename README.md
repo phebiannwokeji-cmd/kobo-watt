@@ -25,7 +25,7 @@ Kobo Watt is a fictional rent-to-own solar and inverter service in Ikeja, Lagos,
 
 - Tasks 2–5: no task-specific implementation, evidence, or documentation has been produced. Their folders contain status placeholders only.
 - No backend, database, authentication, sessions, server-side validation, or payment-provider integration exists yet.
-- No public GitHub repository or remote exists yet.
+- The public GitHub repository has been created at <https://github.com/phebiannwokeji-cmd/kobo-watt>.
 
 I am not claiming grading approval or complete WCAG compliance.
 
@@ -48,10 +48,10 @@ Prerequisites:
 - A modern browser.
 - Optional: Node.js and Google Chrome for screenshot reproduction.
 
-No public GitHub repository exists yet. The clone URL below is a clearly labelled placeholder; replace it when the repository is published.
+The public repository is available at <https://github.com/phebiannwokeji-cmd/kobo-watt>. Clone it with:
 
 ```bash
-git clone <KOBO-WATT-REPOSITORY-URL> kobo-watt
+git clone https://github.com/phebiannwokeji-cmd/kobo-watt.git kobo-watt
 cd kobo-watt
 cd task-01-design-system
 python -m http.server 4173 --bind 127.0.0.1
