@@ -18,7 +18,7 @@ Kobo Watt is a fictional rent-to-own solar and inverter service in Ikeja, Lagos,
 **Partial**
 
 - Accessibility: the 56 listed colour-contrast pairs pass their stated thresholds, but that is a whitelist of checked uses, not proof of whole-screen accessibility. Keyboard behaviour, visible focus, screen-reader announcements, error announcements, and other WCAG checks are not fully recorded. See [colour-role measurements](task-01-design-system/docs/colour-roles.md) and the [accessibility answers](task-01-design-system/docs/interview-answers.md).
-- Readability: all 15 typography styles use SemiBold with negative letter spacing, and long instructions or small phone layouts have not been tested. See [type-scale limits](task-01-design-system/docs/type-scale.md).
+- Readability: all 15 typography styles use SemiBold with negative letter spacing. Layout checks were reported at 320 and 390 CSS pixels for overflow and clipping, but sustained reading has not been tested with users. See [type-scale limits](task-01-design-system/docs/type-scale.md).
 - Performance: the three-second account-summary target is documented but has not been measured. See [business decisions](task-01-design-system/docs/business-decisions.md).
 
 **Not started**
@@ -89,8 +89,8 @@ The payment and account rules are provisional, and Adaobi is a hypothetical pers
 Current limitations:
 
 - Contrast checks cover 56 listed pairs, not every combination in the interface, and do not prove keyboard, focus, screen-reader, or error-announcement behaviour. See [colour-role measurements](task-01-design-system/docs/colour-roles.md).
-- The type scale has not been tested for sustained reading in long instructions or small phone layouts. See [type-scale limits](task-01-design-system/docs/type-scale.md).
+- The type scale has not been tested for sustained reading with users, including long instructions or small phone layouts. See [type-scale limits](task-01-design-system/docs/type-scale.md).
 - The three-second performance target has not been measured. See [business decisions](task-01-design-system/docs/business-decisions.md).
-- The captured screens use a 390 × 844 CSS-pixel viewport; this is not a broad device or browser test. See the [prototype notes](task-01-design-system/prototype/README.md).
+- Captured screens use a 390 × 844 CSS-pixel viewport. Separately, layout checks at 320 and 390 CSS pixels looked for overflow and clipping; they are not a broad device or browser test and do not establish sustained-reading readability. See the [prototype notes](task-01-design-system/prototype/README.md).
 
 No separate unresolved functional defect is recorded on `main`. The deliberate experiment above is the only entry in the Task 1 defect record, and it is kept as evidence rather than presented as current styling.
