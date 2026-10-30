@@ -12,7 +12,7 @@ Kobo Watt is a fictional rent-to-own solar and inverter service in Ikeja, Lagos,
 
 - Task 1 is complete as a submission: the design tokens and conversion pipeline, the account-summary prototype, the supporting documentation, and the evidence are in [task-01-design-system/](task-01-design-system/README.md).
 - The completed Figma export is converted into CSS custom properties and utility classes: 120 primitive colours, 100 colour roles (50 light and 50 dark), 15 typography styles, and 3 shadows.
-- The static account-summary prototype includes the light and dark themes and the labelled “Access active, but no power” help route. Its evidence includes before-and-after screenshots, contrast output, token exports, and the preserved broken-reference experiment.
+- The static account-summary prototype renders in the light theme. The generated CSS also contains dark theme styles under `data-theme="dark"`, but the prototype has no user-facing theme switch. It includes the labelled “Access active, but no power” help route. Its evidence includes before-and-after screenshots, contrast output, token exports, and the preserved broken-reference experiment.
 - The shared repository setup is present: one repository, five top-level task folders, and this root README. The Task 1 files are complete; the other four folders contain only placeholder READMEs.
 
 **Partial**
@@ -34,7 +34,7 @@ I am not claiming grading approval or complete WCAG compliance.
 - **Figma Variables exported as JSON.** The completed export in [evidence/06-tokens-complete.json](task-01-design-system/evidence/06-tokens-complete.json) is the source of truth for the token pipeline because the design values can be converted and checked without reading them from an image.
 - **Python 3 with the standard library.** The conversion, verification, contrast, and raw-colour search tools use only built-in modules, so there are no package-install or build steps. I chose this so the checks are repeatable on a fresh machine.
 - **Static HTML, CSS, and vanilla JavaScript.** The Task 1 deliverable is one account screen and a design system, not a production application. Serving the files directly keeps the tokens and layout inspectable and avoids a client framework or bundler. The records do not document a framework comparison, so I am not claiming one was made.
-- **CSS custom properties.** The generated files expose primitive colours, colour roles, typography, and shadows as custom properties. Interface rules use role references, which makes the light/dark `data-theme` switch possible without duplicating component styles.
+- **CSS custom properties.** The generated files expose primitive colours, colour roles, typography, and shadows as custom properties. Interface rules use role references, which lets the stylesheets support a dark `data-theme` override without duplicating component styles. The prototype itself does not expose a theme toggle.
 - **Self-hosted Source Sans Pro WOFF2.** I used the bundled SemiBold (600) files so the font travels with the repository. The [Task 1 README](task-01-design-system/README.md) documents Google Fonts CDN as an alternative and keeps the self-hosted files as the version used by this prototype.
 - **Node.js and headless Chrome for optional screenshot capture.** `tools/capture-screen.mjs` uses built-in Node.js modules and the Chrome DevTools Protocol to reproduce the evidence screenshots. It is tooling, not part of the prototype runtime.
 - **Material 3 v0.192 as the documented typography baseline.** I recorded two deliberate departures from it — Source Sans Pro and tighter Display Large tracking — in [divergences](task-01-design-system/docs/divergences.md).
@@ -89,8 +89,8 @@ The payment and account rules are provisional, and Adaobi is a hypothetical pers
 Current limitations:
 
 - Contrast checks cover 56 listed pairs, not every combination in the interface, and do not prove keyboard, focus, screen-reader, or error-announcement behaviour. See [colour-role measurements](task-01-design-system/docs/colour-roles.md).
-- The type scale has not been tested for sustained reading with users, including long instructions or small phone layouts. See [type-scale limits](task-01-design-system/docs/type-scale.md).
+- The type scale has not been tested for sustained reading with users. See [type-scale limits](task-01-design-system/docs/type-scale.md).
 - The three-second performance target has not been measured. See [business decisions](task-01-design-system/docs/business-decisions.md).
-- Captured screens use a 390 × 844 CSS-pixel viewport. Separately, layout checks at 320 and 390 CSS pixels looked for overflow and clipping; they are not a broad device or browser test and do not establish sustained-reading readability. See the [prototype notes](task-01-design-system/prototype/README.md).
+- Reported layout checks at 320 and 390 CSS pixels looked for overflow and clipping. The repository's captured screens use a 390 × 844 CSS-pixel viewport. These are reported checks, not an independent reproduction, and they are not a broad device or browser test or a readability study. See the [prototype notes](task-01-design-system/prototype/README.md).
 
 No separate unresolved functional defect is recorded on `main`. The deliberate experiment above is the only entry in the Task 1 defect record, and it is kept as evidence rather than presented as current styling.
