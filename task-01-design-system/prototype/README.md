@@ -12,15 +12,25 @@ generated design system. It loads `styles/tokens.css`,
 
 ## Open it
 
-Serve the **project folder**, because the screen references `../styles/` and
-`../fonts/`. The Git repository root is the home folder, which must not be served:
+Serve the **Task 1 folder**, because the screen references `../styles/` and
+`../fonts/`. Start from the `kobo-watt` repository root.
+
+Python 3 is required. Check that the `python` launcher is available:
 
 ```powershell
-cd "C:/Users/LENOVO PC/OneDrive/Desktop/Task-01-design-system"
+python --version
+```
+
+Then start the server from the Task 1 folder:
+
+```powershell
+cd task-01-design-system
 python -m http.server 4173 --bind 127.0.0.1
 ```
 
 Then open <http://127.0.0.1:4173/prototype/>.
+
+Press `Ctrl+C` in that terminal to stop this server.
 
 Routes:
 
@@ -64,9 +74,11 @@ line lengths.
 
 ## Reproduce the screenshots
 
-With Chrome installed, and the project-folder server above running:
+With Chrome installed, and the server above running, open a second terminal at
+the `kobo-watt` repository root:
 
 ```powershell
+cd task-01-design-system
 node tools/capture-screen.mjs http://localhost:4173/prototype/ evidence/10-screen-with-system.png 390 844
 ```
 
