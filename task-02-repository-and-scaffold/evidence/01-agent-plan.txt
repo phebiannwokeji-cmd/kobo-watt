@@ -1,0 +1,282 @@
+REVISED TASK 2 SCAFFOLD PLAN
+Status: planning only; awaiting approval.
+
+1. Goal and limits
+
+Build the project setup and one minimal home screen inside
+task-02-repository-and-scaffold.
+
+The screen will contain:
+- Kobo Watt.
+- “Power for your business”.
+- A short explanation of the fictional service.
+- One “View demo account” link.
+- A demonstration-only notice.
+
+No database, signup, authentication, sessions, real payments, hardware
+control, or additional product features in this initial scaffold.
+
+Task 1 files will remain unchanged.
+
+2. Verified runtime and dependency
+
+Actual local command results:
+node --version
+v24.19.0
+
+npm.cmd --version
+11.17.0
+
+Read-only dependency lookup succeeded:
+express@5.3.0
+Node requirement: >=18
+
+The installed Node version meets Express’s declared Node requirement.
+This establishes declared compatibility, not successful application
+execution; startup will be tested after approval.
+
+The ordinary npm lookup encountered a certificate verification error.
+This command succeeded using the system certificate store:
+
+node --use-system-ca "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" view express@5.3.0 version engines --json
+
+No certificate checking was disabled and no package was installed.
+
+Proposed stack:
+- Node.js with CommonJS server code.
+- Express pinned to 5.3.0.
+- Plain HTML and CSS.
+- No client-side JavaScript on the new home page.
+- No bundler, templating engine, or development dependency.
+- Commit the generated package-lock.json.
+
+Scripts:
+start: node server.js
+dev: node --watch server.js
+
+Use npm.cmd in PowerShell. Document any certificate-store option
+actually needed during installation; do not change global npm settings
+or disable certificate verification.
+
+3. Source documents and typography
+
+Use the current Task 1 docs/business-brief.md, supporting decisions,
+docs/type-scale.md, and generated styles as implementation sources.
+
+The current brief and typography record agree on Source Sans Pro
+SemiBold 600. Use that weight through the generated typography classes.
+
+Preserve evidence/business-brief.md as historical evidence.
+Do not implement its conflicting regular/bold instruction.
+
+The minimal home page contains no payment amounts. No tabular-numeral
+extension is needed for this scaffold.
+
+4. Home-screen content and styling
+
+Proposed explanation:
+“Kobo Watt is a fictional rent-to-own solar and inverter service for
+small businesses in Ikeja, Lagos. Explore a demonstration account
+showing recorded access and payment information.”
+
+Proposed notice:
+“Demonstration only. No real payments or equipment control.”
+
+Typography:
+- Brand: Title Large.
+- Heading: Display Small.
+- Explanation: Body Large.
+- Notice: Body Medium.
+- Demo link: Label Large.
+
+Use existing colour-role and shadow tokens.
+Use one semantic heading and a normal link to /demo/.
+The link opens in the same tab.
+
+Do not introduce new colours, font weights, or shadow values.
+
+5. Layout values: verified versus proposed
+
+Verified in Task 1 prototype/screen.css:
+- Page maximum width: 30rem.
+- Page horizontal padding: 16px.
+- Existing spacing values include 8px, 12px, 16px, and 24px.
+- Card and button radius: 8px.
+- Button padding: 10px vertically and 16px horizontally.
+- Border width: 1px.
+- Focus outline: 3px, with a 2px offset.
+- Existing buttons also have min-height: 48px.
+
+New Task 2 proposal:
+Convert the selected spacing and radius values into rem-based local
+tokens. These are new definitions, not existing Task 1 tokens.
+
+At a 16px root font size, the proposed values correspond to the
+verified pixel values. They grow if the root font size changes.
+Do not force the root font size to 16px.
+
+Proposed tokens:
+--kw-layout-max-width: 30rem
+--kw-layout-space-small: 0.5rem
+--kw-layout-space-medium: 0.75rem
+--kw-layout-page-padding: 1rem
+--kw-layout-section-gap: 1.5rem
+--kw-layout-button-padding-block: 0.625rem
+--kw-layout-button-padding-inline: 1rem
+--kw-layout-radius: 0.5rem
+--kw-layout-border-width: 1px
+--kw-layout-focus-width: 3px
+--kw-layout-focus-offset: 2px
+
+Reasons:
+- Page padding keeps content away from screen edges.
+- Section gaps separate the heading, explanation, link, and notice.
+- Button padding gives its words surrounding space without fixing
+  the control’s dimensions.
+- Radius retains Task 1’s rounded appearance at the default root size.
+- Border and focus values retain the existing visual treatment.
+
+Do not add control-min-height.
+Do not give the demo link a fixed width or height.
+Allow its words to wrap and its box to grow.
+Keep its width within the available page space.
+
+Store these definitions in Task 2’s layout-tokens.css.
+Component rules must reference them.
+Structural values such as zero margins and percentage widths are
+layout instructions, not additions to the spacing scale.
+
+6. Serving the existing demo
+
+Use one Express server bound to 127.0.0.1.
+Default port: 3000; optionally overridden by PORT.
+
+Check port availability at startup.
+If occupied, report the error. Do not terminate an existing process.
+
+Serve Task 1 through fixed file routes:
+- /demo -> redirect to /demo/
+- /demo/ and /demo/index.html -> prototype/index.html
+- /demo/help.html -> prototype/help.html
+- /demo/help-no-power.html -> prototype/help-no-power.html
+- /demo/screen.css -> prototype/screen.css
+- /demo/demo.js -> prototype/demo.js
+- /styles/fonts.css -> styles/fonts.css
+- /styles/tokens.css -> styles/tokens.css
+- /styles/typography.css -> styles/typography.css
+- The two specific /fonts/SourceSansPro-SemiBold-*.woff2 URLs
+  -> their corresponding font files.
+
+Enable strict routing before registering routes so /demo and /demo/
+can be distinguished.
+
+Resolve file paths from the server file’s directory, not from whichever
+directory the terminal happens to be using.
+
+Use fixed absolute paths with sendFile.
+Do not accept user-supplied filesystem paths.
+
+Task 2:
+- / serves its home page.
+- /assets/layout-tokens.css serves its local layout tokens.
+- /assets/home.css serves its home styling.
+
+Use explicit file routes for these assets too.
+Unknown URLs return 404.
+
+Do not serve the repository root, Git metadata, docs, evidence, tools,
+JSON exports, or directory listings.
+
+Do not copy, rewrite, or symlink Task 1.
+
+7. Relative-path checks
+
+Before implementation, inspect the existing HTML and CSS references.
+
+Verify after implementation that:
+- /demo redirects to /demo/ without a loop.
+- Relative stylesheet, script, and font URLs load.
+- Both help pages open.
+- Return links reach the account page.
+- Task 2 and Task 1 styles do not accidentally apply to each other.
+
+The app assumes it is served from the origin root, such as
+http://127.0.0.1:3000/. Deployment under a subpath is outside this plan.
+
+8. Files to create or modify
+
+Create:
+task-02-repository-and-scaffold/package.json
+task-02-repository-and-scaffold/package-lock.json
+task-02-repository-and-scaffold/.gitignore
+task-02-repository-and-scaffold/server.js
+task-02-repository-and-scaffold/public/index.html
+task-02-repository-and-scaffold/public/assets/layout-tokens.css
+task-02-repository-and-scaffold/public/assets/home.css
+
+Modify:
+task-02-repository-and-scaffold/README.md
+
+Ignore local node_modules, npm debug logs, and local environment files.
+Do not commit credentials.
+
+Do not change Task 1 or the root README in this scaffold step.
+The root README’s Task 2 status will need a subsequent documentation
+update before publishing the scaffold.
+
+9. Evidence
+
+Before approval:
+Save this plan and its assumptions verbatim in
+evidence/01-agent-plan.txt.
+Preserve previous plan versions separately.
+
+After approval:
+- evidence/02-files-created.txt:
+  Actual created and modified files, assumptions, unresolved issues,
+  and the instruction-by-instruction self-audit.
+
+- evidence/03-server-start.txt:
+  Actual start command and terminal output, including address and port.
+
+- evidence/04-first-load.txt:
+  Actual first navigation request, HTTP status, timing, measurement
+  method, and whether the server/browser were freshly started.
+
+Distinguish:
+- Server request duration: time measured while handling a request.
+- Browser page-load duration: navigation until the browser load event.
+
+Do not label server response time as full browser load time.
+Record the first navigation before running warm-up requests.
+If a measurement fails, record that failure rather than invent a result.
+
+10. Verification after approval
+
+Check:
+- Home screen loads and shows only the approved content.
+- Demo link and help navigation work.
+- Required CSS, fonts, and JavaScript load.
+- Unknown and excluded file URLs return 404.
+- Keyboard focus remains visible on the demo link.
+- Wrapped link text remains inside its control.
+- Task 1 files are unchanged.
+- Only approved Task 2 files and evidence were changed.
+- Actual startup result and any errors are reported.
+
+These are scaffold checks, not a full accessibility certification.
+Later Task 2 breakages and database investigations remain separate.
+
+11. Assumptions and approval boundary
+
+Proposed decisions awaiting approval:
+- Express 5.3.0 with plain HTML/CSS.
+- CommonJS server.
+- Task 2-local layout tokens listed above.
+- Same-tab demo navigation.
+- Root-path hosting.
+- Port 3000 as the default, not guaranteed available.
+- No database or additional product features yet.
+
+No implementation, dependency installation, or application startup
+will occur until approval.

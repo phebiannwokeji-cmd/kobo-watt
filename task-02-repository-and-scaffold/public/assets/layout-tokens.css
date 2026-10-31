@@ -1,0 +1,16 @@
+/* Approved Task 2-local layout tokens; not generated Task 1 tokens.
+   Rem conversions correspond to Task 1 values at a 16px root size.
+   The root font size is intentionally not forced. */
+:root {
+  --kw-layout-max-width: 30rem;
+  --kw-layout-space-small: 0.5rem;
+  --kw-layout-space-medium: 0.75rem;
+  --kw-layout-page-padding: 1rem;
+  --kw-layout-section-gap: 1.5rem;
+  --kw-layout-button-padding-block: 0.625rem;
+  --kw-layout-button-padding-inline: 1rem;
+  --kw-layout-radius: 0.5rem;
+  --kw-layout-border-width: 1px;
+  --kw-layout-focus-width: 3px;
+  --kw-layout-focus-offset: 2px;
+}

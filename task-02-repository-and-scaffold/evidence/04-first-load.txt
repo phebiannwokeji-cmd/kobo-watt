@@ -1,0 +1,11 @@
+First browser request recorded by the fresh Express server:
+{"time":"2026-10-30T08:37:38.170Z","method":"GET","path":"/","status":200,"serverDurationMs":143.646}
+
+Method: server middleware measures request handling until response finish.
+serverDurationMs is NOT full browser page-load duration.
+
+Browser verification: in-app browser rendered the home page and the demo link opened the account summary.
+Full browser navigation timing: NOT CAPTURED.
+The initial headless Chrome harness timed out before navigation. The in-app browser fallback opened the page, but its read-only evaluation did not expose performance.getEntriesByType.
+No warm-up HTTP request was made before the initial browser navigation. The in-app browser cache/profile state was not controlled.
+A fresh browser DevTools measurement is still required; do not treat this record as completed browser-load timing evidence.

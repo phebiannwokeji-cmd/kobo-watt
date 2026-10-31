@@ -1,0 +1,82 @@
+TASK 2 INITIAL SCAFFOLD — FILES AND SELF-AUDIT
+Recorded: 2026-10-30T08:40:29.600Z
+
+Created:
+package.json
+package-lock.json
+.gitignore
+server.js
+public/index.html
+public/assets/layout-tokens.css
+public/assets/home.css
+evidence/02-files-created.txt
+evidence/03-server-start.txt
+evidence/04-first-load.txt
+evidence/scaffold-verification.txt
+
+Modified:
+README.md
+
+Already preserved, unchanged in this scaffold turn:
+evidence/01-agent-plan.txt
+evidence/01-agent-plan-approval.txt
+
+Local ignored installation:
+node_modules/ (65 packages added)
+
+Installation:
+NODE_USE_SYSTEM_CA=1 in the installation process environment only.
+npm.cmd install --no-audit --no-fund
+Succeeded. Express pinned to 5.3.0 with generated lockfile.
+No global npm settings changed; certificate verification remained enabled.
+
+Start:
+npm.cmd start
+Succeeded at http://127.0.0.1:3000/, PID 24616.
+The local preview server was left running for review.
+
+Checks:
+22 HTTP checks passed; exact results in scaffold-verification.txt.
+Home, demo, both help pages and required assets returned 200.
+Canonical /demo redirect returned 302 to /demo/.
+Excluded project files returned 404.
+In-app browser visibly rendered home; clicking View demo account opened
+the Task 1 account summary. Returning home and pressing Tab visibly
+outlined the demo link.
+Task 1 full file SHA-256 fingerprint comparison: identical before/after.
+Home uses generated typography classes, colour roles and shadow token.
+Layout rules use the approved local tokens; no fixed link height/width.
+No database or additional feature implemented.
+No commit or push performed.
+
+Evidence limits:
+The headless Chrome measurement harness timed out before navigation.
+The in-app browser fallback displayed the page, but did not expose the
+performance API needed to capture browser navigation timing.
+04-first-load.txt contains the actual first server request: HTTP 200,
+serverDurationMs 143.646. This is NOT full browser page-load time.
+A fresh browser timing capture remains required.
+The preview was inspected at available narrow and wide panel sizes;
+precise 320/390 widths and a long-label wrapping test were not completed.
+Help page routes and return hrefs were checked, but both return links
+were not clicked in the browser.
+No full accessibility or performance compliance is claimed.
+
+Assumptions:
+Root-path hosting, same-tab demo, Node/CommonJS, and local loopback server.
+The sibling Task 1 folder must remain available.
+No secrets or environment file are required.
+PORT is optional, validated as integer 1..65535.
+The old evidence brief is retained; current docs and generated styles
+determine the SemiBold 600 typography.
+
+Instruction self-audit:
+Context and plan read: satisfied.
+Approval before code: satisfied; approval recorded separately.
+Token use and missing-token proposal: satisfied through approved plan.
+Initial scaffold only: satisfied.
+Task 1 unchanged: verified.
+Actual file list/startup reported: satisfied.
+Complete browser timing and wrapping verification: not satisfied;
+limitations explicitly recorded above.
+Root README status update: deferred as approved.
