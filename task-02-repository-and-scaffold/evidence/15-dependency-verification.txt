@@ -1,0 +1,29 @@
+Recorded at (UTC): 2026-11-01T13:31:20Z
+Purpose: verify better-sqlite3@13.0.3 and its Node.js engine requirement before installation.
+
+Actual local runtime (commands run in this session):
+node --version => v24.19.0
+npm --version => 11.17.0
+
+Successful registry lookup (npm registry through the system CA store; TLS verification was not disabled):
+node --use-system-ca "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" view better-sqlite3@13.0.3 version engines dist.tarball --json
+
+Actual output:
+{
+  "version": "13.0.3",
+  "engines": {
+    "node": ">=22"
+  },
+  "dist.tarball": "https://registry.npmjs.org/better-sqlite3/-/better-sqlite3-13.0.3.tgz"
+}
+
+Cross-check source: https://registry.npmjs.org/better-sqlite3/13.0.3 (fetched in this session)
+Registry response fields:
+- name: better-sqlite3
+- version: 13.0.3
+- engines.node: >=22
+- dist.tarball: https://registry.npmjs.org/better-sqlite3/-/better-sqlite3-13.0.3.tgz
+- dist.integrity: sha512-RbOBxmLBG8uvFUc15X9+9SFemKcQ0WBuISBVkpuiaUB2qblC8UWlHEjdWVoZ8AdhSwmoEgsiXKfopX0CQxaACQ==
+
+Local Node v24.19.0 satisfies the declared >=22 requirement.
+This verifies declared compatibility and registry metadata. It is not an installation result and not a database write; those are recorded separately in 16-dependency-install.txt and 17-database-smoke-test.txt.

@@ -1,0 +1,5 @@
+Owned server PID 7648, URL http://127.0.0.1:64607, readonly=false; home 200
+FAIL: Error: Chrome unavailable
+    at browser (file:///C:/Users/LENOVO%20PC/Documents/kobo-watt/task-02-repository-and-scaffold/tools/verify-enquiries.mjs:37:19)
+    at async file:///C:/Users/LENOVO%20PC/Documents/kobo-watt/task-02-repository-and-scaffold/tools/verify-enquiries.mjs:48:24
+Stopped owned PID 7648

@@ -1,0 +1,36 @@
+﻿Recorded at (UTC): 2026-11-01T13:42:33.2475776Z
+sqlite3 CLI check: not installed on this machine ('sqlite3' was not recognized).
+Read-only Node inspection fallback test:
+Command: $env:DATABASE_PATH='C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold\data\enquiries-browser-2026-11-01T13-36-05-975Z.db'; npm.cmd run db:inspect
+Exit code: 0
+Actual output:
+
+> kobo-watt-task-02@0.1.0 db:inspect
+> node tools/inspect-db.js
+
+[
+  {
+    "id": 1,
+    "name": "Fictional Browser Alpha",
+    "phone": "00000000000",
+    "business_type": "salon",
+    "created_at": "2026-11-01T13:36:09.052Z"
+  },
+  {
+    "id": 2,
+    "name": "Fictional Browser Beta",
+    "phone": "00000000000",
+    "business_type": "shop",
+    "created_at": "2026-11-01T13:39:14.209Z"
+  },
+  {
+    "id": 3,
+    "name": "Fictional Browser Restored",
+    "phone": "00000000000",
+    "business_type": "salon",
+    "created_at": "2026-11-01T13:39:17.052Z"
+  }
+]
+
+Result: SUCCESS: tools/inspect-db.js opened the database read-only and returned the persisted rows.
+

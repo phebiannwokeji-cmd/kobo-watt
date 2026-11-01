@@ -1,0 +1,19 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Persisted SQLite rows</title>
+<style>
+  body { font: 18px Arial, sans-serif; padding: 24px; color: #111; }
+  table { border-collapse: collapse; }
+  td, th { border: 1px solid #888; padding: 12px; text-align: left; }
+  caption { text-align: left; margin: 16px 0; }
+</style>
+<h1>Task 2 — actual persisted enquiries</h1>
+<p>Read-only SELECT from data\enquiries-browser-2026-11-01T13-36-05-975Z.db — captured 2026-11-01T13:39:17.661Z</p>
+<p>Fictional data only. Successful submissions were at least three minutes apart.</p>
+<table>
+  <caption>SELECT id, name, phone, business_type, created_at FROM enquiries ORDER BY id</caption>
+  <tr><th>id</th><th>name</th><th>phone</th><th>business_type</th><th>created_at</th></tr>
+  <tr><td>1</td><td>Fictional Browser Alpha</td><td>00000000000</td><td>salon</td><td>2026-11-01T13:36:09.052Z</td></tr>
+  <tr><td>2</td><td>Fictional Browser Beta</td><td>00000000000</td><td>shop</td><td>2026-11-01T13:39:14.209Z</td></tr>
+  <tr><td>3</td><td>Fictional Browser Restored</td><td>00000000000</td><td>salon</td><td>2026-11-01T13:39:17.052Z</td></tr>
+</table>

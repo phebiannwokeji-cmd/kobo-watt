@@ -3,3 +3,10 @@ npm-debug.log*
 .env
 .env.*
 !.env.example
+
+# Runtime SQLite data, including rollback journals and WAL sidecars
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm

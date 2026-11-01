@@ -1,0 +1,4 @@
+Captured 2026-11-01T12:19:21.828Z
+Actual complete stdout/stderr of owned writable server runs. First two submissions were browser form submissions. Third is writable restoration.
+Kobo Watt listening at http://127.0.0.1:64607/ (PID 7648)
+{"time":"2026-11-01T12:19:05.286Z","method":"GET","path":"/","status":200,"serverDurationMs":15.589}

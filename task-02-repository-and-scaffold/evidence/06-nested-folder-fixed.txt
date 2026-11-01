@@ -1,0 +1,72 @@
+TASK 2 DELIBERATE BREAKAGE RECOVERY — NESTED FOLDER FIXED
+Recorded at (UTC): 2026-11-01T05:49:00Z
+Context: Isolated assessment drill (not the Kobo Watt application).
+Server state: At the recorded check, PID 19972 was absent and port 3000 had no listener. Its state before the drill, and when or why it stopped, were not established.
+
+================================================================================
+REPAIR METHOD 1: CHANGING DIRECTORY (cd)
+================================================================================
+Approach:
+Navigate the shell directly into the nested folder where the scaffold was created before running the start command.
+
+Working Directory:
+C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\nested-drill\nested-app
+
+Command:
+npm.cmd start
+
+Startup Output:
+> isolated-nested-app-drill@1.0.0 start
+> node server.js
+
+PRACTICE_SERVER_RUNNING: PID=21076 PORT=55103 HOST=127.0.0.1
+
+HTTP Verification:
+Request: GET http://127.0.0.1:55103/
+Status: 200 OK
+Response Body:
+Isolated assessment drill: nested-app active on port 55103
+
+Process Cleanup:
+Practice server process (PID 21076) stopped cleanly after verification.
+
+================================================================================
+REPAIR METHOD 2: RESCAFFOLDING IN PLACE
+================================================================================
+Approach:
+The agent was instructed: “Rescaffold the same minimal project directly in the parent practice folder.”
+The nested copy was preserved. The minimal project files (package.json, server.js) were created directly in the parent practice folder.
+
+Working Directory:
+C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\nested-drill
+
+Command:
+npm.cmd start
+
+Startup Output:
+> isolated-parent-rescaffold-drill@1.0.0 start
+> node server.js
+
+PARENT_PRACTICE_SERVER_RUNNING: PID=30700 PORT=50836 HOST=127.0.0.1
+
+HTTP Verification:
+Request: GET http://127.0.0.1:50836/
+Status: 200 OK
+Response Body:
+Isolated assessment drill: rescaffolded in-place active on port 50836
+
+Process Cleanup:
+Parent practice server process (PID 30700) stopped cleanly after verification.
+
+================================================================================
+SUMMARY
+================================================================================
+Both repair methods demonstrated and verified with real HTTP responses:
+1. Navigating into the nested directory allows npm scripts to find package.json and start properly.
+2. Rescaffolding in place places the required application files in the expected working directory so standard top-level commands succeed without path confusion.
+
+Harness and Process Notes:
+- The initial repair runner encountered `Error: spawn EINVAL` when spawning npm.cmd on Windows; resolved by adding `shell: true`.
+- Each practice server was stopped by the test script sending `child.kill()`; subsequent `Get-Process` calls confirmed the PIDs no longer existed.
+No Task 1 files, production application code, or earlier historical evidence were modified.
+

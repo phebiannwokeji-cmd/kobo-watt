@@ -1,0 +1,23 @@
+﻿Recorded at (UTC): 2026-11-01T13:33:45.5051763Z
+Command: npm.cmd ci --ignore-scripts
+Environment: NODE_USE_SYSTEM_CA=1 (system certificate store; certificate verification not disabled)
+Reason for --ignore-scripts: better-sqlite3@13.0.3 ships prebuilds/win32-x64.node, but npm otherwise invokes node-gyp rebuild; this machine has no Windows SDK. No certificate verification was disabled.
+Exit code: 0
+
+Actual combined stdout/stderr:
+
+added 67 packages, and audited 68 packages in 3s
+
+30 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Post-install dependency check: npm.cmd ls better-sqlite3 --depth=0
+kobo-watt-task-02@0.1.0 C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold
+ΓööΓöÇΓöÇ better-sqlite3@13.0.3
+
+
+Native module load check (separate from database write smoke test): require OK, SQLite 3.53.4
+Installation result: SUCCESS
+

@@ -1,0 +1,21 @@
+Started at (UTC): 2026-11-01T13:36:05.979Z
+Finished at (UTC): 2026-11-01T13:39:18.371Z
+Database: C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold\data\enquiries-browser-2026-11-01T13-36-05-975Z.db
+Actual stdout/stderr from the owned read-only server run.
+
+--- read-only server PID 4452, http://127.0.0.1:49610, DB_READONLY=1 ---
+Kobo Watt listening at http://127.0.0.1:49610/ (PID 4452)
+{"time":"2026-11-01T13:39:15.698Z","method":"GET","path":"/","status":200,"serverDurationMs":12.477}
+{"time":"2026-11-01T13:39:15.710Z","method":"GET","path":"/","status":200,"serverDurationMs":2.656}
+{"time":"2026-11-01T13:39:15.725Z","method":"GET","path":"/styles/fonts.css","status":200,"serverDurationMs":5.4}
+{"time":"2026-11-01T13:39:15.727Z","method":"GET","path":"/styles/tokens.css","status":200,"serverDurationMs":5.527}
+{"time":"2026-11-01T13:39:15.732Z","method":"GET","path":"/styles/typography.css","status":200,"serverDurationMs":8.044}
+{"time":"2026-11-01T13:39:15.733Z","method":"GET","path":"/assets/layout-tokens.css","status":200,"serverDurationMs":8.332}
+{"time":"2026-11-01T13:39:15.734Z","method":"GET","path":"/assets/home.css","status":200,"serverDurationMs":5.561}
+{"time":"2026-11-01T13:39:15.738Z","method":"GET","path":"/assets/enquiry.js","status":200,"serverDurationMs":2.739}
+{"time":"2026-11-01T13:39:15.754Z","method":"GET","path":"/fonts/SourceSansPro-SemiBold-latin.woff2","status":200,"serverDurationMs":2.969}
+{"time":"2026-11-01T13:39:15.793Z","method":"GET","path":"/favicon.ico","status":404,"serverDurationMs":3.597}
+{"event":"enquiry_write_failed","code":"SQLITE_READONLY","message":"attempt to write a readonly database"}
+{"time":"2026-11-01T13:39:15.881Z","method":"POST","path":"/api/enquiries","status":500,"serverDurationMs":19.038}
+{"event":"enquiry_write_failed","code":"SQLITE_READONLY","message":"attempt to write a readonly database"}
+{"time":"2026-11-01T13:39:16.013Z","method":"POST","path":"/api/enquiries","status":500,"serverDurationMs":0.815}

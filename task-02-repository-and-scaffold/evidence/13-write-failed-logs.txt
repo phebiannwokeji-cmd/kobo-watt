@@ -1,0 +1,6 @@
+Captured 2026-11-01T12:23:36.500Z
+Actual complete stdout/stderr of owned read-only server run.
+Kobo Watt listening at http://127.0.0.1:58228/ (PID 16596)
+{"time":"2026-11-01T12:23:35.476Z","method":"GET","path":"/","status":200,"serverDurationMs":15.084}
+{"event":"enquiry_write_failed","code":"SQLITE_READONLY","message":"attempt to write a readonly database"}
+{"time":"2026-11-01T12:23:35.523Z","method":"POST","path":"/api/enquiries","status":500,"serverDurationMs":32.774}

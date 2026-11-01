@@ -1,0 +1,41 @@
+Started at (UTC): 2026-11-01T13:36:05.979Z
+Finished at (UTC): 2026-11-01T13:39:18.371Z
+Database: C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold\data\enquiries-browser-2026-11-01T13-36-05-975Z.db
+Actual stdout/stderr from owned writable server runs. The first two successes were browser form submissions; the third is writable restoration.
+
+--- writable server PID 8092, http://127.0.0.1:63975 ---
+Kobo Watt listening at http://127.0.0.1:63975/ (PID 8092)
+{"time":"2026-11-01T13:36:08.703Z","method":"GET","path":"/","status":200,"serverDurationMs":24.424}
+{"time":"2026-11-01T13:36:08.735Z","method":"GET","path":"/","status":200,"serverDurationMs":14.485}
+{"time":"2026-11-01T13:36:08.770Z","method":"GET","path":"/styles/fonts.css","status":200,"serverDurationMs":15}
+{"time":"2026-11-01T13:36:08.771Z","method":"GET","path":"/styles/tokens.css","status":200,"serverDurationMs":13.102}
+{"time":"2026-11-01T13:36:08.774Z","method":"GET","path":"/styles/typography.css","status":200,"serverDurationMs":9.653}
+{"time":"2026-11-01T13:36:08.775Z","method":"GET","path":"/assets/layout-tokens.css","status":200,"serverDurationMs":10.162}
+{"time":"2026-11-01T13:36:08.776Z","method":"GET","path":"/assets/home.css","status":200,"serverDurationMs":10.849}
+{"time":"2026-11-01T13:36:08.782Z","method":"GET","path":"/assets/enquiry.js","status":200,"serverDurationMs":13.352}
+{"time":"2026-11-01T13:36:08.810Z","method":"GET","path":"/fonts/SourceSansPro-SemiBold-latin.woff2","status":200,"serverDurationMs":3.863}
+{"time":"2026-11-01T13:36:08.874Z","method":"GET","path":"/favicon.ico","status":404,"serverDurationMs":4.686}
+{"time":"2026-11-01T13:36:08.992Z","method":"POST","path":"/api/enquiries","status":400,"serverDurationMs":56.455}
+{"time":"2026-11-01T13:36:09.001Z","method":"POST","path":"/api/enquiries","status":400,"serverDurationMs":3.187}
+{"time":"2026-11-01T13:36:09.010Z","method":"GET","path":"/data/enquiries.db","status":404,"serverDurationMs":0.634}
+{"time":"2026-11-01T13:36:09.024Z","method":"GET","path":"/tools/inspect-db.js","status":404,"serverDurationMs":0.485}
+{"time":"2026-11-01T13:36:09.026Z","method":"GET","path":"/evidence/database-rows.json","status":404,"serverDurationMs":0.53}
+{"time":"2026-11-01T13:36:09.041Z","method":"GET","path":"/server.js","status":404,"serverDurationMs":0.539}
+{"event":"enquiry_saved","id":1,"created_at":"2026-11-01T13:36:09.052Z"}
+{"time":"2026-11-01T13:36:09.069Z","method":"POST","path":"/api/enquiries","status":201,"serverDurationMs":19.212}
+{"event":"enquiry_saved","id":2,"created_at":"2026-11-01T13:39:14.209Z"}
+{"time":"2026-11-01T13:39:14.218Z","method":"POST","path":"/api/enquiries","status":201,"serverDurationMs":11.316}
+--- restored writable server PID 23912, http://127.0.0.1:58679 ---
+Kobo Watt listening at http://127.0.0.1:58679/ (PID 23912)
+{"time":"2026-11-01T13:39:16.893Z","method":"GET","path":"/","status":200,"serverDurationMs":13.478}
+{"time":"2026-11-01T13:39:16.903Z","method":"GET","path":"/","status":200,"serverDurationMs":2.107}
+{"time":"2026-11-01T13:39:16.918Z","method":"GET","path":"/styles/fonts.css","status":200,"serverDurationMs":6.149}
+{"time":"2026-11-01T13:39:16.919Z","method":"GET","path":"/styles/tokens.css","status":200,"serverDurationMs":6.378}
+{"time":"2026-11-01T13:39:16.921Z","method":"GET","path":"/styles/typography.css","status":200,"serverDurationMs":6.023}
+{"time":"2026-11-01T13:39:16.922Z","method":"GET","path":"/assets/layout-tokens.css","status":200,"serverDurationMs":6.06}
+{"time":"2026-11-01T13:39:16.923Z","method":"GET","path":"/assets/home.css","status":200,"serverDurationMs":6.728}
+{"time":"2026-11-01T13:39:16.927Z","method":"GET","path":"/assets/enquiry.js","status":200,"serverDurationMs":3.426}
+{"time":"2026-11-01T13:39:16.938Z","method":"GET","path":"/fonts/SourceSansPro-SemiBold-latin.woff2","status":200,"serverDurationMs":2.682}
+{"time":"2026-11-01T13:39:16.957Z","method":"GET","path":"/favicon.ico","status":404,"serverDurationMs":3.358}
+{"event":"enquiry_saved","id":3,"created_at":"2026-11-01T13:39:17.052Z"}
+{"time":"2026-11-01T13:39:17.069Z","method":"POST","path":"/api/enquiries","status":201,"serverDurationMs":32.752}

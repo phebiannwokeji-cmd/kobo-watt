@@ -1,0 +1,20 @@
+Owned server PID 6196, URL http://127.0.0.1:51991, readonly=false; home 200
+HTTP integration run; browser launch unavailable. Browser interaction not claimed.
+Invalid input: 400 and zero rows
+Malformed JSON: 400 and zero rows
+Database, tools, evidence and source routes return 404
+POST 201: {"id":1,"created_at":"2026-11-01T12:21:29.531Z"}
+First persisted row: {"id":1,"name":"Fictional Salon Alpha","phone":"00000000000","business_type":"salon","created_at":"2026-11-01T12:21:29.531Z"}
+Waiting 125 real seconds before the second submission.
+POST 201: {"id":2,"created_at":"2026-11-01T12:23:34.581Z"}
+Second persisted row: {"id":2,"name":"Fictional O'Example Salon","phone":"00000000000","business_type":"salon","created_at":"2026-11-01T12:23:34.581Z"}
+Stopped owned PID 6196
+Owned server PID 16596, URL http://127.0.0.1:58228, readonly=true; home 200
+POST 500: {"error":"Unable to save this demonstration enquiry. Your details remain below."}
+Read-only rejection: exact persisted rows unchanged; browser retention not tested in this HTTP run
+Stopped owned PID 16596
+Owned server PID 11412, URL http://127.0.0.1:52158, readonly=false; home 200
+POST 201: {"id":3,"created_at":"2026-11-01T12:23:36.429Z"}
+Writable restoration: third row persisted
+PASS: persistence, validation, failure, retention, restoration and HTTP checks
+Stopped owned PID 11412

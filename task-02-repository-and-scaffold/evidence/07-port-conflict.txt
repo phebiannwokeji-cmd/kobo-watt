@@ -1,0 +1,27 @@
+TASK 2 DELIBERATE BREAKAGE — PORT CONFLICT
+Recorded at (UTC): 2026-11-01T06:01:29.507Z
+Context: Isolated assessment drill for port conflict reproduction (not Kobo Watt).
+Safety: Executed on an ephemeral OS-assigned port; production port 3000 untouched.
+
+1. Practice Server A Started:
+   Working Directory: C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\port-drill
+   Command: node serverA.js
+   Bound Address: 127.0.0.1:55047
+   Process ID (PID): 7320
+
+2. Practice Server B Attempted on Same Address & Port:
+   Working Directory: C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\port-drill
+   Command: node serverB.js 55047
+   Process ID (PID): 29976
+   Actual Exit Code: 1
+   Actual Terminal Error Output:
+SERVER_B_ERROR: code=EADDRINUSE errno=-4091 syscall=listen port=55047
+Error: listen EADDRINUSE: address already in use 127.0.0.1:55047
+
+3. Read-Only Detection Command (Windows PowerShell):
+   Command: Get-NetTCPConnection -LocalPort 55047 | Select-Object LocalAddress, LocalPort, State, OwningProcess
+   Actual Output:
+LocalAddress LocalPort  State OwningProcess
+------------ ---------  ----- -------------
+127.0.0.1        55047 Listen          7320
+   Confirmation: OwningProcess (7320) verified to match Practice Server A before taking any action.

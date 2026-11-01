@@ -1,0 +1,20 @@
+USER-REPORTED MANUAL BROWSER RELOAD MEASUREMENT
+
+Page URL: http://127.0.0.1:3000/
+Status: 200
+Disable cache: ticked
+DOMContentLoaded: 811 ms
+Load: 1.52 s
+Finish: 2.20 s
+Requests: 7
+Transferred: 45.3 kB
+Resources: 43.2 kB
+
+Context and Limitations:
+- This is a later manual browser reload reported by the user.
+- It is not the original first load or an independently reproduced test.
+- The browser version, device specifications, and exact measurement timestamp were not supplied.
+- Load (1.52 s) and Finish (2.20 s) reflect client-side browser lifecycle events; neither represents server processing time.
+- A single measurement run does not establish typical performance or network baseline.
+- Preserves 04b-first-load.txt and historical 04-first-load.txt records intact.
+

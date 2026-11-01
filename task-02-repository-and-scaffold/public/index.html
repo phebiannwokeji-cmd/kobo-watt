@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/styles/typography.css">
   <link rel="stylesheet" href="/assets/layout-tokens.css">
   <link rel="stylesheet" href="/assets/home.css">
+  <script src="/assets/enquiry.js" defer></script>
 </head>
 <body class="kw-typography-body-large">
   <div class="page">
@@ -22,6 +23,25 @@
         <a class="demo-link kw-typography-label-large" href="/demo/">View demo account</a>
       </div>
       <p class="notice kw-typography-body-medium">Demonstration only. No real payments or equipment control.</p>
+      <section class="enquiry" aria-labelledby="enquiry-heading">
+        <h2 id="enquiry-heading" class="kw-typography-title-large">Try a solar enquiry</h2>
+        <p id="enquiry-notice" class="kw-typography-body-medium">Demonstration only: no real callback will be arranged or equipment installed. Use fictional details only.</p>
+        <form id="enquiry-form" aria-describedby="enquiry-notice">
+          <label class="kw-typography-label-large" for="enquiry-name">Fictional name</label>
+          <input class="kw-typography-body-large" id="enquiry-name" name="name" maxlength="80" required autocomplete="off">
+          <label class="kw-typography-label-large" for="enquiry-phone">Fictional phone number</label>
+          <input class="kw-typography-body-large" id="enquiry-phone" name="phone" type="tel" minlength="7" maxlength="20" required autocomplete="off" aria-describedby="phone-hint">
+          <p id="phone-hint" class="kw-typography-body-small">For this test, use 00000000000. No calls or messages will be sent.</p>
+          <label class="kw-typography-label-large" for="enquiry-business">Business type</label>
+          <select class="kw-typography-body-large" id="enquiry-business" name="business_type" required>
+            <option value="">Choose a business type</option>
+            <option value="salon">Salon</option><option value="shop">Shop</option><option value="other">Other</option>
+          </select>
+          <button class="demo-link kw-typography-label-large" type="submit" disabled>Save demonstration enquiry</button>
+          <p id="enquiry-status" class="kw-typography-body-medium" role="status" aria-live="polite"></p>
+          <noscript>This demonstration form needs JavaScript to save. No enquiry has been sent.</noscript>
+        </form>
+      </section>
     </main>
   </div>
 </body>

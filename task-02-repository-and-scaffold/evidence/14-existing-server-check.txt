@@ -1,0 +1,11 @@
+﻿Recorded at (UTC): 2026-11-01T13:29:36.7888789Z
+Existing project server examined before any stop:
+ProcessId: 11188
+ParentProcessId: 22984
+Name: node.exe
+CommandLine: "C:\Program Files\nodejs\node.exe" server.js
+HTTP check: GET http://127.0.0.1:51992/ returned 200 and the Task 2 enquiry form markup.
+Parent command line confirms DB_READONLY=1 and PORT=51992 for this project.
+Decision: this server belongs to task-02-repository-and-scaffold. It will be stopped only after this record, so npm ci can replace node_modules on Windows.
+Follow-up: after the identity check above, ProcessId 11188 was stopped with Stop-Process -Force. A follow-up request to 127.0.0.1:51992 failed, confirming the port no longer responded. The exact stop timestamp was not separately captured.
+

@@ -4,13 +4,14 @@ This branch (`task-02/antigravity-scaffold-rebuild`) contains an independent reb
 
 ## Run locally
 
-Prerequisites: Node.js (>=18) and npm.
+Prerequisites: Node.js (>=22) and npm.
 The verified local environment uses Node v24.19.0 and npm 11.17.0.
 From the repository root in Windows PowerShell:
 
 ```powershell
 cd task-02-repository-and-scaffold
-npm.cmd ci
+npm.cmd ci --ignore-scripts
+npm.cmd run db:init
 npm.cmd start
 ```
 
@@ -18,14 +19,23 @@ Open http://127.0.0.1:3000/. Stop the server with Ctrl+C in its terminal.
 For automatic restart during development: `npm.cmd run dev`.
 On Unix shells, use `npm` instead of `npm.cmd`.
 
+**Why `--ignore-scripts` is shown for this machine.** A plain `npm.cmd ci`
+attempted a `node-gyp rebuild` for better-sqlite3 and failed because this
+machine has no Windows SDK. better-sqlite3 13.0.3 ships a published
+`prebuilds/win32-x64.node`, so `npm.cmd ci --ignore-scripts` installs that
+prebuilt module without running lifecycle scripts. Verify the native module
+loads before relying on it. The plain-install failure and the successful
+install are both recorded in `evidence/`.
+
 If npm encounters certificate issues in PowerShell on this machine:
 
 ```powershell
 $env:NODE_USE_SYSTEM_CA = '1'
-npm.cmd ci
+npm.cmd ci --ignore-scripts
 ```
 
-Do not disable certificate verification.
+`NODE_USE_SYSTEM_CA` uses the system certificate store. Do not disable
+certificate verification.
 
 Optional `PORT` selects an alternate port (1–65535) if port 3000 is occupied. The server binds exclusively to `127.0.0.1`. If the requested port is busy, the server logs an `EADDRINUSE` error and exits without terminating any running process.
 
@@ -57,3 +67,70 @@ Task 1 provides colour roles, typography classes, and shadow tokens. [Layout tok
   - [Historical Server Startup](evidence/03-server-start.txt)
   - [Historical First Load](evidence/04-first-load.txt)
   - [Historical Verification](evidence/scaffold-verification.txt)
+
+- **Preserved earlier enquiry evidence (not overwritten):**
+  - [Success logs](evidence/11-write-succeeded-logs.txt)
+  - [Database row screenshot](evidence/12-database-rows.png)
+  - [Failure logs](evidence/13-write-failed-logs.txt)
+  - [Database rows JSON](evidence/database-rows.json)
+  - [HTTP checks](evidence/enquiry-http-checks.txt)
+
+- **Later browser-driven enquiry verification (this run):**
+  - [Existing server check before stopping](evidence/14-existing-server-check.txt)
+  - [Dependency registry verification](evidence/15-dependency-verification.txt)
+  - [Plain `npm ci` failure](evidence/16-dependency-install.txt)
+  - [Successful install with prebuilt binary](evidence/16b-dependency-install-success.txt)
+  - [Failed smoke-test attempt (diagnostic)](evidence/17a-database-smoke-test-attempt-failed.txt)
+  - [Successful separate database smoke test](evidence/17b-database-smoke-test-success.txt)
+  - [Success logs](evidence/18-browser-write-succeeded-logs.txt)
+  - [Read-only failure logs](evidence/19-browser-write-failed-logs.txt)
+  - [Database row screenshot](evidence/20-browser-database-rows.png)
+  - [Checks](evidence/21-browser-checks.txt)
+  - [Database rows JSON](evidence/22-browser-database-rows.json)
+  - [Database rows HTML](evidence/23-browser-database-rows.html)
+  - [Rows after restoration](evidence/24-browser-database-rows-after-restoration.png)
+  - [Rows after restoration JSON](evidence/25-browser-database-rows-after-restoration.json)
+  - [Rows after restoration HTML](evidence/26-browser-database-rows-after-restoration.html)
+  - [Read-only inspection script check](evidence/27-inspection-script.txt)
+
+## Fictional enquiry feature (Codex, later Task 2 feature)
+
+The home page includes a fictional enquiry form; it does not arrange a callback,
+create an account or take payment. POST /api/enquiries returns 201 only after
+SQLite saves the row. Invalid input returns 400; a database write failure returns
+500 with a generic message. A lost response may leave the save outcome unknown;
+this demo has no idempotency key, so check stored rows before retrying.
+
+Run `npm.cmd run db:init` explicitly before starting. Startup does not create or
+migrate the database. Inspect saved rows locally with `npm.cmd run db:inspect`.
+The runtime database and sidecars are ignored, not public routes and not committed.
+Use fictional data only. This unauthenticated local demo is not production-ready.
+
+Environment variables:
+- `PORT`: loopback server port, default 3000.
+- `DATABASE_PATH`: database filename, relative to Task 2 or absolute; default
+  `data/enquiries.db`. Custom runtime SQLite files must remain outside public routes
+  and must not be committed.
+- `DB_READONLY`: set exactly `1` to reject writes while keeping the form available.
+  Initialise first, stop only your owned application process, set this value, and
+  restart. Remove it and restart to restore writable operation.
+- `NODE_USE_SYSTEM_CA`: optional Node system certificate trust setting as above;
+  never disable certificate verification.
+
+The `sqlite3` CLI is not installed on the verified machine. `tools/inspect-db.js`
+is the read-only Node fallback; it never opens a write handle.
+
+`npm.cmd run test:enquiries` is the earlier opt-in browser recorder. It requires
+Chrome (or `CHROME_PATH`), an empty database and absent output files, waits 125
+seconds between submissions, and refuses to replace existing evidence. It was not
+the successful browser run: headless launches failed in that earlier session, so
+the preserved `11`–`13` records come from HTTP submissions.
+
+`npm.cmd run test:enquiry-browser` is the later browser-driven verifier used for
+the successful `18`–`26` records. It initialises a fresh database, submits the real
+form twice about three minutes apart, performs the `DB_READONLY=1` failure exercise,
+restores writable operation, and stops only the servers it started. It also refuses
+to overwrite existing evidence. The exact observed results are in
+[false success](docs/false-success.md); tool attribution is in
+[tool and model choices](docs/model-choices.md). The approved plan and the later
+handoff are recorded in [approved plan and handoff](docs/enquiry-approved-plan-and-handoff.md).

@@ -1,0 +1,37 @@
+TASK 2 DELIBERATE BREAKAGE RECOVERY — 404 AND BLANK PAGE RESOLVED
+Recorded at (UTC): 2026-11-01T11:18:40Z
+Context: Isolated assessment drill (not the Kobo Watt application).
+Practice Path: C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\notfound-drill
+
+1. Code Modification in server.js:
+Added explicit route mapping for "/" pointing to public/index.html while preserving "/index.html":
+```javascript
+const staticRoutes = {
+  '/': path.join(__dirname, 'public/index.html'),
+  '/index.html': path.join(__dirname, 'public/index.html')
+};
+```
+
+2. Process Identification and Restart:
+- Pre-restart inspection: Checked PID 9140 and port 54347; confirmed that PID 9140 was already absent following a host server restart.
+- Server restart command: node server.js
+- Repaired practice server details:
+  - Working Directory: C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\notfound-drill
+  - Host Address: 127.0.0.1
+  - Assigned Port: 58044
+  - Active Process ID (PID): 21524
+
+3. Verification Requests & Observed Results:
+- Request 1: GET http://127.0.0.1:58044/
+  - HTTP Status: 200 OK
+  - Content-Type: text/html; charset=utf-8
+  - Response Body: Successfully returned public/index.html (220 bytes, contains "Practice Service").
+- Request 2: GET http://127.0.0.1:58044/index.html
+  - HTTP Status: 200 OK
+  - Content-Type: text/html; charset=utf-8
+  - Response Body: Successfully returned public/index.html (220 bytes, contains "Practice Service").
+
+4. Operational Status:
+- The practice server (PID 21524) remains running on http://127.0.0.1:58044/ for interactive inspection.
+- The Kobo Watt application, Task 1 design system, and earlier historical evidence were not modified.
+

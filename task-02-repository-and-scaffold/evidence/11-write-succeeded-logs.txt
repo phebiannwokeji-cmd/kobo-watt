@@ -1,0 +1,18 @@
+Captured 2026-11-01T12:23:36.496Z
+Actual complete stdout/stderr of owned writable server runs. First two submissions were HTTP POSTs using the form endpoint, not browser interactions. Third is writable restoration.
+Kobo Watt listening at http://127.0.0.1:51991/ (PID 6196)
+{"time":"2026-11-01T12:21:29.366Z","method":"GET","path":"/","status":200,"serverDurationMs":15.561}
+{"time":"2026-11-01T12:21:29.435Z","method":"POST","path":"/api/enquiries","status":400,"serverDurationMs":38.425}
+{"time":"2026-11-01T12:21:29.454Z","method":"POST","path":"/api/enquiries","status":400,"serverDurationMs":3.383}
+{"time":"2026-11-01T12:21:29.468Z","method":"GET","path":"/data/enquiries.db","status":404,"serverDurationMs":1.06}
+{"time":"2026-11-01T12:21:29.484Z","method":"GET","path":"/tools/inspect-db.js","status":404,"serverDurationMs":0.955}
+{"time":"2026-11-01T12:21:29.493Z","method":"GET","path":"/evidence/database-rows.json","status":404,"serverDurationMs":0.849}
+{"time":"2026-11-01T12:21:29.515Z","method":"GET","path":"/server.js","status":404,"serverDurationMs":1.088}
+{"event":"enquiry_saved","id":1,"created_at":"2026-11-01T12:21:29.531Z"}
+{"time":"2026-11-01T12:21:29.542Z","method":"POST","path":"/api/enquiries","status":201,"serverDurationMs":14.155}
+{"event":"enquiry_saved","id":2,"created_at":"2026-11-01T12:23:34.581Z"}
+{"time":"2026-11-01T12:23:34.600Z","method":"POST","path":"/api/enquiries","status":201,"serverDurationMs":21.013}
+Kobo Watt listening at http://127.0.0.1:52158/ (PID 11412)
+{"time":"2026-11-01T12:23:36.365Z","method":"GET","path":"/","status":200,"serverDurationMs":29.81}
+{"event":"enquiry_saved","id":3,"created_at":"2026-11-01T12:23:36.429Z"}
+{"time":"2026-11-01T12:23:36.461Z","method":"POST","path":"/api/enquiries","status":201,"serverDurationMs":80.582}

@@ -1,0 +1,21 @@
+TASK 2 DELIBERATE BREAKAGE — NESTED FOLDER ERROR
+Recorded at (UTC): 2026-11-01T05:46:00Z
+Context: Isolated assessment drill for nested folder reproduction (not the Kobo Watt application).
+Server state: At the recorded check, PID 19972 was absent and port 3000 had no listener. Its state before the drill, and when or why it stopped, were not established.
+
+Command: npm.cmd start
+Working Directory: C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\nested-drill
+
+Terminal Output:
+npm error code ENOENT
+npm error syscall open
+npm error path C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\nested-drill\package.json
+npm error errno -4058
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\nested-drill\package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: C:\Users\LENOVO PC\AppData\Local\npm-cache\_logs\2026-11-01T05_45_50_364Z-debug-0.log
+
+Exit Code: -4058 (non-zero failure)
+Diagnosis: The scaffolding files were placed inside an unexpected nested subfolder (nested-app/). Running startup commands from the parent directory fails because package.json does not exist in the working directory.
+

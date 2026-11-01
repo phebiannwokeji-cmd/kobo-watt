@@ -1,0 +1,22 @@
+TASK 2 DELIBERATE BREAKAGE — 404 AND BLANK PAGE
+Recorded at (UTC): 2026-11-01T11:11:00Z
+Context: Isolated assessment drill (not the Kobo Watt application).
+Target Path: C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\notfound-drill
+
+Observed Failure:
+- Requested path: /
+- Listed route in server.js: /index.html
+- File existence: The user checked and confirmed that public/index.html exists.
+- Browser observations:
+  - HTTP Status: HTTP ERROR 404
+  - Document duration: 594 ms
+  - Browser settings: Disable cache was ticked; network throttling "Slow 4G" was selected.
+  - Page visual: Blank page (empty response body).
+
+Diagnosis and Investigation Notes:
+- Root Cause: The server's route mapping table explicitly defined only "/index.html". When requesting "/", no route matched, causing the catch-all branch in server.js to emit an HTTP 404 status code with an empty string body ('').
+- Investigation Chronology & Attribution:
+  - The user initially inspected the real application server before opening the practice server.
+  - The route comparison and explanation were developed with ChatGPT guidance, not independently.
+  - No additional checks were performed.
+

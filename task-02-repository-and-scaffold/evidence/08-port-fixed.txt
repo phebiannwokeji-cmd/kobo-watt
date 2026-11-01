@@ -1,0 +1,24 @@
+TASK 2 DELIBERATE BREAKAGE RECOVERY — PORT CONFLICT RESOLVED
+Recorded at (UTC): 2026-11-01T06:01:29.509Z
+Context: Isolated assessment drill for port conflict resolution (not Kobo Watt).
+
+1. Stopped Practice Server A:
+   PID 7320 terminated cleanly.
+
+2. Practice Server B Restarted on Same Port:
+   Working Directory: C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\port-drill
+   Command: node serverB.js 55047
+   New Process ID (PID): 13664
+   Actual Startup Output:
+SERVER_B_LISTENING: PID=13664 PORT=55047 HOST=127.0.0.1
+
+3. HTTP Request Verification:
+   Request: GET http://127.0.0.1:55047/
+   HTTP Status: 200
+   Response Body: Practice Server B active on port 55047
+
+4. Process Cleanup Verification:
+   Practice Server B (PID 13664) stopped cleanly.
+   Process check for Server A (PID 7320): absent (exit code 1 / null output).
+   Process check for Server B (PID 13664): absent (exit code 1 / null output).
+   Both drill processes fully terminated.
