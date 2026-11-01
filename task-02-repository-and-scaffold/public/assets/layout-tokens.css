@@ -1,6 +1,6 @@
-/* Approved Task 2-local layout tokens; not generated Task 1 tokens.
-   Rem conversions correspond to Task 1 values at a 16px root size.
-   The root font size is intentionally not forced. */
+/* Kobo Watt Task 2 — Layout tokens
+   Rem-based layout definitions for container widths, spacing, button padding, and focus.
+   Corresponds to Task 1 spacing at 16px root size while scaling with user font preferences. */
 :root {
   --kw-layout-max-width: 30rem;
   --kw-layout-space-small: 0.5rem;

@@ -1,0 +1,15 @@
+First request recorded by the freshly rebuilt Express server (Antigravity):
+{"time":"2026-11-01T04:56:16.012Z","method":"GET","path":"/","status":200,"serverDurationMs":29.284}
+
+Measurement method:
+- serverDurationMs (29.284ms): Express server middleware measuring request handling until response finish.
+- Client round-trip time: 47ms (HTTP GET / client socket request to response end).
+- Explicit limitation: Full browser page-load timing was not measured in that run. The server-duration and client round-trip figures reflect HTTP network request/response handling only, not complete browser page lifecycle, subresource parsing, or layout rendering.
+- Historical measurements: Preserved unchanged in 04-first-load.txt.
+
+Verification details:
+- Clean server start on 127.0.0.1:3000.
+- Initial GET / returned status 200 with HTML body.
+- Canonical /demo route returned 302 to /demo/.
+- Whitelisted Task 1 assets returned 200.
+- Unauthorized project files (.git/config, server.js, docs, evidence) returned 404.

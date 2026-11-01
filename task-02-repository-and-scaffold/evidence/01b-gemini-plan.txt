@@ -1,0 +1,118 @@
+ANTIGRAVITY TASK 2 SCAFFOLD REBUILD PLAN
+Agent: Gemini 3.8 Flash in Google Antigravity
+Branch: task-02/antigravity-scaffold-rebuild
+Status: Planning only; awaiting user approval before implementation.
+
+1. Background and Attribution
+- The initial Task 2 scaffold and evidence were planned with Antigravity assistance but implemented by OpenAI Codex on main.
+- That historical implementation and all associated records have been preserved intact in recovery commit 097bfcd on branch main.
+- This plan defines a fresh, independent rebuild authored by Gemini 3.8 Flash in Google Antigravity on branch task-02/antigravity-scaffold-rebuild.
+- Earlier plans, approvals, and evidence files (01-agent-plan.txt, 01-agent-plan-approval.txt, etc.) are retained untouched as historical records.
+
+2. Goal and Scope Boundaries
+- Implement the project setup and a minimal home screen inside task-02-repository-and-scaffold.
+- The minimal home screen contains:
+  1. The Kobo Watt name ("Kobo Watt").
+  2. Main heading: "Power for your business".
+  3. Short service explanation based on the business brief:
+     "Kobo Watt is a fictional rent-to-own solar and inverter service for small businesses in Ikeja, Lagos. Explore a demonstration account showing recorded access and payment information."
+  4. One link to the demonstration account: "View demo account" pointing to /demo/ in the same tab.
+  5. Clear demonstration notice:
+     "Demonstration only. No real payments or equipment control."
+- Strictly excluded: databases, authentication, user signups, sessions, payment gateways, hardware control, or extra product features.
+- Zero modifications to Task 1 files.
+
+3. Verified Runtime and Dependencies
+- Node runtime: >=18 (tested local environment: Node v24.19.0, npm 11.17.0).
+- Pinned dependency: express@5.3.0 in package.json.
+- Server implementation: Node.js standard library with CommonJS (server.js).
+- Frontend: Pure semantic HTML and CSS. No client-side JavaScript on the home page.
+- Build tooling: None. No bundlers, compilers, minifiers, or templating engines.
+- Scripts:
+  - start: "node server.js"
+  - dev: "node --watch server.js"
+- Local installation handles system CA if necessary ($env:NODE_USE_SYSTEM_CA = '1') without disabling certificate validation.
+
+4. Source Documents and Design Systems
+- Authoritative sources:
+  - Task 1 docs/business-brief.md
+  - Task 1 docs/type-scale.md
+  - Task 1 generated CSS tokens and typography classes
+- Historical reference:
+  - Task 1 evidence/business-brief.md is preserved as historical evidence only; its regular/bold clause is superseded by the type-scale record.
+- Typography:
+  - Source Sans Pro SemiBold (weight 600) for all text styles, with line-height ratio of 1.5.
+  - Class mapping:
+    - Brand: Title Large (kw-typography-title-large)
+    - Heading: Display Small (kw-typography-display-small)
+    - Explanation: Body Large (kw-typography-body-large)
+    - Demo link: Label Large (kw-typography-label-large)
+    - Demonstration notice: Body Medium (kw-typography-body-medium)
+- Color & Shadow Roles:
+  - Referenced exclusively from Task 1 generated tokens (/styles/tokens.css).
+  - No hardcoded hex values, invented colors, or unauthorized shadows.
+
+5. Layout Tokens and Link Sizing
+- Layout tokens stored locally in task-02-repository-and-scaffold/public/assets/layout-tokens.css:
+  --kw-layout-max-width: 30rem;
+  --kw-layout-space-small: 0.5rem;
+  --kw-layout-space-medium: 0.75rem;
+  --kw-layout-page-padding: 1rem;
+  --kw-layout-section-gap: 1.5rem;
+  --kw-layout-button-padding-block: 0.625rem;
+  --kw-layout-button-padding-inline: 1rem;
+  --kw-layout-radius: 0.5rem;
+  --kw-layout-border-width: 1px;
+  --kw-layout-focus-width: 3px;
+  --kw-layout-focus-offset: 2px;
+- Rem values scale with root font size; root font size is not fixed.
+- Button padding uses rem units (--kw-layout-button-padding-block, --kw-layout-button-padding-inline).
+- No fixed width or height on the demo link; text wraps freely without clipping.
+- Focus outline is clearly visible and offset.
+
+6. Server Architecture and Route Whitelist
+- Express server bound strictly to loopback 127.0.0.1.
+- Default port: 3000 (overrideable via PORT environment variable 1–65535).
+- If the port is in use, fail gracefully with an EADDRINUSE message without stopping existing processes.
+- Strict routing enabled (app.enable('strict routing')).
+- Strict route whitelist using fixed absolute paths via res.sendFile:
+  - GET /                            -> public/index.html
+  - GET /assets/layout-tokens.css    -> public/assets/layout-tokens.css
+  - GET /assets/home.css             -> public/assets/home.css
+  - GET /demo                        -> 302 redirect to /demo/
+  - GET /demo/                       -> ../task-01-design-system/prototype/index.html
+  - GET /demo/index.html             -> ../task-01-design-system/prototype/index.html
+  - GET /demo/help.html              -> ../task-01-design-system/prototype/help.html
+  - GET /demo/help-no-power.html     -> ../task-01-design-system/prototype/help-no-power.html
+  - GET /demo/screen.css             -> ../task-01-design-system/prototype/screen.css
+  - GET /demo/demo.js                -> ../task-01-design-system/prototype/demo.js
+  - GET /styles/fonts.css            -> ../task-01-design-system/styles/fonts.css
+  - GET /styles/tokens.css           -> ../task-01-design-system/styles/tokens.css
+  - GET /styles/typography.css       -> ../task-01-design-system/styles/typography.css
+  - GET /fonts/SourceSansPro-SemiBold-latin.woff2     -> ../task-01-design-system/fonts/SourceSansPro-SemiBold-latin.woff2
+  - GET /fonts/SourceSansPro-SemiBold-latin-ext.woff2 -> ../task-01-design-system/fonts/SourceSansPro-SemiBold-latin-ext.woff2
+- All non-whitelisted paths return HTTP 404 with plain text "Not found".
+- Never expose the repository root, .git directory, docs, evidence, or tools.
+
+7. Files to Implement in Phase D
+- On branch task-02/antigravity-scaffold-rebuild, author clean fresh implementations:
+  - package.json
+  - server.js
+  - public/index.html
+  - public/assets/home.css
+  - public/assets/layout-tokens.css
+  - README.md (documenting the Antigravity rebuild and local run instructions)
+
+8. Verification Protocol (Phase E)
+- Automated HTTP status checks across all whitelist routes and excluded paths.
+- Verification that / returns 200 and loads fonts, tokens, layout, and home CSS.
+- Verification that /demo redirects to /demo/ (302).
+- Verification that /demo/ loads prototype assets and navigates to both help screens.
+- Verification that unauthorized files (.git/config, server.js, docs, evidence) return 404.
+- Verification of visible keyboard focus and wrapping behavior on the demo button.
+- SHA-256 fingerprint verification that all files in task-01-design-system remain identical.
+- Timing evidence recording real first-load server duration and browser-load metrics into separate 03b-* and 04b-* evidence files.
+
+9. Approval Checkpoint
+- No implementation, code replacement, dependency installation, or process startup will occur until the user explicitly approves this plan.
+

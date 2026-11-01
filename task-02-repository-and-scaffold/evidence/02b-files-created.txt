@@ -1,0 +1,95 @@
+TASK 2 ANTIGRAVITY SCAFFOLD REBUILD — FILES AND SELF-AUDIT
+Recorded at (UTC): 2026-11-01T05:07:00Z
+Agent: Gemini 3.8 Flash in Google Antigravity (confirmed from Antigravity model selector)
+Branch: task-02/antigravity-scaffold-rebuild
+
+Freshly Implemented / Modified Files:
+- task-02-repository-and-scaffold/server.js:
+  Fresh CommonJS implementation using Express 5.3.0, strict routing, explicit file route whitelist for Task 1 and Task 2 assets, canonical /demo redirect, loopback binding on 127.0.0.1, structured duration logging, graceful EADDRINUSE handling, graceful SIGTERM/SIGINT shutdown, and plain text 404 responses for non-whitelisted paths.
+- task-02-repository-and-scaffold/public/index.html:
+  Clean semantic markup containing brand name ("Kobo Watt"), main heading ("Power for your business"), service explanation from the business brief, "View demo account" link pointing to /demo/, and demonstration notice.
+- task-02-repository-and-scaffold/public/assets/layout-tokens.css:
+  Fresh layout token definitions:
+  - Container width, spacing, button padding, and radius use rem units:
+    --kw-layout-max-width: 30rem;
+    --kw-layout-space-small: 0.5rem;
+    --kw-layout-space-medium: 0.75rem;
+    --kw-layout-page-padding: 1rem;
+    --kw-layout-section-gap: 1.5rem;
+    --kw-layout-button-padding-block: 0.625rem;
+    --kw-layout-button-padding-inline: 1rem;
+    --kw-layout-radius: 0.5rem;
+  - Border and focus dimensions use pixel units:
+    --kw-layout-border-width: 1px;
+    --kw-layout-focus-width: 3px;
+    --kw-layout-focus-offset: 2px;
+- task-02-repository-and-scaffold/public/assets/home.css:
+  Fresh home screen stylesheet applying Task 1 color roles (--kw-color-*) and shadow (--kw-shadow-soft) alongside Task 2 layout tokens. Includes inline-block demo link with rem padding, wrapping without clipping, and visible focus outline.
+- task-02-repository-and-scaffold/package.json:
+  Verified pinned Express 5.3.0 dependency and standard scripts (start, dev).
+- task-02-repository-and-scaffold/README.md:
+  Updated documentation detailing the Antigravity rebuild branch, local run instructions, design system integration, and evidence artifact references.
+
+Test and Verification Tooling:
+- Scratch test harness:
+  C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\verify-scaffold.js
+  Automated script that starts server.js, probes all 22 whitelist and excluded routes, records server startup and request logs, and verifies response codes.
+- Scratch browser test harness:
+  C:\Users\LENOVO PC\.gemini\antigravity\brain\1f96a7a7-2e8a-45d9-8170-86a8474fd056\scratch\browser-test.mjs
+  Headless Chrome CDP automation verifying 320px viewport wrapping, Tab focus outline, and Enter navigation.
+
+Preserved Historical Records (on main commit 097bfcd and carried on this branch):
+- evidence/01-agent-plan.txt
+- evidence/01-agent-plan-approval.txt
+- evidence/02-files-created.txt
+- evidence/03-server-start.txt
+- evidence/04-first-load.txt
+- evidence/scaffold-verification.txt
+
+New Rebuild Evidence Records:
+- evidence/01b-gemini-plan.txt
+- evidence/01b-gemini-plan-approval.txt
+- evidence/02b-files-created.txt
+- evidence/03b-server-start.txt
+- evidence/04b-first-load.txt
+- evidence/scaffold-verification-antigravity.txt
+
+Browser Verification Observations (at 320px viewport width in headless Chrome):
+1. Initial Button Metrics:
+   - Label: "View demo account"
+   - Width: 148.55px, Height: 43px
+   - Page scrollWidth: 320px, clientWidth: 320px (no horizontal overflow)
+2. Long Label Wrapping Check:
+   - Temporarily replaced link text in DOM with:
+     "View demonstration account showing recorded solar access and simulated payment information"
+   - Result: Button expanded horizontally to 288px (filling available width between 16px page margins: 320px - 32px = 288px) and grew vertically to 85px to accommodate wrapped text lines.
+   - Text wrapped naturally (`white-space: normal`, `overflow-wrap: break-word`).
+   - Page scrollWidth: 320px, clientWidth: 320px (no horizontal scrolling or clipping).
+3. Restored Label:
+   - Reset back to "View demo account".
+4. Keyboard Navigation & Focus Outline:
+   - Dispatched Tab key event. Link received focus (`document.activeElement === link`).
+   - Focus outline observed: 3px solid #006b5e (`rgb(0, 107, 94)`) with 2px outline-offset (`--kw-layout-focus-width: 3px`, `--kw-layout-focus-offset: 2px`).
+   - High visual contrast against the surface background.
+5. Navigation:
+   - Dispatched Enter key event while focused on demo link.
+   - Browser navigated successfully to `http://127.0.0.1:3000/demo/`.
+   - Loaded Account Summary page (Title: "Account summary — Kobo Watt demonstration", heading: "Account summary").
+
+Instruction-by-Instruction Self-Audit:
+1. "Node/Express 5.3.0, plain HTML and CSS":
+   Satisfied. Express 5.3.0 with standard Node http stack; no frontend framework or build system.
+2. "Minimal home screen with the approved wording and demo link":
+   Satisfied. Contains exact approved brand, heading, explanation, demo link, and demonstration notice.
+3. "Existing Task 1 colour roles, typography, and shadows":
+   Satisfied. Uses only generated tokens and utility classes; no hardcoded hex or custom shadows.
+4. "Approved Task 2 layout tokens and rem-based button padding":
+   Satisfied. Button padding (`0.625rem` block, `1rem` inline) and radius (`0.5rem`) use rem units. Border width is 1px, focus width is 3px, and focus offset is 2px. Demo link wraps without clipping.
+5. "One server, fixed routes to the existing Task 1 demo and assets":
+   Satisfied. Direct file routing to Task 1 prototype, stylesheets, and fonts via absolute paths.
+6. "No repository-root serving":
+   Satisfied. Only whitelisted paths resolve; all other URLs return 404 plain text.
+7. "No Task 1 modifications":
+   Satisfied. Task 1 files remain completely untouched.
+8. "No database, authentication, payments, or extra product features":
+   Satisfied. Strictly minimal scaffold as required.

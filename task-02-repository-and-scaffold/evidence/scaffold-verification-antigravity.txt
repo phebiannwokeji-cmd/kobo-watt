@@ -1,0 +1,185 @@
+{
+  "recordedAt": "2026-11-01T04:56:17.429Z",
+  "agent": "Gemini 3.8 Flash in Google Antigravity",
+  "branch": "task-02/antigravity-scaffold-rebuild",
+  "method": "Automated HTTP probe after clean process startup; measures server responses",
+  "firstLoadDurationClientMs": 47,
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 1176,
+      "location": null
+    },
+    {
+      "route": "/demo",
+      "status": 302,
+      "expected": 302,
+      "pass": true,
+      "bytes": 28,
+      "location": "/demo/"
+    },
+    {
+      "route": "/demo/",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 6170,
+      "location": null
+    },
+    {
+      "route": "/demo/index.html",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 6170,
+      "location": null
+    },
+    {
+      "route": "/demo/help.html",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 2447,
+      "location": null
+    },
+    {
+      "route": "/demo/help-no-power.html",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 3832,
+      "location": null
+    },
+    {
+      "route": "/demo/screen.css",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 5372,
+      "location": null
+    },
+    {
+      "route": "/demo/demo.js",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 2438,
+      "location": null
+    },
+    {
+      "route": "/styles/fonts.css",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 1208,
+      "location": null
+    },
+    {
+      "route": "/styles/tokens.css",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 12555,
+      "location": null
+    },
+    {
+      "route": "/styles/typography.css",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 11112,
+      "location": null
+    },
+    {
+      "route": "/fonts/SourceSansPro-SemiBold-latin.woff2",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 14772,
+      "location": null
+    },
+    {
+      "route": "/fonts/SourceSansPro-SemiBold-latin-ext.woff2",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 23040,
+      "location": null
+    },
+    {
+      "route": "/assets/home.css",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 1790,
+      "location": null
+    },
+    {
+      "route": "/assets/layout-tokens.css",
+      "status": 200,
+      "expected": 200,
+      "pass": true,
+      "bytes": 624,
+      "location": null
+    },
+    {
+      "route": "/demo/README.md",
+      "status": 404,
+      "expected": 404,
+      "pass": true,
+      "bytes": 9,
+      "location": null
+    },
+    {
+      "route": "/docs/business-brief.md",
+      "status": 404,
+      "expected": 404,
+      "pass": true,
+      "bytes": 9,
+      "location": null
+    },
+    {
+      "route": "/evidence/06-tokens-complete.json",
+      "status": 404,
+      "expected": 404,
+      "pass": true,
+      "bytes": 9,
+      "location": null
+    },
+    {
+      "route": "/tools/convert-tokens.py",
+      "status": 404,
+      "expected": 404,
+      "pass": true,
+      "bytes": 9,
+      "location": null
+    },
+    {
+      "route": "/.git/config",
+      "status": 404,
+      "expected": 404,
+      "pass": true,
+      "bytes": 9,
+      "location": null
+    },
+    {
+      "route": "/task-01-design-system/prototype/index.html",
+      "status": 404,
+      "expected": 404,
+      "pass": true,
+      "bytes": 9,
+      "location": null
+    },
+    {
+      "route": "/server.js",
+      "status": 404,
+      "expected": 404,
+      "pass": true,
+      "bytes": 9,
+      "location": null
+    }
+  ]
+}

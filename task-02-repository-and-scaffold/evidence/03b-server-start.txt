@@ -1,0 +1,30 @@
+Command: npm.cmd start (node server.js)
+Working directory: C:/Users/LENOVO PC/Documents/kobo-watt/task-02-repository-and-scaffold
+Started at: 2026-11-01T04:56:14.710Z
+
+> kobo-watt-task-02@0.1.0 start
+> node server.js
+
+Kobo Watt listening at http://127.0.0.1:3000/ (PID 1972)
+{"time":"2026-11-01T04:56:16.012Z","method":"GET","path":"/","status":200,"serverDurationMs":29.284}
+{"time":"2026-11-01T04:56:16.048Z","method":"GET","path":"/demo","status":302,"serverDurationMs":1.707}
+{"time":"2026-11-01T04:56:16.100Z","method":"GET","path":"/demo/","status":200,"serverDurationMs":12.519}
+{"time":"2026-11-01T04:56:16.138Z","method":"GET","path":"/demo/index.html","status":200,"serverDurationMs":2.214}
+{"time":"2026-11-01T04:56:16.213Z","method":"GET","path":"/demo/help.html","status":200,"serverDurationMs":30.442}
+{"time":"2026-11-01T04:56:16.250Z","method":"GET","path":"/demo/help-no-power.html","status":200,"serverDurationMs":2.065}
+{"time":"2026-11-01T04:56:16.283Z","method":"GET","path":"/demo/screen.css","status":200,"serverDurationMs":2.14}
+{"time":"2026-11-01T04:56:16.326Z","method":"GET","path":"/demo/demo.js","status":200,"serverDurationMs":2.52}
+{"time":"2026-11-01T04:56:16.367Z","method":"GET","path":"/styles/fonts.css","status":200,"serverDurationMs":3.113}
+{"time":"2026-11-01T04:56:16.415Z","method":"GET","path":"/styles/tokens.css","status":200,"serverDurationMs":2.881}
+{"time":"2026-11-01T04:56:16.455Z","method":"GET","path":"/styles/typography.css","status":200,"serverDurationMs":2.396}
+{"time":"2026-11-01T04:56:16.495Z","method":"GET","path":"/fonts/SourceSansPro-SemiBold-latin.woff2","status":200,"serverDurationMs":2.566}
+{"time":"2026-11-01T04:56:16.536Z","method":"GET","path":"/fonts/SourceSansPro-SemiBold-latin-ext.woff2","status":200,"serverDurationMs":2.736}
+{"time":"2026-11-01T04:56:16.576Z","method":"GET","path":"/assets/home.css","status":200,"serverDurationMs":1.944}
+{"time":"2026-11-01T04:56:16.623Z","method":"GET","path":"/assets/layout-tokens.css","status":200,"serverDurationMs":2.063}
+{"time":"2026-11-01T04:56:16.659Z","method":"GET","path":"/demo/README.md","status":404,"serverDurationMs":3.062}
+{"time":"2026-11-01T04:56:16.705Z","method":"GET","path":"/docs/business-brief.md","status":404,"serverDurationMs":0.592}
+{"time":"2026-11-01T04:56:16.738Z","method":"GET","path":"/evidence/06-tokens-complete.json","status":404,"serverDurationMs":0.608}
+{"time":"2026-11-01T04:56:16.778Z","method":"GET","path":"/tools/convert-tokens.py","status":404,"serverDurationMs":0.719}
+{"time":"2026-11-01T04:56:16.817Z","method":"GET","path":"/.git/config","status":404,"serverDurationMs":0.468}
+{"time":"2026-11-01T04:56:16.851Z","method":"GET","path":"/task-01-design-system/prototype/index.html","status":404,"serverDurationMs":0.615}
+{"time":"2026-11-01T04:56:16.883Z","method":"GET","path":"/server.js","status":404,"serverDurationMs":0.485}
