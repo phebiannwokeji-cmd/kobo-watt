@@ -1,0 +1,37 @@
+TASK 2 FIRST BROWSER LOAD - FRESH PROFILE, CACHE DISABLED
+Recorded at (UTC): 2026-11-01T15:35:15.142Z
+Navigation started at (UTC): 2026-11-01T15:35:14.810Z
+URL: http://127.0.0.1:59170/
+Server PID: 10280
+Browser: C:/Program Files/Google/Chrome/Application/chrome.exe
+Document title: Kobo Watt — demonstration
+Main document HTTP status: 200
+Viewport: 390 x 844 CSS px
+Resource entries: 8
+
+Navigation timing from the browser Performance API (milliseconds unless stated):
+{
+  "duration": 151.39999997615814,
+  "domContentLoadedEventEnd": 93.09999990463257,
+  "loadEventEnd": 151.39999997615814,
+  "transferSize": 3374,
+  "encodedBodySize": 3074,
+  "decodedBodySize": 3074,
+  "type": "navigate"
+}
+
+Interpretation: duration is the navigation duration; domContentLoadedEventEnd and loadEventEnd are measured from navigation start. transferSize/encodedBodySize/decodedBodySize are byte counts.
+
+Actual server stdout/stderr for the first load:
+Kobo Watt listening at http://127.0.0.1:59170/ (PID 10280)
+{"time":"2026-11-01T15:35:14.860Z","method":"GET","path":"/","status":200,"serverDurationMs":28.154}
+{"time":"2026-11-01T15:35:14.887Z","method":"GET","path":"/styles/fonts.css","status":200,"serverDurationMs":7.433}
+{"time":"2026-11-01T15:35:14.889Z","method":"GET","path":"/styles/tokens.css","status":200,"serverDurationMs":6.3}
+{"time":"2026-11-01T15:35:14.898Z","method":"GET","path":"/assets/home.css","status":200,"serverDurationMs":8.006}
+{"time":"2026-11-01T15:35:14.900Z","method":"GET","path":"/assets/layout-tokens.css","status":200,"serverDurationMs":5.675}
+{"time":"2026-11-01T15:35:14.902Z","method":"GET","path":"/assets/enquiry.js","status":200,"serverDurationMs":6.189}
+{"time":"2026-11-01T15:35:14.903Z","method":"GET","path":"/styles/typography.css","status":200,"serverDurationMs":9.425}
+{"time":"2026-11-01T15:35:14.932Z","method":"GET","path":"/fonts/SourceSansPro-SemiBold-latin.woff2","status":200,"serverDurationMs":3.119}
+{"time":"2026-11-01T15:35:15.000Z","method":"GET","path":"/favicon.ico","status":404,"serverDurationMs":4.835}
+
+Limitations: one local loopback run on this machine with a fresh headless Chrome profile, no network throttling, and no repeat runs. This is not a mobile-network or production measurement.

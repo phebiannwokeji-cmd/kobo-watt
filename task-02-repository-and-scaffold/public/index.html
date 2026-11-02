@@ -3,7 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kobo Watt — demonstration</title>
+  <title>Kobo Watt — solar access and payments</title>
+  <meta name="description" content="Kobo Watt is a fictional rent-to-own solar and inverter service in Ikeja, Lagos. Track recorded access and simulated payments.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#006b5e">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <meta property="og:site_name" content="Kobo Watt">
+  <meta property="og:title" content="Kobo Watt — solar access and payments">
+  <meta property="og:description" content="A fictional rent-to-own solar and inverter service for small businesses in Ikeja, Lagos.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://127.0.0.1:3000/">
+  <meta property="og:image" content="http://127.0.0.1:3000/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kobo Watt: power for your business">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/styles/fonts.css">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/typography.css">
@@ -14,19 +28,19 @@
 <body class="kw-typography-body-large">
   <div class="page">
     <header>
-      <p class="brand kw-typography-title-large">Kobo Watt</p>
+      <a class="brand kw-typography-title-large" href="/" aria-label="Kobo Watt home">Kobo Watt</a>
     </header>
     <main>
       <h1 class="kw-typography-display-small">Power for your business</h1>
+      <p class="tagline kw-typography-title-medium">Track solar access and payments.</p>
       <p class="explanation">Kobo Watt is a fictional rent-to-own solar and inverter service for small businesses in Ikeja, Lagos. Explore a demonstration account showing recorded access and payment information.</p>
       <div>
-        <a class="demo-link kw-typography-label-large" href="/demo/">View demo account</a>
+        <a class="text-link kw-typography-label-large" href="/demo/">View demo account</a>
       </div>
-      <p class="notice kw-typography-body-medium">Demonstration only. No real payments or equipment control.</p>
+      <p id="demo-notice" class="notice kw-typography-body-medium">Demonstration only: no real callback, payments, or equipment control. Use fictional details only.</p>
       <section class="enquiry" aria-labelledby="enquiry-heading">
         <h2 id="enquiry-heading" class="kw-typography-title-large">Try a solar enquiry</h2>
-        <p id="enquiry-notice" class="kw-typography-body-medium">Demonstration only: no real callback will be arranged or equipment installed. Use fictional details only.</p>
-        <form id="enquiry-form" aria-describedby="enquiry-notice">
+        <form id="enquiry-form" aria-describedby="demo-notice">
           <label class="kw-typography-label-large" for="enquiry-name">Fictional name</label>
           <input class="kw-typography-body-large" id="enquiry-name" name="name" maxlength="80" required autocomplete="off">
           <label class="kw-typography-label-large" for="enquiry-phone">Fictional phone number</label>
