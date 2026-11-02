@@ -42,34 +42,41 @@ I am not claiming grading approval or complete WCAG compliance.
 - **Node.js and headless Chrome for optional screenshot capture.** `tools/capture-screen.mjs` uses built-in Node.js modules and the Chrome DevTools Protocol to reproduce the evidence screenshots. It is tooling, not part of the prototype runtime.
 - **Material 3 v0.192 as the documented typography baseline.** I recorded two deliberate departures from it — Source Sans Pro and tighter Display Large tracking — in [divergences](task-01-design-system/docs/divergences.md).
 
-## 4. Setup and running
+## 4. Getting started (Setup and running)
 
-Prerequisites:
+### Prerequisites checklist
+Before running, verify your local tools:
+- **Node.js >= 22**: Run `node -v` to check. (Task 2's SQLite engine strictly requires Node 22 or newer; older versions fail during database initialization).
+- **Python 3**: Run `python --version` (or `py --version` on Windows if `python` is not in your PATH).
+- **Git**: Installed and available in your terminal.
 
-- Git.
-- Python 3 for Task 1. The test environment used Python 3.14.7 through the `python` launcher; the token tools use only the standard library.
-- Node.js >=22 and npm for Task 2. The verified environment used Node v24.19.0 and npm 11.17.0.
-- A modern browser. Google Chrome is optional for screenshot reproduction and the Task 2 browser verifier.
-
-The public repository is available at <https://github.com/phebiannwokeji-cmd/kobo-watt>. Clone it with:
+The public repository is available at <https://github.com/phebiannwokeji-cmd/kobo-watt>. Clone it and checkout the active branch:
 
 ```bash
-git clone https://github.com/phebiannwokeji-cmd/kobo-watt.git kobo-watt
+git clone -b task-02/antigravity-scaffold-rebuild https://github.com/phebiannwokeji-cmd/kobo-watt.git kobo-watt
 cd kobo-watt
-cd task-01-design-system
-python -m http.server 4173 --bind 127.0.0.1
 ```
 
-Open <http://127.0.0.1:4173/prototype/>. Press `Ctrl+C` in that terminal to stop the server.
-
-No `npm install` or build step is required. To run the documented token checks, use a second terminal from the `kobo-watt` repository root:
+### 4.1 Running Task 1 (Design System Prototype & Token Checks)
+To verify design tokens (standard library only, no dependencies):
 
 ```bash
 cd task-01-design-system
 python tools/verify-tokens.py
+# (On Windows, use 'py tools/verify-tokens.py' if 'python' is unrecognized)
+cd ..
 ```
 
-To run the Task 2 fictional enquiry demonstration, use a terminal from the repository root:
+To view the static prototype:
+```bash
+cd task-01-design-system
+python -m http.server 4173 --bind 127.0.0.1
+# (Or: py -m http.server 4173 --bind 127.0.0.1)
+```
+Open <http://127.0.0.1:4173/prototype/> in your browser. Press `Ctrl+C` in that terminal to stop the server.
+
+### 4.2 Running Task 2 (Express Scaffold & Enquiry Demonstration)
+From the repository root:
 
 ```powershell
 cd task-02-repository-and-scaffold
@@ -77,8 +84,13 @@ npm.cmd ci --ignore-scripts
 npm.cmd run db:init
 npm.cmd start
 ```
+*(On macOS / Linux, substitute `npm` for `npm.cmd`).*
 
-Open <http://127.0.0.1:3000/>. The plain `npm.cmd ci` failed on the verified machine because npm invoked `node-gyp rebuild` for better-sqlite3 and no Windows SDK was installed. `--ignore-scripts` installs the package's published `win32-x64` prebuilt binary; it does not disable TLS verification. The install and database smoke-test results are recorded separately in the [Task 2 README](task-02-repository-and-scaffold/README.md).
+- **Why `--ignore-scripts`:** `better-sqlite3` ships a precompiled binary for Windows (`win32-x64`). Using `--ignore-scripts` installs this safe, verified prebuilt binary directly and avoids failing on `node-gyp` if Visual Studio C++ build tools are absent.
+- **Process state:** `npm.cmd start` starts a persistent listener in the foreground. While it is running, open <http://127.0.0.1:3000/> in your browser.
+- **Stopping:** Press `Ctrl+C`. If Windows PowerShell asks `Terminate batch job (Y/N)?`, type `Y`. The process shuts down gracefully and closes the database connection.
+
+The install and database smoke-test results are recorded in the [Task 2 README](task-02-repository-and-scaffold/README.md) and tested by an independent user in [readme-test.md](task-02-repository-and-scaffold/docs/readme-test.md).
 
 ## 5. Environment variables
 

@@ -19,6 +19,10 @@ Open http://127.0.0.1:3000/. Stop the server with Ctrl+C in its terminal.
 For automatic restart during development: `npm.cmd run dev`.
 On Unix shells, use `npm` instead of `npm.cmd`.
 
+- **Foreground process:** `npm start` runs in the foreground; keep the terminal window open.
+- **Stopping:** Stop the server with Ctrl+C. (Type `Y` if PowerShell asks `Terminate batch job (Y/N)?`).
+- **Independent verification:** The setup instructions were independently tested by a fresh user; friction points and resolutions are documented in [docs/readme-test.md](docs/readme-test.md).
+
 **Why `--ignore-scripts` is shown for this machine.** A plain `npm.cmd ci`
 attempted a `node-gyp rebuild` for better-sqlite3 and failed because this
 machine has no Windows SDK. better-sqlite3 13.0.3 ships a published
