@@ -31,3 +31,4 @@ $r1 = Invoke-WebRequest -Uri "http://127.0.0.1:3001/auth?form=signup" -UseBasicP
 $r2 = Invoke-WebRequest -Uri "http://127.0.0.1:3001/auth?form=login"  -UseBasicParsing
 $r3 = Invoke-WebRequest -Uri "http://127.0.0.1:3001/auth?form=reset"  -UseBasicParsing
 Stop-Process -Id $proc.Id
+

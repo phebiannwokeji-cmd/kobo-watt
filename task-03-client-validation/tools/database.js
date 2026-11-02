@@ -14,3 +14,4 @@ export function openDatabase() {
   const readonly = process.env.DB_READONLY === '1';
   return new Database(DB_PATH, { readonly });
 }
+

@@ -17,3 +17,4 @@ Total auth-related HTML files: 3
 
 This was the starting state before Step 1 of Task 3 collapsed them
 into a single SPA page (auth.html) with URL query-parameter routing.
+

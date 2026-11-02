@@ -84,3 +84,4 @@ Client-side validation acts solely as an interactive styling guide. Edge cases
 such as "A B", "0000000000", "a@b.c", and space-padded passwords ("solar123    ")
 trivially pass the browser's rules. Furthermore, any client check can be disabled
 in seconds using the browser developer tools.
+

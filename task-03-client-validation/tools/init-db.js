@@ -32,3 +32,4 @@ db.exec(`
 
 console.log('Database initialised:', DB_PATH);
 db.close();
+

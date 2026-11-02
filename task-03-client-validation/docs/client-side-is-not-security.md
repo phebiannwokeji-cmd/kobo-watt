@@ -72,3 +72,4 @@ Specifically, Task 4 will implement:
 3. **Cryptographic Password Hashing:** Replacing plain-text storage with salted bcrypt hashes with an adaptive work factor (cost 12).
 4. **Legal Terms Enforcement:** Rejecting account creation unconditionally with HTTP 422 if `terms !== true`.
 5. **Rate Limiting & Abuse Prevention:** Adding IP and subnet-level rate limiting on `POST /api/accounts` and `POST /api/sessions` to prevent brute-force attacks and automated registration flooding.
+

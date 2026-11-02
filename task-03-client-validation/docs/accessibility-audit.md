@@ -131,3 +131,4 @@ With all four defects remediated:
 - Sighted colour-blind users receive dual visual cues (SVG caution icon `⚠` + text + high-contrast borders).
 - Keyboard-only users retain continuous tab navigation without trapped focus or skipped action triggers.
 - Screen reader users receive immediate, contextual, and descriptive guidance for every constraint, eliminating false stops and silent failures.
+

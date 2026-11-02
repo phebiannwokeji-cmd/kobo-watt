@@ -66,3 +66,4 @@ run().catch(err => {
   console.error('Capture failed:', err);
   process.exit(1);
 });
+

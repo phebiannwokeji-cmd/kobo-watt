@@ -34,3 +34,4 @@ Rather than behaving as a silent, unresponsive block, clicking or activating the
 > *"Please accept the terms and conditions before creating your account."*
 
 This ensures the user is actively guided through completion rather than left wondering why the button refuses to respond.
+

@@ -26,3 +26,4 @@ Directory: task-03-client-validation\public
     auth.css
     auth.js
     favicon.svg
+

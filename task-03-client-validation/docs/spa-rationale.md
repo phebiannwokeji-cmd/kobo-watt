@@ -44,3 +44,4 @@ separate page with its own URL, because:
 In those cases the cost of a full page load per step is justified by the
 data-safety and navigability benefits. Kobo Watt's current auth is a
 simple three-field signup — the trade-off favours the SPA approach.
+

@@ -72,3 +72,4 @@ The server accepted the invalid request completely, wrote junk into every
 single column, stored an unhashed password, accepted terms=0, and issued
 account id=1. Every single client-side validation rule was bypassed
 because the browser was not in the execution path.
+
