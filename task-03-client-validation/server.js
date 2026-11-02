@@ -28,6 +28,7 @@ app.use('/assets', express.static(join(__dirname, 'public', 'assets')));
 const ALLOWED = new Set([
   'GET /',
   'GET /auth',
+  'GET /drill-number-input',
   'POST /api/accounts',
   'POST /api/sessions',
   'POST /api/password-resets',
@@ -48,6 +49,10 @@ app.get('/', (_req, res) => res.redirect('/auth?form=signup'));
 // SPA auth page
 app.get('/auth', (_req, res) => {
   res.sendFile(join(__dirname, 'public', 'auth.html'));
+});
+
+app.get('/drill-number-input', (_req, res) => {
+  res.sendFile(join(__dirname, 'public', 'drill-number-input.html'));
 });
 
 app.get('/favicon.svg', (_req, res) => {
@@ -122,3 +127,4 @@ function shutdown(signal) {
 }
 process.on('SIGTERM', () => shutdown('SIGTERM'));
 process.on('SIGINT',  () => shutdown('SIGINT'));
+

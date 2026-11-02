@@ -73,6 +73,9 @@ A `<input type="text" inputmode="numeric" pattern="[0-9]{10,14}">` shows
 no default, no spinners, and accepts exactly what the user types. The
 value is converted to a number with `Number()` before it reaches the server.
 
+**Where a number input would be the correct choice:**  
+An `<input type="number">` is appropriate for quantitative measurements that have inherent mathematical magnitude and step-based increments, such as selecting the quantity of solar battery units to install (e.g. 1 to 8 batteries) or specifying inverter capacity in kVA. In those cases, stepper spinners and keyboard increment keys provide genuine user convenience, lower bounds can be enforced cleanly with `min="1"`, and leading zeroes are mathematically meaningless rather than essential identifying data.
+
 ---
 
 ## 3. Email address
