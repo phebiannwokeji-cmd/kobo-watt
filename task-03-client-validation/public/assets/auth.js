@@ -97,6 +97,12 @@ function showError(errorId, message) {
   if (!el) return;
   el.querySelector('.kw-error-text').textContent = message;
   el.hidden = false;
+  // Accessible error state: set aria-invalid on the corresponding field
+  const field = el.closest('.kw-field');
+  if (field) {
+    const input = field.querySelector('input, select, textarea');
+    if (input) input.setAttribute('aria-invalid', 'true');
+  }
 }
 
 function clearError(errorId) {
@@ -104,6 +110,11 @@ function clearError(errorId) {
   if (!el) return;
   el.querySelector('.kw-error-text').textContent = '';
   el.hidden = true;
+  const field = el.closest('.kw-field');
+  if (field) {
+    const input = field.querySelector('input, select, textarea');
+    if (input) input.setAttribute('aria-invalid', 'false');
+  }
 }
 
 /**
@@ -456,3 +467,4 @@ document.querySelectorAll('.kw-toggle-pw').forEach(btn => {
     btn.setAttribute('aria-pressed', String(!showing));
   });
 });
+
