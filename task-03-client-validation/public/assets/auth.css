@@ -1,0 +1,282 @@
+/* auth.css — Kobo Watt account page styles — Task 3 */
+
+:root {
+  --kw-color-primary:    #1a6b3a;
+  --kw-color-primary-dk: #145430;
+  --kw-color-error:      #b91c1c;
+  --kw-color-surface:    #ffffff;
+  --kw-color-bg:         #f4f6f5;
+  --kw-color-border:     #c4cac7;
+  --kw-color-text:       #1a1a1a;
+  --kw-color-muted:      #555f59;
+  --kw-radius:           6px;
+  --kw-focus-ring:       3px solid var(--kw-color-primary);
+  --kw-focus-offset:     2px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--kw-color-text);
+  background: var(--kw-color-bg);
+}
+
+/* ── Site header ── */
+.kw-site-header {
+  padding: 0.75rem 1.5rem;
+  background: var(--kw-color-primary);
+}
+
+.kw-logo-link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.kw-logo-link:focus-visible {
+  outline: var(--kw-focus-ring);
+  outline-offset: var(--kw-focus-offset);
+  border-radius: 2px;
+}
+
+/* ── Main ── */
+.kw-auth-main {
+  display: flex;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem) 1rem;
+}
+
+.kw-auth-card {
+  background: var(--kw-color-surface);
+  border-radius: var(--kw-radius);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+  width: 100%;
+  max-width: 26rem;
+  padding: 2rem;
+}
+
+/* ── Tabs ── */
+.kw-form-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--kw-color-border);
+  margin-bottom: 1.5rem;
+}
+
+.kw-tab {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem 0.25rem;
+  text-decoration: none;
+  color: var(--kw-color-muted);
+  font-size: 0.9rem;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.kw-tab:hover { color: var(--kw-color-primary); }
+
+.kw-tab--active {
+  color: var(--kw-color-primary);
+  font-weight: 600;
+  border-bottom-color: var(--kw-color-primary);
+}
+
+.kw-tab:focus-visible {
+  outline: var(--kw-focus-ring);
+  outline-offset: var(--kw-focus-offset);
+  border-radius: 2px;
+}
+
+/* ── Form ── */
+.kw-form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.kw-form-heading {
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: var(--kw-color-text);
+}
+
+.kw-form-intro { margin: 0; color: var(--kw-color-muted); }
+
+/* ── Field ── */
+.kw-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.kw-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.kw-required { color: var(--kw-color-error); margin-left: 0.15em; }
+
+.kw-hint {
+  font-size: 0.8rem;
+  color: var(--kw-color-muted);
+}
+
+.kw-input {
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--kw-color-border);
+  border-radius: var(--kw-radius);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--kw-color-text);
+  background: var(--kw-color-surface);
+  transition: border-color 0.15s;
+}
+
+.kw-input:focus {
+  outline: var(--kw-focus-ring);
+  outline-offset: var(--kw-focus-offset);
+  border-color: var(--kw-color-primary);
+}
+
+.kw-input[aria-invalid="true"] {
+  border-color: var(--kw-color-error);
+}
+
+/* ── Error ── */
+.kw-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+  color: var(--kw-color-error);
+  font-size: 0.85rem;
+}
+
+.kw-error[hidden] { display: none; }
+
+.kw-error-icon {
+  fill: currentColor;
+  flex-shrink: 0;
+  margin-top: 0.1em;
+}
+
+.kw-error--btn { margin-top: 0.25rem; }
+
+/* ── Password wrap ── */
+.kw-password-wrap {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.kw-password-wrap .kw-input { flex: 1; }
+
+.kw-toggle-pw {
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--kw-color-border);
+  border-radius: var(--kw-radius);
+  background: var(--kw-color-surface);
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.kw-toggle-pw:focus-visible {
+  outline: var(--kw-focus-ring);
+  outline-offset: var(--kw-focus-offset);
+}
+
+/* ── Checkbox field ── */
+.kw-field--check {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.kw-checkbox {
+  margin-top: 0.2em;
+  accent-color: var(--kw-color-primary);
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+}
+
+.kw-checkbox:focus-visible {
+  outline: var(--kw-focus-ring);
+  outline-offset: var(--kw-focus-offset);
+}
+
+.kw-label--check {
+  flex: 1;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.kw-field--check .kw-error {
+  flex-basis: 100%;
+  padding-left: 1.6rem;
+}
+
+/* ── Submit ── */
+.kw-field--submit { gap: 0.5rem; }
+
+.kw-btn {
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: var(--kw-radius);
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.kw-btn--primary {
+  background: var(--kw-color-primary);
+  color: #fff;
+}
+
+.kw-btn--primary:hover:not(:disabled) {
+  background: var(--kw-color-primary-dk);
+}
+
+.kw-btn:disabled,
+.kw-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.kw-btn:focus-visible {
+  outline: var(--kw-focus-ring);
+  outline-offset: var(--kw-focus-offset);
+}
+
+/* ── Footer links ── */
+.kw-form-footer { margin: 0; font-size: 0.9rem; color: var(--kw-color-muted); }
+
+.kw-link {
+  color: var(--kw-color-primary);
+  font-weight: 600;
+}
+
+.kw-link:focus-visible {
+  outline: var(--kw-focus-ring);
+  outline-offset: var(--kw-focus-offset);
+  border-radius: 2px;
+}
+
+/* ── Screen-reader only ── */
+.kw-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}

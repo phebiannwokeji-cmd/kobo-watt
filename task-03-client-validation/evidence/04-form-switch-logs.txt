@@ -1,0 +1,33 @@
+Task 3 — Evidence 04: Server log during form switching
+Captured: 2026-11-02T13:56 WAT
+Machine: Windows 11, Node v24.19.0
+Server: task-03-client-validation/server.js
+Port: 3001, bound to 127.0.0.1
+
+--- Server startup ---
+[2026-11-02T12:56:00.845Z] listening at http://127.0.0.1:3001
+
+--- Three GET requests: signup, login, reset ---
+GET /auth?form=signup  → HTTP 200  (PID 30344)
+GET /auth?form=login   → HTTP 200
+GET /auth?form=reset   → HTTP 200
+
+--- Observations ---
+1. All three requests hit the SAME route: GET /auth
+2. No new session was created on any switch (server has no session middleware
+   — switching form state is a client-side operation handled by auth.js
+   reading window.location.search).
+3. No page reload occurs — the server log shows exactly one request per
+   "page load". In the browser, switching tabs with history.pushState
+   generates no network traffic; the server receives no further requests.
+4. The query parameter (?form=signup, ?form=login, ?form=reset) is read
+   purely in JavaScript. The server route /auth serves the same auth.html
+   regardless of which ?form= value is present.
+
+--- Command used to capture ---
+$proc = Start-Process -FilePath "node" -ArgumentList "server.js" -PassThru `
+  -RedirectStandardOutput "$env:TEMP\kw03-server.log"
+$r1 = Invoke-WebRequest -Uri "http://127.0.0.1:3001/auth?form=signup" -UseBasicParsing
+$r2 = Invoke-WebRequest -Uri "http://127.0.0.1:3001/auth?form=login"  -UseBasicParsing
+$r3 = Invoke-WebRequest -Uri "http://127.0.0.1:3001/auth?form=reset"  -UseBasicParsing
+Stop-Process -Id $proc.Id

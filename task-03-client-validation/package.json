@@ -1,0 +1,17 @@
+{
+  "name": "kobo-watt-task-03",
+  "version": "1.0.0",
+  "description": "Kobo Watt — Task 3: client-side validation and SPA auth",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start":   "node server.js",
+    "db:init": "node tools/init-db.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "13.0.3",
+    "express": "5.3.0"
+  }
+}

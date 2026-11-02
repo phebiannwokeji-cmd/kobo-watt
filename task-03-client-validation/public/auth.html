@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kobo Watt — Account</title>
+  <meta name="description" content="Sign up, sign in, or reset your password for Kobo Watt solar services." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="assets/auth.css" />
+</head>
+<body>
+  <header class="kw-site-header">
+    <a href="/" class="kw-logo-link" aria-label="Kobo Watt home">
+      <span class="kw-logo-text">Kobo Watt</span>
+    </a>
+  </header>
+
+  <main class="kw-auth-main" id="main-content">
+    <div class="kw-auth-card">
+
+      <!-- Tab navigation -->
+      <nav class="kw-form-tabs" aria-label="Account form switcher">
+        <a href="?form=signup"
+           class="kw-tab"
+           id="tab-signup"
+           role="tab"
+           aria-controls="form-signup">Create account</a>
+        <a href="?form=login"
+           class="kw-tab"
+           id="tab-login"
+           role="tab"
+           aria-controls="form-login">Sign in</a>
+        <a href="?form=reset"
+           class="kw-tab"
+           id="tab-reset"
+           role="tab"
+           aria-controls="form-reset">Reset password</a>
+      </nav>
+
+      <!-- Live region for status announcements -->
+      <div id="kw-status" role="status" aria-live="polite" aria-atomic="true" class="kw-sr-only"></div>
+
+      <!-- ===== SIGNUP FORM ===== -->
+      <form id="form-signup"
+            class="kw-form"
+            novalidate
+            aria-labelledby="heading-signup"
+            data-form="signup">
+
+        <h1 id="heading-signup" class="kw-form-heading">Create your account</h1>
+
+        <!-- Full name -->
+        <div class="kw-field" id="field-name">
+          <label class="kw-label" for="signup-name">
+            Full name <span class="kw-required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="text"
+            id="signup-name"
+            name="name"
+            class="kw-input"
+            autocomplete="name"
+            aria-required="true"
+            aria-describedby="name-hint name-error"
+            maxlength="100"
+          />
+          <span id="name-hint" class="kw-hint">As it appears on your ID — used on service agreements.</span>
+          <span id="name-error" class="kw-error" role="alert" aria-live="assertive" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text"></span>
+          </span>
+        </div>
+
+        <!-- Phone -->
+        <div class="kw-field" id="field-phone">
+          <label class="kw-label" for="signup-phone">
+            Phone number <span class="kw-required" aria-hidden="true">*</span>
+          </label>
+          <!-- text + inputmode, NOT type="number" — see docs/field-justification.md -->
+          <input
+            type="text"
+            id="signup-phone"
+            name="phone"
+            class="kw-input"
+            autocomplete="tel"
+            inputmode="numeric"
+            pattern="[0-9]{10,14}"
+            aria-required="true"
+            aria-describedby="phone-hint phone-error"
+            maxlength="15"
+          />
+          <span id="phone-hint" class="kw-hint">Digits only, 10–14 characters. We contact you to schedule engineer visits.</span>
+          <span id="phone-error" class="kw-error" role="alert" aria-live="assertive" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text"></span>
+          </span>
+        </div>
+
+        <!-- Email -->
+        <div class="kw-field" id="field-email-signup">
+          <label class="kw-label" for="signup-email">
+            Email address <span class="kw-required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="email"
+            id="signup-email"
+            name="email"
+            class="kw-input"
+            autocomplete="email"
+            aria-required="true"
+            aria-describedby="signup-email-hint signup-email-error"
+            maxlength="254"
+          />
+          <span id="signup-email-hint" class="kw-hint">For invoices, warranty updates, and account recovery.</span>
+          <span id="signup-email-error" class="kw-error" role="alert" aria-live="assertive" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text"></span>
+          </span>
+        </div>
+
+        <!-- Service address -->
+        <div class="kw-field" id="field-address">
+          <label class="kw-label" for="signup-address">
+            Service address <span class="kw-required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="text"
+            id="signup-address"
+            name="address"
+            class="kw-input"
+            autocomplete="street-address"
+            aria-required="true"
+            aria-describedby="address-hint address-error"
+            maxlength="200"
+            minlength="10"
+          />
+          <span id="address-hint" class="kw-hint">Where your inverter is installed — engineers are dispatched here.</span>
+          <span id="address-error" class="kw-error" role="alert" aria-live="assertive" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text"></span>
+          </span>
+        </div>
+
+        <!-- Password -->
+        <div class="kw-field" id="field-password-signup">
+          <label class="kw-label" for="signup-password">
+            Password <span class="kw-required" aria-hidden="true">*</span>
+          </label>
+          <div class="kw-password-wrap">
+            <input
+              type="password"
+              id="signup-password"
+              name="password"
+              class="kw-input"
+              autocomplete="new-password"
+              aria-required="true"
+              aria-describedby="password-reqs password-error"
+              minlength="12"
+              maxlength="128"
+            />
+            <button type="button" class="kw-toggle-pw" aria-controls="signup-password" aria-pressed="false">
+              Show
+            </button>
+          </div>
+          <!-- Hint hidden until user starts typing — JS adds class kw-hint--visible -->
+          <span id="password-reqs" class="kw-hint kw-hint--pw" hidden>
+            At least 12 characters. Length matters more than symbols.
+          </span>
+          <span id="password-error" class="kw-error" role="alert" aria-live="assertive" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text"></span>
+          </span>
+        </div>
+
+        <!-- Terms -->
+        <div class="kw-field kw-field--check" id="field-terms">
+          <input
+            type="checkbox"
+            id="signup-terms"
+            name="terms"
+            class="kw-checkbox"
+            aria-required="true"
+            aria-describedby="terms-label terms-error"
+          />
+          <label class="kw-label kw-label--check" id="terms-label" for="signup-terms">
+            I have read and accept the
+            <a href="/terms" class="kw-link" target="_blank" rel="noopener">terms and conditions</a>
+            and
+            <a href="/privacy" class="kw-link" target="_blank" rel="noopener">privacy policy</a>.
+            <span class="kw-required" aria-hidden="true">*</span>
+          </label>
+          <span id="terms-error" class="kw-error" role="alert" aria-live="assertive" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text"></span>
+          </span>
+        </div>
+
+        <!-- Submit -->
+        <div class="kw-field kw-field--submit">
+          <button type="submit" id="btn-signup" class="kw-btn kw-btn--primary" disabled aria-disabled="true">
+            Create account
+          </button>
+          <span id="btn-signup-hint" class="kw-error kw-error--btn" role="alert" aria-live="polite" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text">Please accept the terms and conditions before creating your account.</span>
+          </span>
+        </div>
+
+        <p class="kw-form-footer">
+          Already have an account? <a href="?form=login" class="kw-link">Sign in</a>
+        </p>
+      </form>
+
+      <!-- ===== LOGIN FORM ===== -->
+      <form id="form-login"
+            class="kw-form"
+            novalidate
+            aria-labelledby="heading-login"
+            data-form="login"
+            hidden>
+
+        <h1 id="heading-login" class="kw-form-heading">Sign in</h1>
+
+        <!-- Email — login: validate on submit, not real-time -->
+        <div class="kw-field" id="field-email-login">
+          <label class="kw-label" for="login-email">
+            Email address <span class="kw-required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="email"
+            id="login-email"
+            name="email"
+            class="kw-input"
+            autocomplete="email"
+            aria-required="true"
+            aria-describedby="login-email-error"
+            maxlength="254"
+          />
+          <span id="login-email-error" class="kw-error" role="alert" aria-live="assertive" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text"></span>
+          </span>
+        </div>
+
+        <!-- Password -->
+        <div class="kw-field" id="field-password-login">
+          <label class="kw-label" for="login-password">
+            Password <span class="kw-required" aria-hidden="true">*</span>
+          </label>
+          <div class="kw-password-wrap">
+            <input
+              type="password"
+              id="login-password"
+              name="password"
+              class="kw-input"
+              autocomplete="current-password"
+              aria-required="true"
+              aria-describedby="login-password-error"
+              maxlength="128"
+            />
+            <button type="button" class="kw-toggle-pw" aria-controls="login-password" aria-pressed="false">
+              Show
+            </button>
+          </div>
+          <span id="login-password-error" class="kw-error" role="alert" aria-live="assertive" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text"></span>
+          </span>
+        </div>
+
+        <div class="kw-field kw-field--submit">
+          <button type="submit" id="btn-login" class="kw-btn kw-btn--primary">
+            Sign in
+          </button>
+        </div>
+
+        <p class="kw-form-footer">
+          <a href="?form=reset" class="kw-link">Forgot your password?</a>
+        </p>
+        <p class="kw-form-footer">
+          No account? <a href="?form=signup" class="kw-link">Create one</a>
+        </p>
+      </form>
+
+      <!-- ===== RESET FORM ===== -->
+      <form id="form-reset"
+            class="kw-form"
+            novalidate
+            aria-labelledby="heading-reset"
+            data-form="reset"
+            hidden>
+
+        <h1 id="heading-reset" class="kw-form-heading">Reset your password</h1>
+        <p class="kw-form-intro">Enter your email and we will send a reset link.</p>
+
+        <div class="kw-field" id="field-email-reset">
+          <label class="kw-label" for="reset-email">
+            Email address <span class="kw-required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="email"
+            id="reset-email"
+            name="email"
+            class="kw-input"
+            autocomplete="email"
+            aria-required="true"
+            aria-describedby="reset-email-error"
+            maxlength="254"
+          />
+          <span id="reset-email-error" class="kw-error" role="alert" aria-live="assertive" hidden>
+            <svg class="kw-error-icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            <span class="kw-error-text"></span>
+          </span>
+        </div>
+
+        <div class="kw-field kw-field--submit">
+          <button type="submit" id="btn-reset" class="kw-btn kw-btn--primary">
+            Send reset link
+          </button>
+        </div>
+
+        <p class="kw-form-footer">
+          Remembered it? <a href="?form=login" class="kw-link">Sign in</a>
+        </p>
+      </form>
+
+    </div><!-- /.kw-auth-card -->
+  </main>
+
+  <script src="assets/auth.js"></script>
+</body>
+</html>

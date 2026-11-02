@@ -1,0 +1,19 @@
+Task 3 — Evidence 01: Page count BEFORE collapsing
+Captured: 2026-11-02T13:54 WAT
+Branch: task-03/client-validation (initial state)
+
+When the agent was asked to scaffold the authentication UI, it produced
+three separate HTML pages:
+
+  public/signup.html   — registration form
+  public/login.html    — sign-in form
+  public/reset.html    — password reset form
+
+Each page was a full document with its own <head>, navigation, and form.
+Switching between them required a full browser navigation (new HTTP GET,
+full page load, loss of any partially-typed data).
+
+Total auth-related HTML files: 3
+
+This was the starting state before Step 1 of Task 3 collapsed them
+into a single SPA page (auth.html) with URL query-parameter routing.
