@@ -326,21 +326,24 @@ document.getElementById('signup-terms').addEventListener('change', () => {
   updateSubmitState();
 });
 
-// Disabled button click — explain why (Step 7 requirement)
-btnSignup.addEventListener('click', e => {
-  if (btnSignup.disabled) {
-    e.preventDefault();
-    const termsChecked = document.getElementById('signup-terms').checked;
-    const hint = document.getElementById('btn-signup-hint');
-    if (!termsChecked) {
-      hint.hidden = false;
-    } else {
-      hint.hidden = true;
+// Disabled button click / container click — explain why (Step 7 requirement)
+const submitArea = document.querySelector('.kw-field--submit');
+if (submitArea) {
+  submitArea.addEventListener('click', e => {
+    if (btnSignup.disabled || btnSignup.getAttribute('aria-disabled') === 'true') {
+      e.preventDefault();
+      const termsChecked = document.getElementById('signup-terms').checked;
+      const hint = document.getElementById('btn-signup-hint');
+      if (!termsChecked) {
+        hint.hidden = false;
+      } else {
+        hint.hidden = true;
+      }
+      // Re-run all field validation so errors appear
+      signupFields.forEach(f => runSignupValidation(f));
     }
-    // Re-run all field validation so errors appear
-    signupFields.forEach(f => runSignupValidation(f));
-  }
-});
+  });
+}
 
 signupForm.addEventListener('submit', e => {
   e.preventDefault();
