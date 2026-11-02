@@ -1,0 +1,22 @@
+TASK 2 PORT CONFLICT RECOVERY - ACTUAL Kobo Watt SERVER
+Recorded at (UTC): 2026-11-01T15:34:37.338Z
+Working directory: C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold
+Port: 52555
+
+Exact termination command used:
+Stop-Process -Id 29404 -Force
+Port 52555 had no listener after termination: true
+
+Server C start command after the conflict was cleared:
+$env:PORT='52555'; $env:DATABASE_PATH='C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold\data\enquiries.db'; $env:DB_READONLY='0'; node server.js
+Server C PID: 20780
+HTTP check: GET http://127.0.0.1:52555/ returned 200
+Server C stdout:
+Kobo Watt listening at http://127.0.0.1:52555/ (PID 20780)
+{"time":"2026-11-01T15:34:34.689Z","method":"GET","path":"/","status":200,"serverDurationMs":13.152}
+Server C stderr:
+
+
+Exact cleanup command:
+Stop-Process -Id 20780 -Force
+Server C stopped: true

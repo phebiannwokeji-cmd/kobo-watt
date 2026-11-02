@@ -44,6 +44,9 @@ app.use((req, res, next) => {
 const routeMap = {
   // Task 2 home screen and assets
   '/': path.join(publicDir, 'index.html'),
+  '/favicon.ico': path.join(publicDir, 'assets/favicon.svg'),
+  '/assets/favicon.svg': path.join(publicDir, 'assets/favicon.svg'),
+  '/assets/og-image.png': path.join(publicDir, 'assets/og-image.png'),
   '/assets/layout-tokens.css': path.join(publicDir, 'assets/layout-tokens.css'),
   '/assets/enquiry.js': path.join(publicDir, 'assets/enquiry.js'),
   '/assets/home.css': path.join(publicDir, 'assets/home.css'),

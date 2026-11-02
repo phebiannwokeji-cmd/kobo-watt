@@ -1,0 +1,28 @@
+TASK 2 INFORMATION DESIGN CHECKS
+Recorded at (UTC): 2026-11-01T15:39:52.895Z
+Server: http://127.0.0.1:61804/ (PID 12728)
+Browser: C:/Program Files/Google/Chrome/Application/chrome.exe
+
+18-heading-wrap-bad.png was captured before the CSS change at a 180 px viewport: the 40 px heading had h1Width 133 px and h1ScrollWidth 143 px, so the text overflowed its box.
+
+Home head: {"url":"http://127.0.0.1:61804/","title":"Kobo Watt — solar access and payments","description":"Kobo Watt is a fictional rent-to-own solar and inverter service in Ikeja, Lagos. Track recorded access and simulated payments.","robots":"index,follow","themeColor":"#006b5e","icon":"/assets/favicon.svg","ogTitle":"Kobo Watt — solar access and payments","ogDescription":"A fictional rent-to-own solar and inverter service for small businesses in Ikeja, Lagos.","ogType":"website","ogUrl":"http://127.0.0.1:3000/","ogImage":"http://127.0.0.1:3000/assets/og-image.png","twitterCard":"summary_large_image"}
+Demo head: {"url":"http://127.0.0.1:61804/demo/","title":"Account summary — Kobo Watt demonstration","description":"Kobo Watt demonstration account summary screen. Fictional account and simulated access only.","robots":null,"themeColor":null,"icon":null,"ogTitle":null,"ogDescription":null,"ogType":null,"ogUrl":null,"ogImage":null,"twitterCard":null}
+Titles differ between the two routes.
+Route /assets/favicon.svg: HTTP 200, content-type image/svg+xml
+Route /favicon.ico: HTTP 200, content-type image/svg+xml
+Route /assets/og-image.png: HTTP 200, content-type image/png
+Route /assets/home.css: HTTP 200, content-type text/css; charset=utf-8
+Route /assets/layout-tokens.css: HTTP 200, content-type text/css; charset=utf-8
+Route /assets/enquiry.js: HTTP 200, content-type text/javascript; charset=utf-8
+Heading at 768px: {"text":"Power for your business","maxWidth":"288px","fontSize":"40px","lineHeight":"60px","width":288,"height":120,"scrollWidth":288}
+Brand link cursor: pointer; font-size=24px
+text-link label style: font-family="Source Sans Pro", sans-serif; font-size=14px; font-weight=600; cursor=pointer
+demo-link label style: font-family="Source Sans Pro", sans-serif; font-size=14px; font-weight=600; cursor=pointer
+Secondary link background rgba(0, 0, 0, 0) differs from primary button background rgb(0, 107, 94).
+.brand forced hover text decoration: underline; thickness: auto
+.text-link forced hover text decoration: underline; thickness: 3px
+.demo-link forced hover text decoration: underline; thickness: auto
+Responsive width 320: {"innerWidth":320,"scrollWidth":305,"h1Width":273,"h1ScrollWidth":273,"h1FontSize":"32px"}
+Responsive width 390: {"innerWidth":390,"scrollWidth":375,"h1Width":288,"h1ScrollWidth":288,"h1FontSize":"32px"}
+Responsive width 768: {"innerWidth":768,"scrollWidth":753,"h1Width":288,"h1ScrollWidth":288,"h1FontSize":"40px"}
+Wrote 20-responsive-three-widths.png from the three live viewport captures.

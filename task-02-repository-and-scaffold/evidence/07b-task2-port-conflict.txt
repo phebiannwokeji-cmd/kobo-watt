@@ -1,0 +1,34 @@
+TASK 2 PORT CONFLICT DRILL - ACTUAL Kobo Watt SERVER
+Recorded at (UTC): 2026-11-01T15:34:22.092Z
+Working directory: C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold
+Database: C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold\data\enquiries.db
+Port selected: 52555
+
+Server A start command:
+$env:PORT='52555'; $env:DATABASE_PATH='C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold\data\enquiries.db'; $env:DB_READONLY='0'; node server.js
+Server A PID: 29404
+Server A HTTP status: 200
+Server A stdout:
+Kobo Watt listening at http://127.0.0.1:52555/ (PID 29404)
+{"time":"2026-11-01T15:34:22.712Z","method":"GET","path":"/","status":200,"serverDurationMs":14.891}
+Server A stderr:
+
+
+Server B start command (same port, same database):
+$env:PORT='52555'; $env:DATABASE_PATH='C:\Users\LENOVO PC\Documents\kobo-watt\task-02-repository-and-scaffold\data\enquiries.db'; $env:DB_READONLY='0'; node server.js
+Server B PID: 8232
+Server B process absent after conflict: absent
+Server B stdout:
+Kobo Watt listening at http://127.0.0.1:52555/ (PID 8232)
+Server B stderr:
+Port 52555 is already in use. No existing process was stopped.
+
+Note: on this Node/Express/Windows build the listening callback logs before the asynchronous EADDRINUSE error event. The error, the failed second process, and the port owner check are the conflict evidence.
+
+Exact process-detection command:
+Get-NetTCPConnection -LocalPort 52555 -State Listen | Select-Object LocalAddress,LocalPort,State,OwningProcess | Format-Table -AutoSize | Out-String
+Actual detection output:
+LocalAddress LocalPort  State OwningProcess
+------------ ---------  ----- -------------
+127.0.0.1        52555 Listen         29404
+Detection output contains Server A PID 29404: true

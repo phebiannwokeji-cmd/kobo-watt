@@ -13,4 +13,8 @@
   --kw-layout-border-width: 1px;
   --kw-layout-focus-width: 3px;
   --kw-layout-focus-offset: 2px;
+  --kw-layout-heading-max-width: 18rem;
+  --kw-layout-heading-size: clamp(2rem, 8vw, 2.5rem);
+  --kw-layout-heading-line-height: 1.5;
+  --kw-layout-tagline-max-width: 24rem;
 }
