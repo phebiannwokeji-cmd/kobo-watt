@@ -97,6 +97,22 @@ Task 1 provides colour roles, typography classes, and shadow tokens. [Layout tok
   - [Rows after restoration HTML](evidence/26-browser-database-rows-after-restoration.html)
   - [Read-only inspection script check](evidence/27-inspection-script.txt)
 
+- **Working Tree, Branching and Pull Request (Steps 8–9):**
+  - [Hand-drawn Working Tree Diagram](evidence/14-working-tree-drawing.jpg)
+  - [Working Tree Architecture Document](docs/working-tree.md)
+  - [Git Log Graph and Branch Proof](evidence/15-git-log-graph.txt)
+  - [Pull Request #1 (Merged into main)](https://github.com/phebiannwokeji-cmd/kobo-watt/pull/1)
+
+- **Information Design and Responsive Typography (Step 10):**
+  - [Information Design Rationale Document](docs/information-design.md)
+  - [Known Defects Document](docs/defects.md)
+  - [Technical Interview Defence Answers](docs/interview-answers.md)
+  - [Head Route 1: Marketing /](evidence/16-head-route-one.png)
+  - [Head Route 2: Account Summary /demo/](evidence/17-head-route-two.png)
+  - [Heading Wrap Bad (Clipping)](evidence/18-heading-wrap-bad.png)
+  - [Heading Wrap Good (Intentional Wrap)](evidence/19-heading-wrap-good.png)
+  - [Responsive Typography at 320px, 390px, 768px](evidence/20-responsive-three-widths.png)
+
 ## Fictional enquiry feature (Codex, later Task 2 feature)
 
 The home page includes a fictional enquiry form; it does not arrange a callback,

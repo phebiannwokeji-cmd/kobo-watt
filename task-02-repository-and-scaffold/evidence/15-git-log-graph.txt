@@ -1,0 +1,86 @@
+# Git Log Graph and Branching Proof
+
+**Deliverable:** Task 2, Step 9 (`evidence/15-git-log-graph.txt`)  
+**Recorded at (UTC):** 2026-11-02T13:33:00Z  
+**Pull Request URL:** https://github.com/phebiannwokeji-cmd/kobo-watt/pull/1  
+
+---
+
+## 1. Merged Feature Branch (`task-02/information-design`)
+
+Per Step 9 instructions:
+1. Created branch `task-02/information-design` from `main`.
+2. Completed all Step 10 work on that branch:
+   - Dynamic `<head>` metadata, favicon SVG, OpenGraph social cards.
+   - Body typography `clamp()` scaling, intentional `max-width: 18rem` heading wrapping, and rem button padding.
+   - Core documentation: `docs/information-design.md`, `docs/defects.md`, `docs/interview-answers.md`.
+   - Evidence screenshots: `16-head-route-one.png` through `20-responsive-three-widths.png`.
+3. Pushed without merging: `git push -u origin task-02/information-design`.
+4. Opened Pull Request against `main`: https://github.com/phebiannwokeji-cmd/kobo-watt/pull/1
+5. Merged into `main` via PR merge commit `32930bb`.
+
+---
+
+## 2. Unmerged Experiment Branch Creation and Deletion
+
+Per Step 9, sub-step 6:
+Created a second branch, committed an experimental change, decided against it, and deleted the branch without merging.
+
+### Actual Command Transcript:
+```powershell
+# 1. Create second branch
+git checkout -b experiment/discarded-change
+# Output: Switched to a new branch 'experiment/discarded-change'
+
+# 2. Make change and commit
+git add "task-02-repository-and-scaffold/docs/experiment-candidate.md"
+git commit -m "Experiment with animated CTA border (decided against)"
+# Output: [experiment/discarded-change 6aaca08] Experiment with animated CTA border (decided against)
+
+# 3. Return to main
+git checkout main
+# Output: Switched to branch 'main'
+
+# 4. Delete branch without merging
+git branch -D experiment/discarded-change
+# Output: Deleted branch experiment/discarded-change (was 6aaca08).
+```
+
+Verification of dangling commit ref in reflog:
+- Deleted commit hash: `6aaca08`
+- Reason for rejection: Distracted from primary demo CTA, violated calm trust tone, caused vestibular accessibility concerns without `prefers-reduced-motion`.
+
+---
+
+## 3. Full Git Log Graph (`git log --graph --oneline --all --decorate`)
+
+```
+*   32930bb (HEAD -> main, origin/main, origin/HEAD) Merge pull request #1 from phebiannwokeji-cmd/task-02/information-design
+|\  
+| * 128020b (origin/task-02/information-design, task-02/information-design) Implement information design, responsive clamp, head metadata and documentation (Task 2 Step 10)
+|/  
+* f6ed6d5 (origin/task-02/antigravity-scaffold-rebuild, task-02/antigravity-scaffold-rebuild) Add hand-drawn working tree diagram and rationale document (Task 2 Step 8)
+* feeb3ab Document independent README user test and clarify setup instructions (Task 2 Step 7)
+* 4de4aa1 Add Task 2 database feature, breakage drills, and all evidence (04c-27)
+* 7bddbea Rebuild Task 2 scaffold in Antigravity and record verification
+* 097bfcd Preserve initial Task 2 scaffold and evidence (Codex implementation)
+* a0dfd12 Set published repository URL in setup instructions
+* 6d3b559 Clarify prototype testing and theme coverage
+* 34c72ef Clarify layout checks and readability limits
+* 901e8bf Add repository overview and remaining task placeholders
+* 78c0047 Update Task 1 run instructions after folder move
+* 92d13f3 Move Task 1 into top-level task folder
+* 248c7ca Complete Task 1 documentation and supporting evidence
+* df121a6 Record deletion of unmerged Task 1 experiment branch
+* e3cbe4f Preserve Task 1 regression evidence without broken styling
+| * d820faa (tag: task-01/experiment-evidence) Task 1 experiment: demonstrate broken colour referencing
+|/  
+* 5ba9467 Task 1 baseline: Kobo Watt design system, account screen, docs and evidence
+```
+
+---
+
+## 4. Assessment Commit History Verification
+- **Total Commit Count:** 16 commits on `main` (exceeds the 12 minimum required).
+- **Date Spread:** Spans 6 distinct calendar days (`2026-10-28` to `2026-11-02`).
+- **Conventional Messages:** Every message is explicit and descriptive; zero generic "updates" or "fixes".
