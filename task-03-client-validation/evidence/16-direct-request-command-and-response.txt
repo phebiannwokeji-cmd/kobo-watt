@@ -1,0 +1,75 @@
+Task 3 — Evidence 16: Direct Request Command and Raw Response
+Date: 2026-11-02T14:25:25 WAT
+Target: POST http://127.0.0.1:3001/api/accounts
+Client: Windows PowerShell 7 / Invoke-RestMethod
+Database: task-03-client-validation/data/kobo-watt-03.db
+
+========================================================================
+PART B: BYPASSING THE BROWSER AND FORM ENTIRELY
+========================================================================
+
+1. EXACT COMMAND EXECUTED
+------------------------------------------------------------------------
+$body = '{"name":"x","phone":"1","email":"not-an-email","address":"abc","password":"weak","terms":false}'
+$res = Invoke-RestMethod -Uri "http://127.0.0.1:3001/api/accounts" -Method Post -ContentType "application/json" -Body $body
+
+Equivalent curl command:
+curl.exe -X POST "http://127.0.0.1:3001/api/accounts" \
+  -H "Content-Type: application/json" \
+  -d "{\"name\":\"x\",\"phone\":\"1\",\"email\":\"not-an-email\",\"address\":\"abc\",\"password\":\"weak\",\"terms\":false}"
+
+2. EXACT PAYLOAD TRANSMITTED (Adversarial Junk)
+------------------------------------------------------------------------
+{
+  "name": "x",
+  "phone": "1",
+  "email": "not-an-email",
+  "address": "abc",
+  "password": "weak",
+  "terms": false
+}
+
+Violations against client rules in this single request:
+- name: "x" (Violates Rule 1: Min 2 chars, and Rule 2: Two words with space)
+- phone: "1" (Violates Rule 3: 10 to 14 digits)
+- email: "not-an-email" (Violates Rule 4: string@domain.tld structure)
+- address: "abc" (Violates Rule 6: Min 10 chars)
+- password: "weak" (Violates Rule 7: Min 12 chars)
+- terms: false (Violates Rule 9: Mandatory consent acceptance)
+
+3. EXACT SERVER RESPONSE
+------------------------------------------------------------------------
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 8
+Date: Mon, 02 Nov 2026 13:25:25 GMT
+Connection: keep-alive
+
+{
+  "id": 1
+}
+
+4. RAW DATABASE ROW RECORDED (SQLite)
+------------------------------------------------------------------------
+Query: SELECT * FROM accounts WHERE id = 1;
+
+Row inserted:
+{
+  "id": 1,
+  "name": "x",
+  "phone": "1",
+  "email": "not-an-email",
+  "address": "abc",
+  "password_hash": "weak",
+  "terms_accepted": 0,
+  "created_at": "2026-11-02 13:25:25"
+}
+
+5. CONCLUSION
+------------------------------------------------------------------------
+The server accepted the invalid request completely, wrote junk into every
+single column, stored an unhashed password, accepted terms=0, and issued
+account id=1. Every single client-side validation rule was bypassed
+because the browser was not in the execution path.
+

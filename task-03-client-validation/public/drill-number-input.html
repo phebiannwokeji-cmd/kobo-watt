@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Step 4 Drill: Number vs Text Input</title>
+  <link rel="stylesheet" href="assets/auth.css">
+  <style>
+    .drill-container {
+      max-width: 32rem;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .demo-box {
+      border: 2px dashed #c4cac7;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 6px;
+    }
+    .demo-box h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: #1a1a1a;
+    }
+  </style>
+</head>
+<body>
+  <div class="drill-container">
+    <h1>Input Type Comparison</h1>
+
+    <!-- 1. The Annoying Number Input -->
+    <div class="demo-box" id="box-number-input">
+      <h2>1. Problematic: &lt;input type="number"&gt;</h2>
+      <div class="kw-field">
+        <label class="kw-label" for="bad-phone">Phone number / Member ID</label>
+        <input type="number" id="bad-phone" class="kw-input" value="0">
+        <span class="kw-hint">Notice the unwanted default zero and browser stepper spinners.</span>
+      </div>
+    </div>
+
+    <!-- 2. The Clean Text Input -->
+    <div class="demo-box" id="box-text-input">
+      <h2>2. Correct: &lt;input type="text" inputmode="numeric"&gt;</h2>
+      <div class="kw-field">
+        <label class="kw-label" for="good-phone">Phone number</label>
+        <input type="text" id="good-phone" class="kw-input" inputmode="numeric" pattern="[0-9]*" placeholder="e.g. 08012345678">
+        <span class="kw-hint">Accepts digits cleanly, preserves leading zeroes, no spinners.</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,29 @@
+Task 3 — Evidence 02: Page count AFTER collapsing
+Captured: 2026-11-02T13:54 WAT
+Branch: task-03/client-validation
+
+After Step 1, the three separate auth pages were replaced by one file:
+
+  public/auth.html
+
+The three forms (signup, login, reset) are all present in auth.html as
+<form> elements. JavaScript reads the URL query parameter ?form= and
+shows the matching form while hiding the other two (hidden attribute +
+aria-hidden). No page reload occurs when switching.
+
+Total auth-related HTML files: 1
+
+URL states served by the single file:
+  http://127.0.0.1:3001/auth?form=signup  — registration
+  http://127.0.0.1:3001/auth?form=login   — sign-in
+  http://127.0.0.1:3001/auth?form=reset   — password reset
+
+Confirmed by: directory listing below.
+
+Directory: task-03-client-validation\public
+  auth.html
+  assets\
+    auth.css
+    auth.js
+    favicon.svg
+

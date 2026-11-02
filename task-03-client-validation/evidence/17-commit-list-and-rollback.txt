@@ -1,0 +1,46 @@
+Task 3 — Evidence 17: Commit List and Precise Rollback by ID
+Date: 2026-11-02T14:47 WAT
+Branch: task-03/client-validation
+Operator: Phebian Nwokeji
+
+========================================================================
+STEP 9: ROLL BACK WITHOUT HALLUCINATION
+========================================================================
+
+1. COMMIT LIST PRIOR TO ROLLBACK (git log --oneline -8)
+------------------------------------------------------------------------
+41d9728 Add unverified referral code field to registration form (regretted change)
+69103e6 Attack form and execute direct endpoint bypass recording unvarnished results (Task 3 Step 8)
+e47abc8 Implement password rules, disabled vs hidden button comparison, and evidence (Task 3 Step 7)
+2f1e3c6 Conduct accessibility audit, fix 4 defects, and record screen reader transcripts (Task 3 Step 6)
+fc0971b Remove sensitive format disclosure and document enumeration trade-offs (Task 3 Step 5)
+e9aa8d9 Demonstrate number input failure vs numeric text input with evidence (Task 3 Step 4)
+4a473f3 Implement 4 client-side validation categories and capture evidence (Task 3 Step 3)
+3b1170a Document form field justifications and terms origin (Task 3 Step 2)
+
+2. SPECIFIC COMMIT ID IDENTIFIED FOR ROLLBACK
+------------------------------------------------------------------------
+Target Commit SHA: 41d9728
+Subject: "Add unverified referral code field to registration form (regretted change)"
+
+3. EXACT COMMAND EXECUTED
+------------------------------------------------------------------------
+git revert 41d9728 --no-edit
+
+4. COMMAND EXECUTION RESULT
+------------------------------------------------------------------------
+[task-03/client-validation ef7f409] Revert "Add unverified referral code field to registration form (regretted change)"
+ Date: Mon Nov 2 14:47:02 2026 +0100
+ 1 file changed, 6 deletions(-)
+
+5. COMMIT LIST POST-ROLLBACK (git log --oneline -5)
+------------------------------------------------------------------------
+ef7f409 Revert "Add unverified referral code field to registration form (regretted change)"
+41d9728 Add unverified referral code field to registration form (regretted change)
+69103e6 Attack form and execute direct endpoint bypass recording unvarnished results (Task 3 Step 8)
+e47abc8 Implement password rules, disabled vs hidden button comparison, and evidence (Task 3 Step 7)
+2f1e3c6 Conduct accessibility audit, fix 4 defects, and record screen reader transcripts (Task 3 Step 6)
+
+6. WHY NAMING THE ID IS SAFER THAN DESCRIBING THE CHANGE IN WORDS
+------------------------------------------------------------------------
+Describing a change in natural language (such as "undo the referral code change") relies on probabilistic pattern-matching, which invites language models to guess boundaries, accidentally revert unrelated concurrent edits, or hallucinate file states. A Git commit hash is an immutable, mathematically verified cryptographic checksum (SHA-1/SHA-256) of the exact tree delta, guaranteeing that Git inverts precisely the targeted diff without ambiguity or collateral file corruption.

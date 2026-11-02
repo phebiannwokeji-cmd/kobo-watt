@@ -1,0 +1,87 @@
+Task 3 — Evidence 15: Attack Through the Form Results
+Date: 2026-11-02T14:26 WAT
+Target: task-03-client-validation/public/auth.html (Signup Form)
+Auditor: Phebian Nwokeji
+
+========================================================================
+PART A: TESTING BOUNDARIES AND BYPASSES THROUGH THE BROWSER UI
+========================================================================
+
+Each client-side validation rule was systematically probed using crafted,
+adversarial, or edge-case inputs to observe what was stopped and what slipped
+through the browser-side defenses.
+
+1. FULL NAME FIELD
+------------------------------------------------------------------------
+Rule intended: Minimum 2 characters, at least two words separated by a space.
+- Probe 1: "a" (single letter)
+  Outcome: BLOCKED. Error: "Full name must be at least 2 characters."
+- Probe 2: "Tunde" (single word, no space)
+  Outcome: BLOCKED. Error: "Please enter your full name — at least two words separated by a space."
+- Probe 3 (Adversarial): "A B"
+  Outcome: PASSED. Two single-letter tokens separated by a space satisfies both length (3 chars >= 2) and the whitespace regex (/\s/).
+- Probe 4 (Trailing whitespace): "Adaobi Eze   "
+  Outcome: PASSED. Trimming strips trailing spaces; clean value accepted.
+- What got through: "A B" and "1 2" both pass as legal full names despite being synthetic bot artifacts.
+
+2. PHONE NUMBER FIELD
+------------------------------------------------------------------------
+Rule intended: 10 to 14 numeric digits only (^[0-9]{10,14}$).
+- Probe 1: "1" (single digit)
+  Outcome: BLOCKED. Error: "Phone number must be 10 to 14 digits — numbers only, no spaces or dashes."
+- Probe 2: "080-1234-5678" (hyphenated)
+  Outcome: BLOCKED. Non-digit characters rejected.
+- Probe 3 (Adversarial): "0000000000" (ten zeroes)
+  Outcome: PASSED. Exactly 10 numeric characters matches ^[0-9]{10,14}$.
+- Probe 4: "99999999999999" (fourteen nines)
+  Outcome: PASSED. 14 digits within bounds.
+- What got through: Synthetic all-zero or repeated numbers pass client checks because regex validates syntax, not telecoms routability or active SIM registration.
+
+3. EMAIL ADDRESS FIELD
+------------------------------------------------------------------------
+Rule intended: Valid RFC structure string@string.domain.
+- Probe 1: "noemail"
+  Outcome: BLOCKED. No @ or domain.
+- Probe 2: "a@b" (no dot/TLD)
+  Outcome: BLOCKED. Error: "Enter a valid email address — for example, name@example.com."
+- Probe 3 (Adversarial): "a@b.c"
+  Outcome: PASSED. Has local-part "a", "@", host "b", and TLD ".c".
+- What got through: "a@b.c" passes even though ".c" is not an allocated IANA Top-Level Domain and "b.c" has no authoritative DNS MX records. The browser cannot perform DNS lookups.
+
+4. PASSWORD FIELD
+------------------------------------------------------------------------
+Rule intended: Minimum 12 characters, non-empty, not all whitespace.
+- Probe 1: "short" (5 chars)
+  Outcome: BLOCKED. Error: "Password must be at least 12 characters. Length makes it strong."
+- Probe 2: "            " (12 spaces)
+  Outcome: BLOCKED. Error: "Password cannot be only spaces."
+- Probe 3 (Adversarial): "solar123    " (8 characters + 4 trailing spaces)
+  Outcome: PASSED. Total string length is 12. trim() is not empty string. The trailing whitespace is counted toward the 12-character threshold.
+- What got through: Weak 8-character passwords padded with trailing spaces satisfy the client length rule.
+
+5. SERVICE ADDRESS FIELD
+------------------------------------------------------------------------
+Rule intended: Minimum 10 characters.
+- Probe 1: "Shop 1" (6 chars)
+  Outcome: BLOCKED. Error: "Service address is too short — please enter a full street address."
+- Probe 2 (Adversarial): ".........." (10 periods)
+  Outcome: PASSED. 10 characters; no semantic street parsing exists on the client.
+- What got through: Meaningless punctuation or number strings of 10+ characters pass effortlessly.
+
+6. TERMS CHECKBOX
+------------------------------------------------------------------------
+Rule intended: Must be checked.
+- Probe 1: Unchecked, click submit.
+  Outcome: BLOCKED. Displays inline banner: "Please accept the terms and conditions before creating your account."
+- Probe 2 (DevTools bypass): Open browser console and run:
+  document.getElementById('signup-terms').checked = true; updateSubmitState();
+  Outcome: PASSED. Client-side DOM manipulation enables the button instantly.
+
+========================================================================
+SUMMARY OF FORM ATTACK FINDINGS
+========================================================================
+Client-side validation acts solely as an interactive styling guide. Edge cases
+such as "A B", "0000000000", "a@b.c", and space-padded passwords ("solar123    ")
+trivially pass the browser's rules. Furthermore, any client check can be disabled
+in seconds using the browser developer tools.
+
