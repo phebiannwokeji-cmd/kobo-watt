@@ -1,0 +1,6 @@
+$ npx prisma migrate dev --name init
+Run at: 2026-11-03T11:27:08.2830927+01:00   PID: 23664
+
+Need to install the following packages:
+prisma@8.0.0-rc.29
+Ok to proceed? (y) 
