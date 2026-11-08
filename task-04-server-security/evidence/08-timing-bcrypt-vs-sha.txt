@@ -1,0 +1,16 @@
+Command: node tools/benchmark-hashing.mjs
+Captured from the learner's terminal output in the Task 4 working conversation.
+Node: v24.19.0
+Platform: win32 x64
+Sample password: Kobo Watt Task 4 local benchmark only
+bcrypt cost: 12
+
+Timing:
+bcrypt one hash: 231.649 ms
+SHA-256 100000 hashes: 151.089 ms
+SHA-256 average: 0.001511 ms/hash
+SHA-256 sample digest: a79e930ccc2556d534fadab2b2956f3261d6c615c952485505de32b42abae37a
+bcrypt guesses/second: 1000 / 231.649 = 4.317
+SHA-256 guesses/second: 1000 / 0.001511 = 661860.676
+
+Arithmetic note: displayed timings are rounded by the benchmark. Using the displayed SHA-256 total, 151.089 ms / 100000 = 0.00151089 ms/hash, and 1000 / 0.00151089 = approximately 661861.552 guesses/second. The script's guesses/second uses its unrounded internal timer values.

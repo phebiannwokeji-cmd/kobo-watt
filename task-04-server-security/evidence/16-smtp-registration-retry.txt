@@ -1,0 +1,20 @@
+Captured at: 2026-11-05T05:09:48.697Z
+Command: node tools/measure-signup.mjs step10-mail <email-you-can-check>
+Request: POST http://127.0.0.1:3002/api/accounts
+Email destination: supplied test mailbox (value omitted).
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+[TypeError: fetch failed] {
+  [cause]: Error: connect ECONNREFUSED 127.0.0.1:3002
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 3002
+  }
+}
+
+Node.js v24.19.0

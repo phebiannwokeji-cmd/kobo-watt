@@ -1,0 +1,30 @@
+Command: node tools/probe-schema-drift.mjs
+
+PrismaClientKnownRequestError:
+Invalid `prisma.account.findMany()` invocation:
+
+The column `main.accounts.last_login_at` does not exist in the current database.
+    at vn.handleRequestError (C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:65:8640)
+    at vn.handleAndLogRequestError (C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:65:7929)
+    at vn.request (C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:65:7636)
+    at async a (C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:99:6921)
+    at async file:///C:/Users/LENOVO%20PC/Documents/kobo-watt/task-04-server-security/tools/probe-schema-drift.mjs:10:20 {
+  code: 'P2022',
+  meta: {
+    modelName: 'Account',
+    driverAdapterError: DriverAdapterError: ColumnNotFound
+        at PrismaBetterSqlite3Adapter.onError (file:///C:/Users/LENOVO%20PC/Documents/kobo-watt/task-04-server-security/node_modules/@prisma/adapter-better-sqlite3/dist/index.mjs:554:11)
+        at PrismaBetterSqlite3Adapter.performIO (file:///C:/Users/LENOVO%20PC/Documents/kobo-watt/task-04-server-security/node_modules/@prisma/adapter-better-sqlite3/dist/index.mjs:549:12)
+        at PrismaBetterSqlite3Adapter.queryRaw (file:///C:/Users/LENOVO%20PC/Documents/kobo-watt/task-04-server-security/node_modules/@prisma/adapter-better-sqlite3/dist/index.mjs:490:63)
+        at C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:11:70523
+        at Wr (C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:11:27324)
+        at #d (C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:11:76666)
+        at C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:11:70492
+        at #u (C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:11:75883)
+        at e.interpretNode (C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:11:70406)
+        at C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security\node_modules\@prisma\client\runtime\client.js:11:69159 {
+      cause: [Object]
+    }
+  },
+  clientVersion: '7.10.1'
+}

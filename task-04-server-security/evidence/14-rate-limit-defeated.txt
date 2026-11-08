@@ -1,0 +1,19 @@
+Assessment filename version of the original unchanged capture: evidence/13-rate-limit-ip-change.txt.
+
+Captured at: 2026-11-04T13:16:20.717Z
+Command: node tools/prove-rate-limit-ip-change.mjs <alternate-base-url>
+This proof uses two genuine local network addresses, not a forwarded-IP header.
+First route: http://127.0.0.1:3002
+After 11 loopback requests: HTTP 429 {"error":"Too many registration requests from this IP. Try again after the 15-minute window."}
+Alternate route attempted: http://192.168.1.20:3002
+Result: connection timed out. This attempt did not prove a bypass.
+
+Captured at: 2026-11-04T13:22:21.866Z
+Command: node tools/prove-rate-limit-ip-change.mjs <alternate-base-url>
+This proof uses two genuine local network addresses, not a forwarded-IP header.
+First route: http://127.0.0.1:3002
+After 11 loopback requests: HTTP 429 {"error":"Too many registration requests from this IP. Try again after the 15-minute window."}
+Alternate route: http://172.20.10.4:3002
+After the limit, alternate-address request: HTTP 400 {"error":"Invalid request body.","issues":[{"path":["name"],"message":"Invalid input: expected string, received undefined"},{"path":["phone"],"message":"Invalid input: expected string, received undefined"},{"path":["email"],"message":"Invalid input: expected string, received undefined"},{"path":["address"],"message":"Invalid input: expected string, received undefined"},{"path":["password"],"message":"Invalid input: expected string, received undefined"},{"path":["terms"],"message":"Invalid input: expected true"}]}
+
+Interpretation: the request reached validation at the alternate address instead of receiving the loopback address's HTTP 429. This demonstrates the local per-IP limiter's scope, not a production-safe bypass method.

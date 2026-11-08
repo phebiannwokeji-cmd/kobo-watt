@@ -1,0 +1,31 @@
+Command: npm.cmd run db:migrate -- --name add_last_login_at
+
+> task-04-server-security@1.0.0 db:migrate
+> prisma migrate dev --name add_last_login_at
+
+Loaded Prisma config from prisma7.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Datasource "db": SQLite database "kobo-watt-04.db" at "file:./data/kobo-watt-04.db"
+
+Applying migration `20261103174000_add_last_login_at`
+
+The following migration(s) have been created and applied from new schema changes:
+
+prisma\migrations/
+  └─ 20261103174000_add_last_login_at/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+
+Read-only verification: `last_login_at` exists as an optional DATETIME column, the demo account remains present, and `integrity_check` returned `ok`.
+
+Probe after repair:
+Command: node tools/probe-schema-drift.mjs
+[
+  {
+    "id": 1,
+    "email": "migration-demo@example.test",
+    "lastLoginAt": null
+  }
+]

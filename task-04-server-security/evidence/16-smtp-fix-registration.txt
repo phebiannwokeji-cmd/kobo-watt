@@ -1,0 +1,5 @@
+Captured at: 2026-11-04T16:27:08.768Z
+Command: node tools/register-verification-demo.mjs <email-you-can-check>
+Request: POST http://127.0.0.1:3002/api/accounts
+Elapsed: 1830.365 ms
+Response: HTTP 201 {"id":8}

@@ -1,0 +1,13 @@
+
+> task-04-server-security@1.0.0 start
+> node --env-file-if-exists=.env server.js
+
+Task 4 server listening at http://127.0.0.1:3002
+Database: data/kobo-watt-04.db
+Verification email delivery failed. {
+  code: 'ESOCKET',
+  responseCode: null,
+  command: 'CONN',
+  detail: 'self-signed certificate in certificate chain'
+}
+SIGINT received; shutting down Task 4 server.

@@ -1,0 +1,17 @@
+Captured at: 2026-11-04T08:42:17.021Z
+Command: node tools/prove-normalization.mjs
+
+Case 1: register using capitalized email; log in using lowercase email.
+Registration email: Step5.Email.cb7b3f58a27648c4833022df3068737a@EXAMPLE.TEST
+POST /api/accounts -> HTTP 201 {"id":2}
+Login email: step5.email.cb7b3f58a27648c4833022df3068737a@example.test
+POST /api/sessions -> HTTP 200 {"message":"Signed in."}
+
+Case 2: register with one trailing password space; log in without it.
+Registration email: step5.password.cb7b3f58a27648c4833022df3068737a@example.test
+Registration password includes one trailing space (value omitted).
+POST /api/accounts -> HTTP 201 {"id":3}
+Login password has no trailing space (value omitted).
+POST /api/sessions -> HTTP 200 {"message":"Signed in."}
+
+Both Step 5 registration/login proofs passed.

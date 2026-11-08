@@ -1,0 +1,52 @@
+**********************
+PowerShell transcript start
+Start time: 20261103180000
+Username: ORACHIN-FBI\LENOVO PC
+RunAs User: ORACHIN-FBI\LENOVO PC
+Configuration Name: 
+Machine: ORACHIN-FBI (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Program Files\WindowsApps\Microsoft.PowerShell_7.6.7.0_x64__8wekyb3d8bbwe\pwsh.dll -noexit -command try { . "c:\Users\LENOVO PC\AppData\Local\Programs\Antigravity IDE\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+Process ID: 23664
+PSVersion: 7.6.7
+PSEdition: Core
+GitCommitId: 7.6.7
+OS: Microsoft Windows 10.0.26300
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is evidence/03-initial-migration.txt
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cLENOVO PC\x5cDocuments\x5ckobo-watt\x5ctask-04-server-securityPS C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security> ]633;B
+PS>npm.cmd run db:migrate -- --name init
+
+]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cLENOVO PC\x5cDocuments\x5ckobo-watt\x5ctask-04-server-securityPS C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security> ]633;B
+PS>Stop-Transcript
+**********************
+PowerShell transcript end
+End time: 20261103180329
+**********************
+
+--- Full npm output copied from the learner's PowerShell output pasted in the Task 4 working conversation ---
+PS C:\Users\LENOVO PC\Documents\kobo-watt\task-04-server-security> npm.cmd run db:migrate -- --name init
+
+> task-04-server-security@1.0.0 db:migrate
+> prisma migrate dev --name init
+
+Loaded Prisma config from prisma7.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Datasource "db": SQLite database "kobo-watt-04.db" at "file:./data/kobo-watt-04.db"
+
+SQLite database kobo-watt-04.db created at file:./data/kobo-watt-04.db
+
+Applying migration `20261103170003_init`
+
+The following migration(s) have been created and applied from new schema changes:
+
+prisma\migrations/
+  └─ 20261103170003_init/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
