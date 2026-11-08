@@ -1,6 +1,6 @@
 # Task 4 — Server security
 
-Status: **complete, pending final review.** Steps 1-12 have been implemented. Required documentation, the 19 interview answers, and the required evidence-name versions are present. The Task 4 changes remain uncommitted until the learner completes a final review.
+Status: **complete, pending final review.** Steps 1-12 have been implemented. Required documentation, the 19 interview answers, and the required evidence-name versions are present. Task 4 is committed locally and has not been pushed.
 
 ## Step 5 — Normalization
 
