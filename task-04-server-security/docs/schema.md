@@ -2,7 +2,7 @@
 
 ## 1. Schema Overview & Relational Topology
 
-The Kobo Watt database manages solar/inverter installations, authenticated customer sessions, commercial settlements, payment audit trails, and technical manual knowledge retrieval for the Ikeja, Lagos operations.
+The Kobo Watt database manages solar/inverter installations, authenticated customer sessions, short-lived email verification codes, commercial settlements, payment audit trails, and technical manual knowledge retrieval for the Ikeja, Lagos operations.
 
 The relational design enforces referential integrity through foreign keys, prevents floating-point monetary precision corruption by storing currency in integer kobo, and isolates settled payments from transient or failed payment attempts.
 
@@ -50,6 +50,8 @@ Stores user credentials, contact identities, verification states, and legal cons
 | `phone` | `TEXT` | `NOT NULL` | Digits-only mobile contact number (10 to 14 digits). |
 | `service_address` | `TEXT` | `NOT NULL` | Physical installation address for engineer dispatch. |
 | `is_verified` | `INTEGER` | `NOT NULL` | `0` = pending activation, `1` = email verified via token. Default `0`. |
+| `account_status` | `TEXT` | `NOT NULL` | Account lifecycle state: `PENDING_VERIFICATION`, `ACTIVE`, `SUSPENDED`, or `CLOSED`. Kept separate from `is_verified` because verified accounts can later be suspended or closed. |
+| `last_login_at` | `TEXT` | `NULL` | Time of the last successful sign-in, for account security review. Null until the account signs in successfully. |
 | `terms_accepted_at`| `TEXT` | `NOT NULL` | ISO-8601 timestamp of NDPR legal consent acceptance. |
 | `created_at` | `TEXT` | `NOT NULL` | ISO-8601 timestamp of record insertion (`datetime('now')`). |
 | `updated_at` | `TEXT` | `NOT NULL` | ISO-8601 timestamp of last record mutation. |
@@ -84,7 +86,23 @@ Maintains active authentication sessions with cryptographically secure random to
 
 ---
 
-### Table 3: `payments` (Settled Money Transactions)
+### Table 3: `verification_codes` (Short-Lived Email Verification)
+Stores a six-digit email verification code for an account, its expiry, use time and failed-attempt count. Codes are short-lived; database access must stay restricted, and expired rows should be removed after the evidence exercise.
+
+| Column | Type | Nullable | Description & Constraints |
+| :--- | :--- | :--- | :--- |
+| `id` | `INTEGER` | `NOT NULL` | Primary Key, Auto-incrementing integer. |
+| `account_id` | `INTEGER` | `NOT NULL` | Foreign Key referencing `accounts(id)` ON DELETE CASCADE. |
+| `code` | `TEXT` | `NOT NULL` | Six-digit, zero-padded cryptographically generated code. |
+| `expires_at` | `TEXT` | `NOT NULL` | Expiry timestamp, seven minutes after issue. |
+| `used_at` | `TEXT` | `NULL` | Set when successfully consumed; prevents code reuse. |
+| `attempt_count` | `INTEGER` | `NOT NULL` | Failed submissions for this code; locks after five. Default `0`. |
+| `created_at` | `TEXT` | `NOT NULL` | Code issue timestamp. |
+
+- **Relationship:** One-to-Many (`accounts.id -> verification_codes.account_id`).
+- **Indexes:** `idx_verification_codes_account_expiry` supports selecting an account's active code; `idx_verification_codes_expires_at` supports expiry cleanup.
+
+### Table 4: `payments` (Settled Money Transactions)
 Stores settled, verified monetary receipts for completed solar hardware deposits and service calls.
 
 | Column | Type | Nullable | Description & Constraints |
@@ -110,7 +128,7 @@ Stores settled, verified monetary receipts for completed solar hardware deposits
 
 ---
 
-### Table 4: `payment_attempts` (Failed, Abandoned, or Timed-Out Attempts)
+### Table 5: `payment_attempts` (Failed, Abandoned, or Timed-Out Attempts)
 Maintains an immutable forensic audit log of all payment attempts regardless of outcome.
 
 | Column | Type | Nullable | Description & Constraints |
@@ -137,7 +155,7 @@ Maintains an immutable forensic audit log of all payment attempts regardless of 
 
 ---
 
-### Table 5: `knowledge_chunks` (RAG Retrieval Engine for Inverter Manuals)
+### Table 6: `knowledge_chunks` (RAG Retrieval Engine for Inverter Manuals)
 Stores segmented textual passages, token counts, and vector embeddings for technical troubleshooting and customer support AI retrieval.
 
 | Column | Type | Nullable | Description & Constraints |

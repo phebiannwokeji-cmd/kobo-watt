@@ -1,0 +1,60 @@
+Step 1 of 3: add `account_status` as an optional column
+Command: npm.cmd run db:migrate -- --name add_account_status_optional
+
+> task-04-server-security@1.0.0 db:migrate
+> prisma migrate dev --name add_account_status_optional
+
+Loaded Prisma config from prisma7.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Datasource "db": SQLite database "kobo-watt-04.db" at "file:./data/kobo-watt-04.db"
+
+Applying migration `20261103172059_add_account_status_optional`
+
+The following migration(s) have been created and applied from new schema changes:
+
+prisma\migrations/
+  ΓööΓöÇ 20261103172059_add_account_status_optional/
+    ΓööΓöÇ migration.sql
+
+Your database is now in sync with your schema.
+
+Step 2 of 3: backfill `account_status`
+
+The first backfill invocation updated the null value, but its `Tee-Object` capture failed because the pasted command was concatenated. The following idempotent rerun captured the current row and reported zero additional changes:
+
+Command: node tools/backfill-account-status.mjs
+Backfilled account rows: 0
+Account status after backfill:
+[
+  {
+    "id": 1,
+    "email": "migration-demo@example.test",
+    "is_verified": 0,
+    "account_status": "PENDING_VERIFICATION"
+  }
+]
+
+Step 3 of 3: make `account_status` required
+Command: npm.cmd run db:migrate -- --name make_account_status_required
+
+> task-04-server-security@1.0.0 db:migrate
+> prisma migrate dev --name make_account_status_required
+
+Loaded Prisma config from prisma7.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Datasource "db": SQLite database "kobo-watt-04.db" at "file:./data/kobo-watt-04.db"
+
+Applying migration `20261103173255_make_account_status_required`
+
+The following migration(s) have been created and applied from new schema changes:
+
+prisma\migrations/
+  └─ 20261103173255_make_account_status_required/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+
+Read-only verification after this migration: `accounts.account_status` is `NOT NULL`; the demo row still has `PENDING_VERIFICATION`; `integrity_check` returned `ok`.
+

@@ -1,0 +1,11 @@
+Captured at: 2026-11-08T11:15:49.011Z
+Command: node tools/prove-expired-verification.mjs <test-account-email>
+Expired verification row:
+{
+  "id": 22,
+  "code": "[redacted]",
+  "createdAt": "2026-11-08T11:07:37.439Z",
+  "expiresAt": "2026-11-08T11:15:47.982Z",
+  "usedAt": null
+}
+Expired-code response: HTTP 400 {"error":"Verification code is invalid or expired."}

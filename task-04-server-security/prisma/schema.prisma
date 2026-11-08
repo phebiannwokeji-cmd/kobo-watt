@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Account {
+  id              Int              @id @default(autoincrement())
+  email           String           @unique(map: "idx_accounts_email")
+  passwordHash    String           @map("password_hash")
+  fullName        String           @map("full_name")
+  phone           String
+  serviceAddress  String           @map("service_address")
+  isVerified      Boolean          @default(false) @map("is_verified")
+  accountStatus   String           @map("account_status")
+  lastLoginAt     DateTime?        @map("last_login_at")
+  termsAcceptedAt DateTime         @map("terms_accepted_at")
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+  sessions        Session[]
+  payments        Payment[]
+  paymentAttempts PaymentAttempt[]
+  verificationCodes VerificationCode[]
+
+  @@map("accounts")
+}
+
+model Session {
+  id        String   @id
+  accountId Int      @map("account_id")
+  ipAddress String   @map("ip_address")
+  userAgent String   @map("user_agent")
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  account   Account  @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId], map: "idx_sessions_account_id")
+  @@index([expiresAt], map: "idx_sessions_expires_at")
+  @@map("sessions")
+}
+
+model VerificationCode {
+  id            Int       @id @default(autoincrement())
+  accountId     Int       @map("account_id")
+  code          String
+  expiresAt     DateTime  @map("expires_at")
+  usedAt        DateTime? @map("used_at")
+  attemptCount  Int       @default(0) @map("attempt_count")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  account       Account   @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId, expiresAt], map: "idx_verification_codes_account_expiry")
+  @@index([expiresAt], map: "idx_verification_codes_expires_at")
+  @@map("verification_codes")
+}
+
+model Payment {
+  id          Int      @id @default(autoincrement())
+  accountId   Int      @map("account_id")
+  reference   String   @unique(map: "idx_payments_reference")
+  amountKobo  Int      @map("amount_kobo")
+  currency    String   @default("NGN")
+  serviceType String   @map("service_type")
+  status      String
+  paidAt      DateTime @map("paid_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+  account     Account  @relation(fields: [accountId], references: [id], onDelete: Restrict)
+
+  @@index([accountId], map: "idx_payments_account_id")
+  @@map("payments")
+}
+
+model PaymentAttempt {
+  id            Int      @id @default(autoincrement())
+  accountId     Int?     @map("account_id")
+  reference     String   @unique
+  amountKobo    Int      @map("amount_kobo")
+  currency      String   @default("NGN")
+  serviceType   String   @map("service_type")
+  provider      String
+  failureReason String   @map("failure_reason")
+  errorCode     String?  @map("error_code")
+  createdAt     DateTime @default(now()) @map("created_at")
+  account       Account? @relation(fields: [accountId], references: [id], onDelete: SetNull)
+
+  @@index([accountId], map: "idx_payment_attempts_account_id")
+  @@index([createdAt], map: "idx_payment_attempts_created_at")
+  @@map("payment_attempts")
+}
+
+model KnowledgeChunk {
+  id            Int      @id @default(autoincrement())
+  documentTitle String   @map("document_title")
+  chunkIndex    Int      @map("chunk_index")
+  content       String
+  tokenCount    Int      @map("token_count")
+  embeddingJson String?  @map("embedding_json")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@index([documentTitle, chunkIndex], map: "idx_chunks_doc_chunk")
+  @@map("knowledge_chunks")
+}

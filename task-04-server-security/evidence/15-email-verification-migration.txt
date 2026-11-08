@@ -1,0 +1,19 @@
+
+> task-04-server-security@1.0.0 db:migrate
+> prisma migrate dev --name add_email_verification
+
+Loaded Prisma config from prisma7.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Datasource "db": SQLite database "kobo-watt-04.db" at "file:./data/kobo-watt-04.db"
+
+Applying migration `20261104141354_add_email_verification`
+
+The following migration(s) have been created and applied from new schema changes:
+
+prisma\migrations/
+  ΓööΓöÇ 20261104141354_add_email_verification/
+    ΓööΓöÇ migration.sql
+
+Your database is now in sync with your schema.
+

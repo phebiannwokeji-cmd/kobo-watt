@@ -1,0 +1,14 @@
+
+> task-04-server-security@1.0.0 start
+> node --use-system-ca --env-file-if-exists=.env server.js
+
+Task 4 server listening at http://127.0.0.1:3002
+Database: data/kobo-watt-04.db
+Verification email delivery failed. {
+  code: 'EAUTH',
+  responseCode: 534,
+  command: 'AUTH PLAIN',
+  detail: 'Invalid login: 534-5.7.9 Application-specific password required. For more information, go to\n' +
+    '534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor 5b1f17b1804b1-4b571f46538sm34426445e9.5 - gsmtp'
+}
+^C^C

@@ -1,0 +1,19 @@
+Command: npm.cmd run db:migrate -- --name add_account_status_required
+
+> task-04-server-security@1.0.0 db:migrate
+> prisma migrate dev --name add_account_status_required
+
+Loaded Prisma config from prisma7.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Datasource "db": SQLite database "kobo-watt-04.db" at "file:./data/kobo-watt-04.db"
+
+
+Error: 
+ΓÜá∩╕Å We found changes that cannot be executed:
+
+  ΓÇó Step 0 Added the required column `account_status` to the `accounts` table without a default value. There are 1 rows in this table, it is not possible to execute this step.
+
+You can use prisma migrate dev --create-only to create the migration file, and manually modify it to address the underlying issue(s).
+Then run prisma migrate dev to apply it and verify it works.
+

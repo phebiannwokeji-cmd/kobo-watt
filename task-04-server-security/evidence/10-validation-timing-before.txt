@@ -1,0 +1,6 @@
+Captured at: 2026-11-04T09:09:31.935Z
+Command: node tools/measure-signup.mjs before
+Request: POST http://127.0.0.1:3002/api/accounts
+Unique email: step6.before.e3be9ce15bad43b6b7024ad7712f67d3@example.test
+Elapsed: 538.989 ms
+Response: HTTP 201 {"id":4}

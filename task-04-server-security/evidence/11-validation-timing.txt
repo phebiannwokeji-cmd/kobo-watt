@@ -1,0 +1,19 @@
+Combined required-name record. The original captures remain unchanged as evidence/10-validation-timing-before.txt and evidence/10-validation-timing-after.txt.
+
+Before validation placement change
+Captured at: 2026-11-04T09:09:31.935Z
+Command: node tools/measure-signup.mjs before
+Request: POST http://127.0.0.1:3002/api/accounts
+Unique email: step6.before.e3be9ce15bad43b6b7024ad7712f67d3@example.test
+Elapsed: 538.989 ms
+Response: HTTP 201 {"id":4}
+
+After validation placement change
+Captured at: 2026-11-04T09:45:03.474Z
+Command: node tools/measure-signup.mjs after
+Request: POST http://127.0.0.1:3002/api/accounts
+Unique email: step6.after.a887e20b6aad417ab8583468b8e7abee@example.test
+Elapsed: 468.270 ms
+Response: HTTP 201 {"id":6}
+
+Scope note: these are separate local runs. They are evidence of the observed runs, not proof that the change alone caused a performance improvement.

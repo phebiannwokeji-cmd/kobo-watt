@@ -1,0 +1,12 @@
+Command: node tools/benchmark-hashing.mjs
+Captured from the learner's terminal output in the Task 4 working conversation.
+Node: v24.19.0
+Platform: win32 x64
+Sample password: Kobo Watt Task 4 local benchmark only
+bcrypt cost: 12
+
+Hash twice:
+bcrypt hash 1: $2b$12$Rcpyi3JyasDj75XfLPXnGOTGPJMa6WAPvcVT/U7cGx8Ng7LIhP1fS
+bcrypt hash 2: $2b$12$cKLnk9IzlGzfoziqDd5pEuO0jAKOsbWqXDi2hwJB2nsMHW7Ttbnlq
+Hashes differ: true
+Rounds in hash: 12

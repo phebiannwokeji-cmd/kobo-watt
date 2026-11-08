@@ -1,0 +1,26 @@
+Captured at: 2026-11-08T11:52:20.624Z
+Command: node tools/prove-verification-failures.mjs <test-account-email>
+Verification row before attempts:
+{
+  "id": 15,
+  "isVerified": false,
+  "accountStatus": "PENDING_VERIFICATION",
+  "verificationCodes": [
+    {
+      "code": "[redacted]",
+      "createdAt": "2026-11-08T11:51:17.336Z",
+      "expiresAt": "2026-11-08T11:58:17.319Z",
+      "usedAt": null,
+      "attemptCount": 0
+    }
+  ]
+}
+Wrong-code response: HTTP 400 {"error":"Verification code is invalid or expired."}
+Valid-code response: HTTP 200 {"message":"Email verified."}
+Reused-code response: HTTP 400 {"error":"Verification code is invalid or expired."}
+Account state after verification:
+{
+  "id": 15,
+  "isVerified": true,
+  "accountStatus": "ACTIVE"
+}

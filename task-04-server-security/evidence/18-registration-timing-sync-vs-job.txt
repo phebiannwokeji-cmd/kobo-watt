@@ -1,0 +1,12 @@
+Captured at: 2026-11-08T11:00:18.368Z
+Command: node tools/measure-signup.mjs inline <email-you-can-check>
+Request: POST http://127.0.0.1:3002/api/accounts
+Email destination: supplied test mailbox (value omitted).
+Elapsed: 9849.796 ms
+Response: HTTP 201 {"id":13}
+Captured at: 2026-11-08T11:07:35.454Z
+Command: node tools/measure-signup.mjs background <email-you-can-check>
+Request: POST http://127.0.0.1:3002/api/accounts
+Email destination: supplied test mailbox (value omitted).
+Elapsed: 2006.297 ms
+Response: HTTP 201 {"id":14}

@@ -1,0 +1,5 @@
+Task 4 server listening at http://127.0.0.1:3002
+Database: data/kobo-watt-04.db
+Verification email accepted by SMTP. { messageId: '<actual-message-id>' }
+
+Observed result: Gmail accepted the verification email for delivery. I then received the email in the test inbox. SMTP acceptance confirms handoff to Gmail; it does not by itself prove inbox delivery.

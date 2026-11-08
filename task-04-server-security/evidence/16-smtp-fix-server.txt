@@ -1,0 +1,10 @@
+Task 4 server listening at http://127.0.0.1:3002
+Database: data/kobo-watt-04.db
+Verification email delivery failed. {
+  code: 'EAUTH',
+  responseCode: 535,
+  command: 'AUTH PLAIN',
+  detail: 'Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-48fece99b33sm4464301f8f.23 - gsmtp'
+}
+SIGINT received; shutting down Task 4 server.

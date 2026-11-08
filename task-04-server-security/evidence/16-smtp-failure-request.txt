@@ -1,0 +1,6 @@
+Captured at: 2026-11-04T15:24:23.791Z
+Command: node tools/measure-signup.mjs step10-smtp-failure
+Request: POST http://127.0.0.1:3002/api/accounts
+Unique email: step6.step10-smtp-failure.66f5bee2dd8a4abd92ef4afb7f0e125a@example.test
+Elapsed: 2769.817 ms
+Response: HTTP 201 {"id":7}

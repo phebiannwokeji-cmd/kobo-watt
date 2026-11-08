@@ -1,0 +1,18 @@
+# Email-verification completion record
+
+Observed at: [08/11/2026 at 5:41am, Africa/Lagos]
+
+I registered a fictional test account and received its verification email.
+The server recorded that Gmail accepted the verification email for SMTP delivery.
+
+I submitted the newest six-digit code once through POST /api/email-verifications.
+The server responded: Email verified.
+
+I then made a read-only database check. It returned:
+{"isVerified":true,"accountStatus":"ACTIVE"}
+
+Privacy:
+- The recipient email address is omitted.
+- The Gmail App Password is omitted.
+- The six-digit verification code is omitted.
+- The SMTP message ID is omitted because it is not needed to prove activation.

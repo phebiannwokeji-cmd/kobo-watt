@@ -1,0 +1,7 @@
+
+> task-04-server-security@1.0.0 start
+> node --use-system-ca --env-file-if-exists=.env server.js
+
+Task 4 server listening at http://127.0.0.1:3002
+Database: data/kobo-watt-04.db
+SIGINT received; shutting down Task 4 server.

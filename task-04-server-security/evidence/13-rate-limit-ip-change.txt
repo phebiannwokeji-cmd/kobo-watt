@@ -1,0 +1,28 @@
+Captured at: 2026-11-04T13:16:20.717Z
+Command: node tools/prove-rate-limit-ip-change.mjs <alternate-base-url>
+This proof uses two genuine local network addresses, not a forwarded-IP header.
+First route: http://127.0.0.1:3002
+After 11 loopback requests: HTTP 429 {"error":"Too many registration requests from this IP. Try again after the 15-minute window."}
+Alternate route: http://192.168.1.20:3002
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+[TypeError: fetch failed] {
+  [cause]: ConnectTimeoutError: Connect Timeout Error (attempted address: 192.168.1.20:3002, timeout: 10000ms)
+      at onConnectTimeout (node:internal/deps/undici/undici:1991:23)
+      at Immediate._onImmediate (node:internal/deps/undici/undici:1957:35)
+      at process.processImmediate (node:internal/timers:534:21) {
+    code: 'UND_ERR_CONNECT_TIMEOUT'
+  }
+}
+
+Node.js v24.19.0
+Captured at: 2026-11-04T13:22:21.866Z
+Command: node tools/prove-rate-limit-ip-change.mjs <alternate-base-url>
+This proof uses two genuine local network addresses, not a forwarded-IP header.
+First route: http://127.0.0.1:3002
+After 11 loopback requests: HTTP 429 {"error":"Too many registration requests from this IP. Try again after the 15-minute window."}
+Alternate route: http://172.20.10.4:3002
+After the limit, alternate-address request: HTTP 400 {"error":"Invalid request body.","issues":[{"path":["name"],"message":"Invalid input: expected string, received undefined"},{"path":["phone"],"message":"Invalid input: expected string, received undefined"},{"path":["email"],"message":"Invalid input: expected string, received undefined"},{"path":["address"],"message":"Invalid input: expected string, received undefined"},{"path":["password"],"message":"Invalid input: expected string, received undefined"},{"path":["terms"],"message":"Invalid input: expected true"}]}
+The request passed the IP-only limiter under the alternate address and was then rejected by validation.

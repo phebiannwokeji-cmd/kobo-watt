@@ -1,0 +1,18 @@
+Captured at: 2026-11-04T10:51:17.264Z
+Command: node tools/prove-rate-limit-trigger.mjs
+Base URL: http://127.0.0.1:3002
+Each body is valid JSON but fails Zod validation; this verifies rate limiting runs before request validation.
+
+registration (10 allowed per 15 minutes):
+Status counts: {"400":10,"429":1}
+Lockout: HTTP 429 {"error":"Too many registration requests from this IP. Try again after the 15-minute window."}
+
+login (20 allowed per 15 minutes):
+Status counts: {"400":20,"429":1}
+Lockout: HTTP 429 {"error":"Too many sign-in attempts from this IP. Try again after the 15-minute window."}
+
+password reset (5 allowed per 15 minutes):
+Status counts: {"400":5,"429":1}
+Lockout: HTTP 429 {"error":"Too many password reset requests from this IP. Try again after the 15-minute window."}
+
+All three endpoint limits triggered.

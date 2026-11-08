@@ -1,0 +1,15 @@
+Captured at: 2026-11-04T09:58:01.594Z
+Command: node tools/repeat-task3-attack.mjs
+Original Task 3 request: POST http://127.0.0.1:3001/api/accounts
+Task 3 recorded response (evidence/16-direct-request-command-and-response.txt): HTTP 201 Created {"id":1}
+Task 4 request: POST http://127.0.0.1:3002/api/accounts
+Exact JSON payload:
+{
+  "name": "x",
+  "phone": "1",
+  "email": "not-an-email",
+  "address": "abc",
+  "password": "weak",
+  "terms": false
+}
+Task 4 response: HTTP 400 {"error":"Invalid request body.","issues":[{"path":["name"],"message":"Full name must be at least 2 characters."},{"path":["name"],"message":"Enter at least two words for your full name."},{"path":["phone"],"message":"Phone number must contain 10 to 14 digits only."},{"path":["email"],"message":"Enter a valid email address."},{"path":["address"],"message":"Service address must be at least 10 characters."},{"path":["password"],"message":"Password must be at least 12 characters after trimming outer whitespace."},{"path":["terms"],"message":"Invalid input: expected true"}]}

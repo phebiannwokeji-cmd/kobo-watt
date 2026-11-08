@@ -1,5 +1,8 @@
 node_modules/
 data/
+!data/
+data/*
+!data/.gitkeep
 .env
 .env.*
 !.env.example
